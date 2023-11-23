@@ -2,3 +2,8 @@
 /dist
 /coverage
 /.nx/cache
+
+# ignore all files that are generated
+libs/api/generated-db-types/src/lib/index.ts
+libs/web/data-access-graphql/src/lib/data-access.gql.gen.ts
+libs/web/data-access-graphql/src/lib/types.ts

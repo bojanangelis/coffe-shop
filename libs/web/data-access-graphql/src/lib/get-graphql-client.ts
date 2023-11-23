@@ -1,8 +1,5 @@
 import { GraphQLClient } from 'graphql-request';
-import {
-  GraphQLClientRequestHeaders,
-  MaybeLazy,
-} from 'graphql-request/build/esm/types';
+import { GraphQLClientRequestHeaders, MaybeLazy } from 'graphql-request/build/esm/types';
 import { getSdk } from './data-access.gql.gen';
 
 export const getGraphqlClient = (
@@ -10,7 +7,7 @@ export const getGraphqlClient = (
   headers?: MaybeLazy<GraphQLClientRequestHeaders> | undefined
 ) => {
   const client = new GraphQLClient(url, {
-    headers,
+    headers
   });
 
   return getSdk(client);

@@ -7,16 +7,10 @@ import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import helmet from '@fastify/helmet';
 import { AppModule } from './app/app.module';
-import {
-  FastifyAdapter,
-  NestFastifyApplication,
-} from '@nestjs/platform-fastify';
+import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestFastifyApplication>(
-    AppModule,
-    new FastifyAdapter()
-  );
+  const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter());
 
   const port = process.env.PORT || 3333;
   app.enableCors();
@@ -25,5 +19,5 @@ async function bootstrap() {
   await app.listen(port);
   Logger.log(`🚀 Application is running on: http://localhost:${port}/graphiql`);
 }
-
-bootstrap();
+// eslint-disable-next-line unicorn/prefer-top-level-await
+bootstrap().catch(console.log);

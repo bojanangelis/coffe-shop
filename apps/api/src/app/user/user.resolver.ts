@@ -1,11 +1,11 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { UserService } from './user.service';
 import {
   CreateOneUserArgs,
   DeleteOneUserArgs,
   FindUniqueUserArgs,
   UpdateOneUserArgs,
-  User,
+  User
 } from '@coffee-shop/api/generated-db-types';
 
 @Resolver(() => User)
