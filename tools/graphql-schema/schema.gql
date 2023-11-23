@@ -2,6 +2,100 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type HomeBlockCountAggregate {
+  id: Int!
+  title: Int!
+  description: Int!
+  button: Int!
+  imagePath: Int!
+  navigationPath: Int!
+  rgbBackgroundId: Int!
+  _all: Int!
+}
+
+type HomeBlockMaxAggregate {
+  id: String
+  title: String
+  description: String
+  button: String
+  imagePath: String
+  navigationPath: String
+  rgbBackgroundId: String
+}
+
+type HomeBlockMinAggregate {
+  id: String
+  title: String
+  description: String
+  button: String
+  imagePath: String
+  navigationPath: String
+  rgbBackgroundId: String
+}
+
+type HomeBlock {
+  id: ID!
+  title: String!
+  description: String!
+  button: String!
+  imagePath: String!
+  navigationPath: String!
+  rgbBackgroundId: String!
+  rgbBackground: RgbBackground!
+}
+
+type RgbBackgroundAvgAggregate {
+  r: Float
+  g: Float
+  b: Float
+  a: Float
+}
+
+type RgbBackgroundCountAggregate {
+  id: Int!
+  r: Int!
+  g: Int!
+  b: Int!
+  a: Int!
+  hash: Int!
+  _all: Int!
+}
+
+type RgbBackgroundMaxAggregate {
+  id: String
+  r: Int
+  g: Int
+  b: Int
+  a: Float
+  hash: String
+}
+
+type RgbBackgroundMinAggregate {
+  id: String
+  r: Int
+  g: Int
+  b: Int
+  a: Float
+  hash: String
+}
+
+type RgbBackgroundSumAggregate {
+  r: Int
+  g: Int
+  b: Int
+  a: Float
+}
+
+type RgbBackground {
+  id: ID!
+  r: Int!
+  g: Int!
+  b: Int!
+  a: Float
+  hash: String
+  homeBlock: HomeBlock
+}
+
 type UserCountAggregate {
   id: Int!
   email: Int!
@@ -30,6 +124,8 @@ type User {
 type Query {
   users: [User!]!
   user(where: UserWhereUniqueInput!): User!
+  homeBlocks: [HomeBlock!]!
+  homeBlock(where: HomeBlockWhereUniqueInput!): HomeBlock!
 }
 
 input UserWhereUniqueInput {
@@ -72,10 +168,86 @@ enum QueryMode {
   insensitive
 }
 
+input HomeBlockWhereUniqueInput {
+  id: String
+  rgbBackgroundId: String
+  AND: [HomeBlockWhereInput!]
+  OR: [HomeBlockWhereInput!]
+  NOT: [HomeBlockWhereInput!]
+  title: StringFilter
+  description: StringFilter
+  button: StringFilter
+  imagePath: StringFilter
+  navigationPath: StringFilter
+  rgbBackground: RgbBackgroundRelationFilter
+}
+
+input HomeBlockWhereInput {
+  AND: [HomeBlockWhereInput!]
+  OR: [HomeBlockWhereInput!]
+  NOT: [HomeBlockWhereInput!]
+  id: StringFilter
+  title: StringFilter
+  description: StringFilter
+  button: StringFilter
+  imagePath: StringFilter
+  navigationPath: StringFilter
+  rgbBackgroundId: StringFilter
+  rgbBackground: RgbBackgroundRelationFilter
+}
+
+input RgbBackgroundRelationFilter {
+  is: RgbBackgroundWhereInput
+  isNot: RgbBackgroundWhereInput
+}
+
+input RgbBackgroundWhereInput {
+  AND: [RgbBackgroundWhereInput!]
+  OR: [RgbBackgroundWhereInput!]
+  NOT: [RgbBackgroundWhereInput!]
+  id: StringFilter
+  r: IntFilter
+  g: IntFilter
+  b: IntFilter
+  a: FloatFilter
+  hash: StringFilter
+  homeBlock: HomeBlockRelationFilter
+}
+
+input IntFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: IntFilter
+}
+
+input FloatFilter {
+  equals: Float
+  in: [Float!]
+  notIn: [Float!]
+  lt: Float
+  lte: Float
+  gt: Float
+  gte: Float
+  not: FloatFilter
+}
+
+input HomeBlockRelationFilter {
+  is: HomeBlockWhereInput
+  isNot: HomeBlockWhereInput
+}
+
 type Mutation {
   createUser(data: UserCreateInput!): User!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User!
   removeUser(where: UserWhereUniqueInput!): User!
+  createHomeBlock(data: HomeBlockCreateInput!): HomeBlock!
+  updateHomeBlock(data: HomeBlockUpdateInput!, where: HomeBlockWhereUniqueInput!): HomeBlock!
+  removeHomeBlock(where: HomeBlockWhereUniqueInput!): HomeBlock!
 }
 
 input UserCreateInput {
@@ -90,4 +262,85 @@ input UserUpdateInput {
   email: String
   name: String
   password: String
+}
+
+input HomeBlockCreateInput {
+  id: String
+  title: String!
+  description: String!
+  button: String!
+  imagePath: String!
+  navigationPath: String!
+  rgbBackground: RgbBackgroundCreateNestedOneWithoutHomeBlockInput!
+}
+
+input RgbBackgroundCreateNestedOneWithoutHomeBlockInput {
+  create: RgbBackgroundCreateWithoutHomeBlockInput
+  connectOrCreate: RgbBackgroundCreateOrConnectWithoutHomeBlockInput
+  connect: RgbBackgroundWhereUniqueInput
+}
+
+input RgbBackgroundCreateWithoutHomeBlockInput {
+  id: String
+  r: Int!
+  g: Int!
+  b: Int!
+  a: Float
+  hash: String
+}
+
+input RgbBackgroundCreateOrConnectWithoutHomeBlockInput {
+  where: RgbBackgroundWhereUniqueInput!
+  create: RgbBackgroundCreateWithoutHomeBlockInput!
+}
+
+input RgbBackgroundWhereUniqueInput {
+  id: String
+  AND: [RgbBackgroundWhereInput!]
+  OR: [RgbBackgroundWhereInput!]
+  NOT: [RgbBackgroundWhereInput!]
+  r: IntFilter
+  g: IntFilter
+  b: IntFilter
+  a: FloatFilter
+  hash: StringFilter
+  homeBlock: HomeBlockRelationFilter
+}
+
+input HomeBlockUpdateInput {
+  id: String
+  title: String
+  description: String
+  button: String
+  imagePath: String
+  navigationPath: String
+  rgbBackground: RgbBackgroundUpdateOneRequiredWithoutHomeBlockNestedInput
+}
+
+input RgbBackgroundUpdateOneRequiredWithoutHomeBlockNestedInput {
+  create: RgbBackgroundCreateWithoutHomeBlockInput
+  connectOrCreate: RgbBackgroundCreateOrConnectWithoutHomeBlockInput
+  upsert: RgbBackgroundUpsertWithoutHomeBlockInput
+  connect: RgbBackgroundWhereUniqueInput
+  update: RgbBackgroundUpdateToOneWithWhereWithoutHomeBlockInput
+}
+
+input RgbBackgroundUpsertWithoutHomeBlockInput {
+  update: RgbBackgroundUpdateWithoutHomeBlockInput!
+  create: RgbBackgroundCreateWithoutHomeBlockInput!
+  where: RgbBackgroundWhereInput
+}
+
+input RgbBackgroundUpdateWithoutHomeBlockInput {
+  id: String
+  r: Int
+  g: Int
+  b: Int
+  a: Float
+  hash: String
+}
+
+input RgbBackgroundUpdateToOneWithWhereWithoutHomeBlockInput {
+  where: RgbBackgroundWhereInput
+  data: RgbBackgroundUpdateWithoutHomeBlockInput!
 }

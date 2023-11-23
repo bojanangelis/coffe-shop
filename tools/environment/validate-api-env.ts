@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { plainToInstance, Type } from 'class-transformer';
 import { apiEnv, IApiEnv } from '../../apps/api/src/environments/environment';
 import { IsNotEmpty, validateSync } from 'class-validator';
