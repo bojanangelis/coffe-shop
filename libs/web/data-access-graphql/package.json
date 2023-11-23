@@ -2,7 +2,8 @@
   "name": "@coffee-shop/web/data-access-graphql",
   "version": "0.0.1",
   "dependencies": {
-    "@swc/helpers": "~0.5.2"
+    "@swc/helpers": "~0.5.2",
+    "graphql-request": "^6.1.0"
   },
   "type": "commonjs",
   "main": "./src/index.js",
