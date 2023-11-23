@@ -7,7 +7,7 @@
     "------START------": "------------",
     "start:verify-env": "yarn run validate:web-env && yarn run validate:api-env",
     "start:db:watch": "yarn run db:docker && yarn run db:migrate:dev && yarn run db:seed:dev && prisma generate --watch",
-    "start:gql:watch": "graphql-codegen --config codegen.yml --watch",
+    "start:gql:watch": "graphql-code-generator --config codegen.yml --watch",
     "start:api": "nx serve api",
     "start:web": "nx serve web",
     "------NX SECTION------": "------------",
