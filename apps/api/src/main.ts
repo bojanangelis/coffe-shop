@@ -10,11 +10,10 @@ import { AppModule } from './app/app.module';
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
 import { apiEnv } from './environments/environment';
 
-const {isProd, api} = apiEnv
+const { isProd, api } = apiEnv;
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter());
-
 
   app.enableCors();
   await app.register(helmet, { contentSecurityPolicy: isProd });

@@ -3,9 +3,8 @@ import * as process from 'node:process';
 export const webEnv: IWebEnv = {
   isProd: process.env.COFFEE_SHOP_ENV === 'production',
   api: {
-    gqlUrl: process.env.COFFEE_SHOP_WEB_GQL_URL!,
-  },
- 
+    gqlUrl: process.env.COFFEE_SHOP_WEB_GQL_URL!
+  }
 };
 
 export interface IWebEnv {
@@ -13,5 +12,4 @@ export interface IWebEnv {
   api: {
     gqlUrl: string;
   };
- 
 }

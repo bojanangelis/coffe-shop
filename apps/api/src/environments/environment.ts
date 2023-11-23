@@ -15,7 +15,7 @@ export interface IApiEnv {
   api: {
     port: number;
   };
-  db: { 
+  db: {
     url: string;
   };
 }
