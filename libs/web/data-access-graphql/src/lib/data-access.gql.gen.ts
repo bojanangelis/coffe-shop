@@ -11,7 +11,7 @@ export type GetUsers = { __typename?: 'Query', users: Array<{ __typename?: 'User
 export type GetHomeImagesVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type GetHomeImages = { __typename?: 'Query', homeBlocks: Array<{ __typename?: 'HomeBlock', id: string, title: string, description: string, button: string, imagePath: string, navigationPath: string, rgbBackground: { __typename?: 'RgbBackground', r: number, g: number, b: number, hash?: string | null } }> };
+export type GetHomeImages = { __typename?: 'Query', homeBlocks: Array<{ __typename?: 'HomeBlock', id: string, title: string, description: string, button: string, imagePath: string, navigationPath: string, rgbBackgroundId: string, rgbBackground: { __typename?: 'RgbBackground', r: number, g: number, b: number, hash?: string | null } }> };
 
 
 export const GetUsersDocument = /*#__PURE__*/ gql`
@@ -32,6 +32,7 @@ export const GetHomeImagesDocument = /*#__PURE__*/ gql`
     button
     imagePath
     navigationPath
+    rgbBackgroundId
     rgbBackground {
       r
       g

@@ -19,6 +19,7 @@ export const GET_HOME_BLOCK_GQL = gql`
       button
       imagePath
       navigationPath
+      rgbBackgroundId
       rgbBackground {
         r
         g
