@@ -1721,12 +1721,12 @@
     unixify "^1.0.0"
 
 "@graphql-tools/load@^8.0.0":
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/@graphql-tools/load/-/load-8.0.0.tgz#62e00f48c39b4085167a096f66ba6c21fb3fc796"
-  integrity sha512-Cy874bQJH0FP2Az7ELPM49iDzOljQmK1PPH6IuxsWzLSTxwTqd8dXA09dcVZrI7/LsN26heTY2R8q2aiiv0GxQ==
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/load/-/load-8.0.1.tgz#498f2230448601cb87894b8a93df7867daef69ea"
+  integrity sha512-qSMsKngJhDqRbuWyo3NvakEFqFL6+eSjy8ooJ1o5qYD26N7dqXkKzIMycQsX7rBK19hOuINAUSaRcVWH6hTccw==
   dependencies:
     "@graphql-tools/schema" "^10.0.0"
-    "@graphql-tools/utils" "^10.0.0"
+    "@graphql-tools/utils" "^10.0.11"
     p-limit "3.1.0"
     tslib "^2.4.0"
 
@@ -1851,10 +1851,10 @@
     dset "^3.1.2"
     tslib "^2.4.0"
 
-"@graphql-tools/utils@^10.0.0", "@graphql-tools/utils@^10.0.10", "@graphql-tools/utils@^10.0.2", "@graphql-tools/utils@^10.0.5", "@graphql-tools/utils@^10.0.8":
-  version "10.0.10"
-  resolved "https://registry.yarnpkg.com/@graphql-tools/utils/-/utils-10.0.10.tgz#c8c1c0c03e63019b41f206614dbd351e95229d13"
-  integrity sha512-NzK2qZP+jUt4Cc+l879wLqk/JGGu8SAEJgqaamYBgIgfmsuwzDWpKw2VpO0DbZdFdtlAStl7a3mbJmOrRqmZnw==
+"@graphql-tools/utils@^10.0.0", "@graphql-tools/utils@^10.0.10", "@graphql-tools/utils@^10.0.11", "@graphql-tools/utils@^10.0.2", "@graphql-tools/utils@^10.0.5", "@graphql-tools/utils@^10.0.8":
+  version "10.0.11"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/utils/-/utils-10.0.11.tgz#1238fbe37e8d6c662c48ab2477c98269d6fd851a"
+  integrity sha512-vVjXgKn6zjXIlYBd7yJxCVMYGb5j18gE3hx3Qw3mNsSEsYQXbJbPdlwb7Fc9FogsJei5AaqiQerqH4kAosp1nQ==
   dependencies:
     "@graphql-typed-document-node/core" "^3.1.1"
     cross-inspect "1.0.0"
@@ -2351,6 +2351,11 @@
   integrity sha512-tVPS/2FKlA3ANCRCYZVT5jdbUKasBU8LG6bYqcNhyORDFTlDYa4cAWQJjZ7msIgLwMQIbL8CAsxrOL8maa/4Lg==
   dependencies:
     glob "7.1.7"
+
+"@next/font@^14.0.3":
+  version "14.0.3"
+  resolved "https://registry.yarnpkg.com/@next/font/-/font-14.0.3.tgz#c3e6886e28348d97bb2e7899d6cda6eebfebe399"
+  integrity sha512-M96skA6j99ri/J9+BpoDOoO9ntadHUyX2CmwSzsLDm3fL3hgyPfskH6Kd92sz6H8cr7ZHV3xNkCTggFvnLdq2Q==
 
 "@next/swc-darwin-arm64@13.4.1":
   version "13.4.1"
@@ -3573,9 +3578,9 @@
     "@types/node" "*"
 
 "@types/node@*":
-  version "20.9.4"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.9.4.tgz#cc8f970e869c26834bdb7ed480b30ede622d74c7"
-  integrity sha512-wmyg8HUhcn6ACjsn8oKYjkN/zUzQeNtMy44weTJSM6p4MMzEOuKbA3OjJ267uPCOW7Xex9dyrNTful8XTQYoDA==
+  version "20.10.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.10.0.tgz#16ddf9c0a72b832ec4fcce35b8249cf149214617"
+  integrity sha512-D0WfRmU9TQ8I9PFx9Yc+EBHw+vSpIub4IDvQivcp26PtPrdMGAq5SDcpXEo/epqa/DXotVpekHiLNTg3iaKXBQ==
   dependencies:
     undici-types "~5.26.4"
 
@@ -3585,9 +3590,9 @@
   integrity sha512-1uEQxww3DaghA0RxqHx0O0ppVlo43pJhepY51OxuQIKHpjbnYLA7vcdwioNPzIqmC2u3I/dmylcqjlh0e7AyUA==
 
 "@types/node@^18.17.5":
-  version "18.18.12"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.18.12.tgz#0c40e52e5ff2569386b160f6f6bb019ff1361cb4"
-  integrity sha512-G7slVfkwOm7g8VqcEF1/5SXiMjP3Tbt+pXDU3r/qhlM2KkGm786DUD4xyMA2QzEElFrv/KZV9gjygv4LnkpbMQ==
+  version "18.18.13"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.18.13.tgz#ae0f76c0bfe79d8fad0f910b78ae3e59b333c6e8"
+  integrity sha512-vXYZGRrSCreZmq1rEjMRLXJhiy8MrIeVasx+PCVlP414N7CJLHnMf+juVvjdprHyH+XRy3zKZLHeNueOpJCn0g==
   dependencies:
     undici-types "~5.26.4"
 
@@ -6274,9 +6279,9 @@ ejs@^3.1.7:
     jake "^10.8.5"
 
 electron-to-chromium@^1.4.535:
-  version "1.4.592"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.592.tgz#1ffd49ba3da3da3077ea20014b066c910d50c913"
-  integrity sha512-D3NOkROIlF+d5ixnz7pAf3Lu/AuWpd6AYgI9O67GQXMXTcCP1gJQRotOq35eQy5Sb4hez33XH1YdTtILA7Udww==
+  version "1.4.593"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.593.tgz#f71b157f7382f3d3a164f73ff2da772d4b3fd984"
+  integrity sha512-c7+Hhj87zWmdpmjDONbvNKNo24tvmD4mjal1+qqTYTrlF0/sNpAcDlU0Ki84ftA/5yj3BF2QhSGEC0Rky6larg==
 
 emittery@^0.13.1:
   version "0.13.1"
@@ -9503,9 +9508,9 @@ levn@^0.4.1:
     type-check "~0.4.0"
 
 libphonenumber-js@^1.10.14:
-  version "1.10.50"
-  resolved "https://registry.yarnpkg.com/libphonenumber-js/-/libphonenumber-js-1.10.50.tgz#d7ea406dd86f9b1056f261bdfe66c3016ed0bd2e"
-  integrity sha512-AOYOJslxKQ49mpwvpkSFcagoMtxeH1UpUHm+05pmPkenPpFbt6ofdeEvQ+ZylmQiJS99ocRWeEeEp7quVlFyVA==
+  version "1.10.51"
+  resolved "https://registry.yarnpkg.com/libphonenumber-js/-/libphonenumber-js-1.10.51.tgz#a3b8c15db2721c3e5f7fe6759e2a524712b578e6"
+  integrity sha512-vY2I+rQwrDQzoPds0JeTEpeWzbUJgqoV0O4v31PauHBb/e+1KCXKylHcDnBMgJZ9fH9mErsEbROJY3Z3JtqEmg==
 
 license-webpack-plugin@^4.0.2:
   version "4.0.2"
@@ -13257,9 +13262,9 @@ undici-types@~5.26.4:
   integrity sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==
 
 undici@^5.0.0:
-  version "5.27.2"
-  resolved "https://registry.yarnpkg.com/undici/-/undici-5.27.2.tgz#a270c563aea5b46cc0df2550523638c95c5d4411"
-  integrity sha512-iS857PdOEy/y3wlM3yRp+6SNQQ6xU0mmZcwRSriqk+et/cwWAtwmIGf6WkoDN2EK/AMdCO/dfXzIwi+rFMrjjQ==
+  version "5.28.0"
+  resolved "https://registry.yarnpkg.com/undici/-/undici-5.28.0.tgz#09f6aa4a6f34de8996eec585fe4ceebaa9ef3f36"
+  integrity sha512-gM12DkXhlAc5+/TPe60iy9P6ETgVfqTuRJ6aQ4w8RYu0MqKuXhaq3/b86GfzDQnNA3NUO6aUNdvevrKH59D0Nw==
   dependencies:
     "@fastify/busboy" "^2.0.0"
 
