@@ -20,7 +20,7 @@
     "db:seed:clear": "npx env-cmd -f .env ts-node --project tools/tsconfig.tools.json tools/database/seed-clear-database.ts",
     "db:seed:dev": "npx env-cmd -f .env ts-node --project tools/tsconfig.tools.json tools/database/seed.dev.ts",
     "------VALIDATE ENV SECTION------": "------------",
-    "verify": "nx show projects && nx format:write && nx format:check && nx affected --target=lint --fix --parallel=3 && npx nx affected --target=test --parallel=3 && nx affected --target=build --parallel=3 --exclude=web",
+    "verify": "nx show projects && nx format:write && nx format:check --verbose && nx affected --target=lint --fix --parallel=3 && npx nx affected --target=test --parallel=3 && nx affected --target=build --parallel=3 --exclude=web",
     "validate:web-env": "npx env-cmd -f .env ts-node --project tools/tsconfig.tools.json tools/environment/validate-web-env.ts",
     "validate:api-env": "npx env-cmd -f .env ts-node --project tools/tsconfig.tools.json tools/environment/validate-api-env.ts"
   },
