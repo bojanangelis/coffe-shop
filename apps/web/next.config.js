@@ -11,6 +11,15 @@ const nextConfig = {
     // Set this to true if you would like to use SVGR
     // See: https://github.com/gregberge/svgr
     svgr: false
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname:
+          process.env.COFFEE_SHOP_STORAGE_ENDPOINT || 'coffee-shop.fra1.cdn.digitaloceanspaces.com'
+      }
+    ]
   }
 };
 

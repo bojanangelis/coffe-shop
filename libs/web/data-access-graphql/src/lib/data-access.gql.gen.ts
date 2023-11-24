@@ -8,6 +8,11 @@ export type GetUsersVariables = Types.Exact<{ [key: string]: never; }>;
 
 export type GetUsers = { __typename?: 'Query', users: Array<{ __typename?: 'User', id: string, email: string, name?: string | null }> };
 
+export type GetHomeImagesVariables = Types.Exact<{ [key: string]: never; }>;
+
+
+export type GetHomeImages = { __typename?: 'Query', homeBlocks: Array<{ __typename?: 'HomeBlock', id: string, title: string, description: string, button: string, imagePath: string, navigationPath: string, rgbBackground: { __typename?: 'RgbBackground', r: number, g: number, b: number, hash?: string | null } }> };
+
 
 export const GetUsersDocument = /*#__PURE__*/ gql`
     query GetUsers {
@@ -15,6 +20,24 @@ export const GetUsersDocument = /*#__PURE__*/ gql`
     id
     email
     name
+  }
+}
+    `;
+export const GetHomeImagesDocument = /*#__PURE__*/ gql`
+    query GetHomeImages {
+  homeBlocks {
+    id
+    title
+    description
+    button
+    imagePath
+    navigationPath
+    rgbBackground {
+      r
+      g
+      b
+      hash
+    }
   }
 }
     `;
@@ -28,6 +51,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
   return {
     GetUsers(variables?: GetUsersVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetUsers> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetUsers>(GetUsersDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetUsers', 'query');
+    },
+    GetHomeImages(variables?: GetHomeImagesVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetHomeImages> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetHomeImages>(GetHomeImagesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetHomeImages', 'query');
     }
   };
 }
