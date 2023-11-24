@@ -1,19 +1,22 @@
-import Image from 'next/image';
 import { gql } from '../data-access/graphql-client';
-import { webEnv } from '../environments/environment';
 import Link from 'next/link';
+import { webEnv } from '../environments/environment';
+import Image from 'next/image';
+import { rgbToDataUrl } from '@coffee-shop/web/utils-shared';
 
 const { storage } = webEnv;
 export default async function Index() {
   const { homeBlocks } = await gql.GetHomeImages();
+
   return (
     <main className="space-y-8">
       {homeBlocks.map((block, i) => {
+        const { r, g, b } = block.rgbBackground;
         const flexClass = i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse';
         return (
           <div
             key={block.id}
-            className={`relative w-full flex flex-col ${flexClass} md:h-80 items-center justify-center`}
+            className={`relative w-full flex flex-col ${flexClass} md:h-80 lg:h-96 items-center justify-center`}
           >
             <div
               style={{ backgroundColor: block?.rgbBackground.hash || 'transparent' }}
@@ -31,7 +34,13 @@ export default async function Index() {
               </div>
             </div>
             <div className="relative object-contain w-full md:w-1/2 h-80 md:h-full">
-              <Image fill src={`${storage.url}/${block.imagePath}`} alt="alt" />
+              <Image
+                fill
+                src={`${storage.url}/${block.imagePath}`}
+                blurDataURL={rgbToDataUrl(r, g, b)}
+                placeholder="blur"
+                alt={block.title}
+              />
             </div>
           </div>
         );
