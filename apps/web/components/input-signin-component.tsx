@@ -13,7 +13,7 @@ const InputSignInPage = () => {
     resolver: yupResolver(SignInAccountYupSchema)
   });
 
-  const onSubmit = (data: SignInAccountInterface) => console.log(data);
+  const onSubmit = async (values: SignInAccountInterface) => {};
 
   return (
     <div className="flex flex-col items-center justify-center">
@@ -26,9 +26,19 @@ const InputSignInPage = () => {
         <p className="text-gray-700 text-sm md:px-10">* indicates required field</p>
         <form className="flex flex-col py-4 md:px-10" onSubmit={handleSubmit(onSubmit)}>
           <label className="label-title">Email address</label>
-          <input className="custom-input" {...register('email')} />
+          <input
+            type="email"
+            autoComplete="email"
+            className="custom-input"
+            {...register('email')}
+          />
           <label className="label-title">Password</label>
-          <input className="custom-input" {...register('password')} />
+          <input
+            type="password"
+            autoComplete="password"
+            className="custom-input"
+            {...register('password')}
+          />
           <label className="pt-2 text-xs text-red-400">
             {errors.email?.message || errors.password?.message}
           </label>

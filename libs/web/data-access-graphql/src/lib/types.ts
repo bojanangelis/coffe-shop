@@ -135,12 +135,19 @@ export type IntFilter = {
   notIn?: InputMaybe<Array<Scalars['Int']['input']>>;
 };
 
+export type LoginInput = {
+  email: Scalars['String']['input'];
+  password: Scalars['String']['input'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   createHomeBlock: HomeBlock;
   createUser: User;
+  login: User;
   removeHomeBlock: HomeBlock;
   removeUser: User;
+  signUp: User;
   updateHomeBlock: HomeBlock;
   updateUser: User;
 };
@@ -156,6 +163,11 @@ export type MutationCreateUserArgs = {
 };
 
 
+export type MutationLoginArgs = {
+  loginInput: LoginInput;
+};
+
+
 export type MutationRemoveHomeBlockArgs = {
   where: HomeBlockWhereUniqueInput;
 };
@@ -163,6 +175,11 @@ export type MutationRemoveHomeBlockArgs = {
 
 export type MutationRemoveUserArgs = {
   where: UserWhereUniqueInput;
+};
+
+
+export type MutationSignUpArgs = {
+  signUpInput: LoginInput;
 };
 
 

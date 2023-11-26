@@ -28,3 +28,12 @@ export const GET_HOME_BLOCK_GQL = gql`
     }
   }
 `;
+
+export const LOGIN_MUTATION = gql`
+  mutation Login($loginInput: LoginInput!) {
+    login(loginInput: $loginInput) {
+      id
+      email
+    }
+  }
+`;

@@ -13,6 +13,13 @@ export type GetHomeImagesVariables = Types.Exact<{ [key: string]: never; }>;
 
 export type GetHomeImages = { __typename?: 'Query', homeBlocks: Array<{ __typename?: 'HomeBlock', id: string, title: string, description: string, button: string, imagePath: string, navigationPath: string, rgbBackground: { __typename?: 'RgbBackground', r: number, g: number, b: number, hash?: string | null } }> };
 
+export type LoginVariables = Types.Exact<{
+  loginInput: Types.LoginInput;
+}>;
+
+
+export type Login = { __typename?: 'Mutation', login: { __typename?: 'User', id: string, email: string } };
+
 
 export const GetUsersDocument = /*#__PURE__*/ gql`
     query GetUsers {
@@ -41,6 +48,14 @@ export const GetHomeImagesDocument = /*#__PURE__*/ gql`
   }
 }
     `;
+export const LoginDocument = /*#__PURE__*/ gql`
+    mutation Login($loginInput: LoginInput!) {
+  login(loginInput: $loginInput) {
+    id
+    email
+  }
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 
@@ -54,6 +69,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     GetHomeImages(variables?: GetHomeImagesVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetHomeImages> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetHomeImages>(GetHomeImagesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetHomeImages', 'query');
+    },
+    Login(variables: LoginVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Login> {
+      return withWrapper((wrappedRequestHeaders) => client.request<Login>(LoginDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Login', 'mutation');
     }
   };
 }
