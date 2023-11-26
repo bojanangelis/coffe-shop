@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "dependencies": {
     "@swc/helpers": "~0.5.2",
-    "graphql-request": "^6.1.0"
+    "graphql-tag": "2.12.6",
+    "urql": "^4.0.6"
   },
   "type": "commonjs",
   "main": "./src/index.js",

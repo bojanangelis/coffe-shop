@@ -5,6 +5,7 @@ import { PrismaModule } from '@coffee-shop/api/data-access-db';
 
 @Module({
   imports: [PrismaModule],
-  providers: [UserResolver, UserService]
+  providers: [UserResolver, UserService],
+  exports: [UserService]
 })
 export class UserModule {}

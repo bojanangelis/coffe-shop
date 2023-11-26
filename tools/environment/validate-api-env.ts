@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { plainToInstance, Type } from 'class-transformer';
 import { apiEnv, IApiEnv } from '../../apps/api/src/environments/environment';
 import { IsNotEmpty, validateSync } from 'class-validator';
@@ -10,6 +11,16 @@ export class ApiEnvVo implements IApiEnv {
 
   @IsDefined()
   @ValidateNested()
+  @Type(() => ApiEnvCookieVo)
+  public cookie: ApiEnvCookieVo;
+
+  @IsDefined()
+  @ValidateNested()
+  @Type(() => ApiEnvWebVo)
+  public web: ApiEnvWebVo;
+
+  @IsDefined()
+  @ValidateNested()
   @Type(() => ApiEnvDbVo)
   public db: ApiEnvDbVo;
 
@@ -17,6 +28,22 @@ export class ApiEnvVo implements IApiEnv {
   @ValidateNested()
   @Type(() => ApiEnvApiVo)
   public api: ApiEnvApiVo;
+}
+
+class ApiEnvCookieVo {
+  @IsNotEmpty()
+  @IsNumber()
+  public cookie_expires: number;
+
+  @IsNotEmpty()
+  @IsString()
+  public cookie_secret: string;
+}
+
+class ApiEnvWebVo {
+  @IsNotEmpty()
+  @IsString()
+  public host: string;
 }
 
 class ApiEnvDbVo {

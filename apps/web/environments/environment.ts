@@ -1,5 +1,3 @@
-import * as process from 'node:process';
-
 export const webEnv: IWebEnv = {
   isProd: process.env.COFFEE_SHOP_ENV === 'production',
   api: {

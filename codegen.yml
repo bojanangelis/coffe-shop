@@ -19,9 +19,6 @@ generates:
       baseTypesPath: 'web/data-access-graphql/src/lib/types.ts'
     plugins:
       - typescript-operations
-      - typescript-graphql-request
+      - typescript-urql
     config:
-      gqlImport: 'graphql-request#gql'
-      pureMagicComment: true
-      optimizeDocumentNode: true
-      omitOperationSuffix: true
+      withHooks: true

@@ -248,6 +248,8 @@ type Mutation {
   createHomeBlock(data: HomeBlockCreateInput!): HomeBlock!
   updateHomeBlock(data: HomeBlockUpdateInput!, where: HomeBlockWhereUniqueInput!): HomeBlock!
   removeHomeBlock(where: HomeBlockWhereUniqueInput!): HomeBlock!
+  login(loginInput: LoginInput!): User!
+  signUp(signUpInput: LoginInput!): User!
 }
 
 input UserCreateInput {
@@ -343,4 +345,9 @@ input RgbBackgroundUpdateWithoutHomeBlockInput {
 input RgbBackgroundUpdateToOneWithWhereWithoutHomeBlockInput {
   where: RgbBackgroundWhereInput
   data: RgbBackgroundUpdateWithoutHomeBlockInput!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
 }

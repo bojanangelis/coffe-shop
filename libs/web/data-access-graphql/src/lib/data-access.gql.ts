@@ -1,4 +1,4 @@
-import { gql } from 'graphql-request';
+import { gql } from 'urql';
 
 export const GET_USERS_GQL = gql`
   query GetUsers {
@@ -25,6 +25,15 @@ export const GET_HOME_BLOCK_GQL = gql`
         b
         hash
       }
+    }
+  }
+`;
+
+export const LOGIN_MUTATION = gql`
+  mutation Login($loginInput: LoginInput!) {
+    login(loginInput: $loginInput) {
+      id
+      email
     }
   }
 `;
