@@ -9,8 +9,8 @@ const Header = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="">
-      <div className="flex items-center justify-between mx-auto max-w-[1440px] px-4">
+    <nav>
+      <div className="flex px-4 items-center justify-between mx-auto max-w-[1440px] pt-4">
         <div className="flex items-center justify-between space-x-5">
           <Link href={'/'}>
             <Image src={'/logo.svg'} alt="starbucks logo" width={42} height={42} />
@@ -22,7 +22,7 @@ const Header = () => {
                 : `flex items-center justify-between space-x-5 max-md:hidden`
             }
           >
-            <Link href={'/'}>
+            <Link href={'/menu'}>
               <li>Menu</li>
             </Link>
             <Link href={'/'}>

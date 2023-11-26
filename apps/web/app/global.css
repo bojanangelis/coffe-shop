@@ -9,7 +9,7 @@
   }
 
   nav {
-    @apply mb-3 w-full py-3 shadow-md sm:py-3 md:mb-7 md:py-4 lg:py-6 xl:py-6;
+    @apply z-50 w-full py-3 shadow-md sm:py-3  md:py-4 lg:py-6 xl:py-6;
   }
 
   footer {
@@ -40,6 +40,12 @@
 }
 
 @layer components {
+  .link {
+    @apply font-light py-2 text-sm text-gray-600 cursor-pointer;
+  }
+  .link_active {
+    @apply border-b border-green-700;
+  }
   .hover-green {
     @apply hover:text-green-700;
   }

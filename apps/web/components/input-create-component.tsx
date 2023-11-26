@@ -4,6 +4,8 @@ import { CreateAccountInterface, CreateAccountYupSchema } from '@coffee-shop/web
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
+import { withApi } from '../api/client-api';
+import { useSingUpMutation } from '@coffee-shop/web/data-access-graphql';
 
 const InputCreateComponent = () => {
   const {
@@ -13,8 +15,17 @@ const InputCreateComponent = () => {
   } = useForm<CreateAccountInterface>({
     resolver: yupResolver(CreateAccountYupSchema)
   });
+  const [{ fetching }, signup] = useSingUpMutation();
 
-  const onSubmit = (data: CreateAccountInterface) => console.log(data);
+  const onSubmit = async (data: CreateAccountInterface) => {
+    await signup({
+      signupInput: {
+        email: data.email,
+        name: data.firstName + ' ' + data.lastName,
+        password: data.password
+      }
+    });
+  };
 
   return (
     <div className="flex flex-col items-center justify-center">
@@ -57,6 +68,7 @@ const InputCreateComponent = () => {
           </div>
           <div className="flex items-center justify-end">
             <button
+              disabled={fetching}
               className="px-4 py-1.5 bg-green-800 text-white rounded-3xl shadow-lg"
               onClick={handleSubmit(onSubmit)}
             >
@@ -69,4 +81,4 @@ const InputCreateComponent = () => {
   );
 };
 
-export default InputCreateComponent;
+export default withApi(InputCreateComponent);

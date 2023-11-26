@@ -179,7 +179,7 @@ export type MutationRemoveUserArgs = {
 
 
 export type MutationSignUpArgs = {
-  signUpInput: LoginInput;
+  signUpInput: SignUpInput;
 };
 
 
@@ -352,6 +352,12 @@ export type RgbBackgroundWhereUniqueInput = {
   homeBlock?: InputMaybe<HomeBlockRelationFilter>;
   id?: InputMaybe<Scalars['String']['input']>;
   r?: InputMaybe<IntFilter>;
+};
+
+export type SignUpInput = {
+  email: Scalars['String']['input'];
+  name?: InputMaybe<Scalars['String']['input']>;
+  password: Scalars['String']['input'];
 };
 
 export type StringFilter = {

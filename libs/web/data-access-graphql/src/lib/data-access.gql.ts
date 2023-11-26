@@ -37,3 +37,13 @@ export const LOGIN_MUTATION = gql`
     }
   }
 `;
+
+export const SIGNUP_MUTATION = gql`
+  mutation SingUp($signupInput: SignUpInput!) {
+    signUp(signUpInput: $signupInput) {
+      id
+      name
+      email
+    }
+  }
+`;

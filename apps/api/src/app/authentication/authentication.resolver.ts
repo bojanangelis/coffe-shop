@@ -5,6 +5,7 @@ import { User } from '@coffee-shop/api/generated-db-types';
 import { UseGuards } from '@nestjs/common';
 import { SetAuthGuard } from '../guards/auth-guards/set-auth.guard';
 import { IUserContext } from '../guards/auth-guards/types';
+import { SignUpInput } from './dto/create-user-authentication.input';
 
 @Resolver(() => User)
 export class AuthenticationResolver {
@@ -18,7 +19,7 @@ export class AuthenticationResolver {
   }
 
   @Mutation(() => User)
-  signUp(@Args('signUpInput') signUpInput: LoginInput) {
+  signUp(@Args('signUpInput') signUpInput: SignUpInput) {
     return this.authenticationService.signUp(signUpInput);
   }
 }

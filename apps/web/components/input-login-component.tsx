@@ -5,8 +5,10 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useLoginMutation } from '@coffee-shop/web/data-access-graphql';
 import { withApi } from '../api/client-api';
+import { useRouter } from 'next/navigation';
 
 const InputLoginComponent = () => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -14,10 +16,12 @@ const InputLoginComponent = () => {
   } = useForm<SignInAccountInterface>({
     resolver: yupResolver(SignInAccountYupSchema)
   });
-  const [, login] = useLoginMutation();
+  const [{ fetching }, login] = useLoginMutation();
 
   const onSubmit = async (values: SignInAccountInterface) => {
-    await login({ loginInput: { email: values.email, password: values.password } });
+    await login({ loginInput: { email: values.email, password: values.password } }).finally(() =>
+      router.push('/')
+    );
   };
 
   return (
@@ -58,6 +62,7 @@ const InputLoginComponent = () => {
           </div>
           <div className="flex items-center justify-end">
             <button
+              disabled={fetching}
               className="px-4 py-1.5 bg-green-800 text-white rounded-3xl shadow-lg"
               onClick={handleSubmit(onSubmit)}
             >

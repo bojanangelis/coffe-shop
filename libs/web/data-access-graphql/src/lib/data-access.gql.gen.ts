@@ -20,6 +20,13 @@ export type LoginMutationVariables = Types.Exact<{
 
 export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'User', id: string, email: string } };
 
+export type SingUpMutationVariables = Types.Exact<{
+  signupInput: Types.SignUpInput;
+}>;
+
+
+export type SingUpMutation = { __typename?: 'Mutation', signUp: { __typename?: 'User', id: string, name?: string | null, email: string } };
+
 
 export const GetUsersDocument = gql`
     query GetUsers {
@@ -67,4 +74,17 @@ export const LoginDocument = gql`
 
 export function useLoginMutation() {
   return Urql.useMutation<LoginMutation, LoginMutationVariables>(LoginDocument);
+};
+export const SingUpDocument = gql`
+    mutation SingUp($signupInput: SignUpInput!) {
+  signUp(signUpInput: $signupInput) {
+    id
+    name
+    email
+  }
+}
+    `;
+
+export function useSingUpMutation() {
+  return Urql.useMutation<SingUpMutation, SingUpMutationVariables>(SingUpDocument);
 };
