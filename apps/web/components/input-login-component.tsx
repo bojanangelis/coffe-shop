@@ -3,8 +3,10 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { SignInAccountInterface, SignInAccountYupSchema } from '@coffee-shop/web/utils-shared';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useLoginMutation } from '@coffee-shop/web/data-access-graphql';
+import { withApi } from '../api/client-api';
 
-const InputSignInPage = () => {
+const InputLoginComponent = () => {
   const {
     register,
     handleSubmit,
@@ -12,8 +14,11 @@ const InputSignInPage = () => {
   } = useForm<SignInAccountInterface>({
     resolver: yupResolver(SignInAccountYupSchema)
   });
+  const [, login] = useLoginMutation();
 
-  const onSubmit = async (values: SignInAccountInterface) => {};
+  const onSubmit = async (values: SignInAccountInterface) => {
+    await login({ loginInput: { email: values.email, password: values.password } });
+  };
 
   return (
     <div className="flex flex-col items-center justify-center">
@@ -65,4 +70,4 @@ const InputSignInPage = () => {
   );
 };
 
-export default InputSignInPage;
+export default withApi(InputLoginComponent);

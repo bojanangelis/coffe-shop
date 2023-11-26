@@ -3,7 +3,7 @@ import { ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/com
 import { AuthGuard } from '@nestjs/passport';
 import { JwtService } from '@nestjs/jwt';
 import { GqlExecutionContext } from '@nestjs/graphql';
-import { apiEnv } from 'apps/api/src/environments/environment';
+import { apiEnv } from '../../../environments/environment';
 
 const { web, cookie } = apiEnv;
 const jwtExpiresSecond = cookie.cookie_expires;

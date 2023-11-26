@@ -16,8 +16,11 @@ const { isProd, api, cookie } = apiEnv;
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter());
 
-  app.register(fastifyCookie, { secret: cookie.cookie_secret });
-  app.enableCors();
+  app.enableCors({
+    origin: true,
+    credentials: true
+  });
+  await app.register(fastifyCookie, { secret: cookie.cookie_secret });
   await app.register(helmet, { contentSecurityPolicy: isProd });
   await app.listen(api.port);
   Logger.log(`🚀 Application is running on: http://localhost:${api.port}/graphiql`);

@@ -7,6 +7,10 @@ const { composePlugins, withNx } = require('@nx/next');
  * @type {import('@nx/next/plugins/with-nx').WithNxOptions}
  **/
 const nextConfig = {
+  env: {
+    COFFEE_SHOP_STORAGE_URL: process.env.COFFEE_SHOP_STORAGE_URL ?? 'COFFEE_SHOP_STORAGE_URL',
+    COFFEE_SHOP_WEB_GQL_URL: process.env.COFFEE_SHOP_WEB_GQL_URL ?? 'http://localhost:3333/graphql'
+  },
   nx: {
     // Set this to true if you would like to use SVGR
     // See: https://github.com/gregberge/svgr

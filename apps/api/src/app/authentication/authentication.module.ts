@@ -6,6 +6,7 @@ import { LocalStrategy } from '../guards/strategy/local.strategy';
 import { JwtModule } from '@nestjs/jwt';
 import { apiEnv } from '../../environments/environment';
 import { PassportModule } from '@nestjs/passport';
+import { JwtStrategy } from '../guards/strategy/jwt.strategy';
 
 const { cookie } = apiEnv;
 
@@ -19,6 +20,6 @@ const { cookie } = apiEnv;
       signOptions: { expiresIn: Number(cookie.cookie_expires) }
     })
   ],
-  providers: [AuthenticationResolver, AuthenticationService, LocalStrategy]
+  providers: [AuthenticationResolver, AuthenticationService, LocalStrategy, JwtStrategy]
 })
 export class AuthenticationModule {}

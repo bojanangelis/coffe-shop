@@ -45,7 +45,7 @@ const Header = () => {
             <MapPinIcon className="h-6 w-6" />
             <p>Find a store</p>
           </Link>
-          <Link href={'/account/sign-in'}>
+          <Link href={'/account/login'}>
             <button className="nav-btn bg-white hover:bg-neutral-300">Sing In</button>
           </Link>
           <Link href={'/account/create'}>
