@@ -1,17 +1,17 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CategoryResolver } from './category.resolver';
-import { CategoryService } from './category.service';
+import { MenuItemResolver } from './menu-item.resolver';
+import { MenuItemService } from './menu-item.service';
 import { PrismaService } from '@coffee-shop/api/data-access-db';
 
-describe('CategoryResolver', () => {
-  let resolver: CategoryResolver;
+describe('MenuItemResolver', () => {
+  let resolver: MenuItemResolver;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [PrismaService, CategoryResolver, CategoryService]
+      providers: [PrismaService, MenuItemService, MenuItemResolver]
     }).compile();
 
-    resolver = module.get<CategoryResolver>(CategoryResolver);
+    resolver = module.get<MenuItemResolver>(MenuItemResolver);
   });
 
   it('should be defined', () => {

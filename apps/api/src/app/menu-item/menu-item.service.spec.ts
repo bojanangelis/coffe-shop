@@ -1,16 +1,16 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CategoryService } from './category.service';
+import { MenuItemService } from './menu-item.service';
 import { PrismaService } from '@coffee-shop/api/data-access-db';
 
-describe('CategoryService', () => {
-  let service: CategoryService;
+describe('MenuItemService', () => {
+  let service: MenuItemService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [CategoryService, PrismaService]
+      providers: [PrismaService, MenuItemService]
     }).compile();
 
-    service = module.get<CategoryService>(CategoryService);
+    service = module.get<MenuItemService>(MenuItemService);
   });
 
   it('should be defined', () => {

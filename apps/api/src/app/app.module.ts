@@ -7,6 +7,7 @@ import { APP_PIPE } from '@nestjs/core';
 import { HomeBlockModule } from './home-block/home-block.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { CategoryModule } from './category/category.module';
+import { MenuItemModule } from './menu-item/menu-item.module';
 
 const validationProvider = {
   provide: APP_PIPE,
@@ -23,7 +24,8 @@ const validationProvider = {
     UserModule,
     HomeBlockModule,
     AuthenticationModule,
-    CategoryModule
+    CategoryModule,
+    MenuItemModule
   ],
   providers: [validationProvider]
 })

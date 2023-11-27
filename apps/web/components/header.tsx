@@ -4,10 +4,15 @@ import React from 'react';
 import { Bars3Icon, MapPinIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies';
 
-const Header = () => {
+interface HeaderProps {
+  token?: RequestCookie | undefined;
+}
+
+const Header = ({ token }: HeaderProps) => {
   const pathname = usePathname();
-
+  // const router = useRouter();
   return (
     <nav>
       <div className="flex px-4 items-center justify-between mx-auto max-w-[1440px] pt-4">
@@ -45,12 +50,24 @@ const Header = () => {
             <MapPinIcon className="h-6 w-6" />
             <p>Find a store</p>
           </Link>
-          <Link href={'/account/login'}>
-            <button className="nav-btn bg-white hover:bg-neutral-300">Sing In</button>
-          </Link>
-          <Link href={'/account/create'}>
-            <button className="nav-btn bg-black text-white hover:bg-opacity-75">Join now</button>
-          </Link>
+          {token ? (
+            <Link href={'/account/profile'}>
+              <button className="bg-white border border-gray-200 px-4 py-1.5 rounded-md">
+                My Profile
+              </button>
+            </Link>
+          ) : (
+            <>
+              <Link href={'/account/login'}>
+                <button className="nav-btn bg-white hover:bg-neutral-300">Sing In</button>
+              </Link>
+              <Link href={'/account/create'}>
+                <button className="nav-btn bg-black text-white hover:bg-opacity-75">
+                  Join now
+                </button>
+              </Link>
+            </>
+          )}
         </div>
         <div className="flex items-center justify-between rounded-full p-2 transition-colors hover:bg-neutral-100 md:hidden">
           <Bars3Icon className="h-6 w-6" />

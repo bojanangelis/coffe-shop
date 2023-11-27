@@ -6,8 +6,10 @@ import { useForm } from 'react-hook-form';
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
 import { withApi } from '../api/client-api';
 import { useSingUpMutation } from '@coffee-shop/web/data-access-graphql';
+import { useRouter } from 'next/navigation';
 
 const InputCreateComponent = () => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -15,7 +17,7 @@ const InputCreateComponent = () => {
   } = useForm<CreateAccountInterface>({
     resolver: yupResolver(CreateAccountYupSchema)
   });
-  const [{ fetching }, signup] = useSingUpMutation();
+  const [{ data: signupData, fetching, error }, signup] = useSingUpMutation();
 
   const onSubmit = async (data: CreateAccountInterface) => {
     await signup({
@@ -25,6 +27,9 @@ const InputCreateComponent = () => {
         password: data.password
       }
     });
+    if (signupData) {
+      router.push('/');
+    }
   };
 
   return (
@@ -50,10 +55,20 @@ const InputCreateComponent = () => {
           <label className="pt-2 text-xs text-red-400">{errors.lastName?.message}</label>
           <label className="mt-10 mb-4">Account Security</label>
           <label className="label-title">Email address</label>
-          <input className="custom-input" {...register('email')} />
+          <input
+            type="email"
+            autoComplete="email"
+            className="custom-input"
+            {...register('email')}
+          />
           <label className="pt-2 text-xs text-red-400">{errors.email?.message}</label>
           <label className="label-title">Password</label>
-          <input className="custom-input" {...register('password')} />
+          <input
+            type="password"
+            autoComplete="password"
+            className="custom-input"
+            {...register('password')}
+          />
           <label className="pt-2 text-xs text-red-400">{errors.password?.message}</label>
           <label className="pt-2 text-xs text-gray-500">
             Create a password 8 to 25 characters long that includes at least 1 uppercase and 1
@@ -66,6 +81,7 @@ const InputCreateComponent = () => {
             </p>
             <ChevronDownIcon className="w-4 h-4" />
           </div>
+          <label className="pt-2 text-xs text-red-400">{error?.message}</label>
           <div className="flex items-center justify-end">
             <button
               disabled={fetching}

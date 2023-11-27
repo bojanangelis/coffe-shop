@@ -43,6 +43,23 @@ export type CategoryCreateInput = {
   subCategories?: InputMaybe<SubCategoryCreateNestedManyWithoutCategoryInput>;
 };
 
+export type CategoryCreateNestedOneWithoutSubCategoriesInput = {
+  connect?: InputMaybe<CategoryWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<CategoryCreateOrConnectWithoutSubCategoriesInput>;
+  create?: InputMaybe<CategoryCreateWithoutSubCategoriesInput>;
+};
+
+export type CategoryCreateOrConnectWithoutSubCategoriesInput = {
+  create: CategoryCreateWithoutSubCategoriesInput;
+  where: CategoryWhereUniqueInput;
+};
+
+export type CategoryCreateWithoutSubCategoriesInput = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+};
+
 export type CategoryMaxAggregate = {
   __typename?: 'CategoryMaxAggregate';
   description?: Maybe<Scalars['String']['output']>;
@@ -67,6 +84,31 @@ export type CategoryUpdateInput = {
   id?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   subCategories?: InputMaybe<SubCategoryUpdateManyWithoutCategoryNestedInput>;
+};
+
+export type CategoryUpdateOneRequiredWithoutSubCategoriesNestedInput = {
+  connect?: InputMaybe<CategoryWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<CategoryCreateOrConnectWithoutSubCategoriesInput>;
+  create?: InputMaybe<CategoryCreateWithoutSubCategoriesInput>;
+  update?: InputMaybe<CategoryUpdateToOneWithWhereWithoutSubCategoriesInput>;
+  upsert?: InputMaybe<CategoryUpsertWithoutSubCategoriesInput>;
+};
+
+export type CategoryUpdateToOneWithWhereWithoutSubCategoriesInput = {
+  data: CategoryUpdateWithoutSubCategoriesInput;
+  where?: InputMaybe<CategoryWhereInput>;
+};
+
+export type CategoryUpdateWithoutSubCategoriesInput = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type CategoryUpsertWithoutSubCategoriesInput = {
+  create: CategoryCreateWithoutSubCategoriesInput;
+  update: CategoryUpdateWithoutSubCategoriesInput;
+  where?: InputMaybe<CategoryWhereInput>;
 };
 
 export type CategoryWhereInput = {
@@ -392,6 +434,17 @@ export type MenuItemCountAggregate = {
   subCategoryId: Scalars['Int']['output'];
 };
 
+export type MenuItemCreateInput = {
+  calories?: InputMaybe<Scalars['Int']['input']>;
+  customizations?: InputMaybe<CustomizationCreateNestedManyWithoutMenuItemInput>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  sizes?: InputMaybe<SizeCreateNestedManyWithoutMenuItemInput>;
+  subCategory: SubCategoryCreateNestedOneWithoutMenuItemsInput;
+};
+
 export type MenuItemCreateManySubCategoryInput = {
   calories?: InputMaybe<Scalars['Int']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
@@ -473,6 +526,17 @@ export type MenuItemScalarWhereInput = {
 export type MenuItemSumAggregate = {
   __typename?: 'MenuItemSumAggregate';
   calories?: Maybe<Scalars['Int']['output']>;
+};
+
+export type MenuItemUpdateInput = {
+  calories?: InputMaybe<Scalars['Int']['input']>;
+  customizations?: InputMaybe<CustomizationUpdateManyWithoutMenuItemNestedInput>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  sizes?: InputMaybe<SizeUpdateManyWithoutMenuItemNestedInput>;
+  subCategory?: InputMaybe<SubCategoryUpdateOneRequiredWithoutMenuItemsNestedInput>;
 };
 
 export type MenuItemUpdateManyMutationInput = {
@@ -557,14 +621,17 @@ export type Mutation = {
   __typename?: 'Mutation';
   createCategory: Category;
   createHomeBlock: HomeBlock;
+  createMenuItem: MenuItem;
   createUser: User;
   login: User;
   removeCategory: Category;
   removeHomeBlock: HomeBlock;
+  removeMenuItem: MenuItem;
   removeUser: User;
   signUp: User;
   updateCategory: Category;
   updateHomeBlock: HomeBlock;
+  updateMenuItem: MenuItem;
   updateUser: User;
 };
 
@@ -576,6 +643,11 @@ export type MutationCreateCategoryArgs = {
 
 export type MutationCreateHomeBlockArgs = {
   data: HomeBlockCreateInput;
+};
+
+
+export type MutationCreateMenuItemArgs = {
+  data: MenuItemCreateInput;
 };
 
 
@@ -596,6 +668,11 @@ export type MutationRemoveCategoryArgs = {
 
 export type MutationRemoveHomeBlockArgs = {
   where: HomeBlockWhereUniqueInput;
+};
+
+
+export type MutationRemoveMenuItemArgs = {
+  id: Scalars['Int']['input'];
 };
 
 
@@ -621,6 +698,12 @@ export type MutationUpdateHomeBlockArgs = {
 };
 
 
+export type MutationUpdateMenuItemArgs = {
+  data: MenuItemUpdateInput;
+  where: MenuItemWhereUniqueInput;
+};
+
+
 export type MutationUpdateUserArgs = {
   data: UserUpdateInput;
   where: UserWhereUniqueInput;
@@ -632,6 +715,8 @@ export type Query = {
   category: Category;
   homeBlock: HomeBlock;
   homeBlocks: Array<HomeBlock>;
+  item: MenuItem;
+  items: Array<MenuItem>;
   me: User;
   users: Array<User>;
 };
@@ -644,6 +729,11 @@ export type QueryCategoryArgs = {
 
 export type QueryHomeBlockArgs = {
   where: HomeBlockWhereUniqueInput;
+};
+
+
+export type QueryItemArgs = {
+  where: MenuItemWhereUniqueInput;
 };
 
 
@@ -1018,8 +1108,19 @@ export type SubCategoryCreateNestedManyWithoutCategoryInput = {
   createMany?: InputMaybe<SubCategoryCreateManyCategoryInputEnvelope>;
 };
 
+export type SubCategoryCreateNestedOneWithoutMenuItemsInput = {
+  connect?: InputMaybe<SubCategoryWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<SubCategoryCreateOrConnectWithoutMenuItemsInput>;
+  create?: InputMaybe<SubCategoryCreateWithoutMenuItemsInput>;
+};
+
 export type SubCategoryCreateOrConnectWithoutCategoryInput = {
   create: SubCategoryCreateWithoutCategoryInput;
+  where: SubCategoryWhereUniqueInput;
+};
+
+export type SubCategoryCreateOrConnectWithoutMenuItemsInput = {
+  create: SubCategoryCreateWithoutMenuItemsInput;
   where: SubCategoryWhereUniqueInput;
 };
 
@@ -1027,6 +1128,13 @@ export type SubCategoryCreateWithoutCategoryInput = {
   description?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
   menuItems?: InputMaybe<MenuItemCreateNestedManyWithoutSubCategoryInput>;
+  name: Scalars['String']['input'];
+};
+
+export type SubCategoryCreateWithoutMenuItemsInput = {
+  category: CategoryCreateNestedOneWithoutSubCategoriesInput;
+  description?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
 };
 
@@ -1092,6 +1200,19 @@ export type SubCategoryUpdateManyWithoutCategoryNestedInput = {
   upsert?: InputMaybe<Array<SubCategoryUpsertWithWhereUniqueWithoutCategoryInput>>;
 };
 
+export type SubCategoryUpdateOneRequiredWithoutMenuItemsNestedInput = {
+  connect?: InputMaybe<SubCategoryWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<SubCategoryCreateOrConnectWithoutMenuItemsInput>;
+  create?: InputMaybe<SubCategoryCreateWithoutMenuItemsInput>;
+  update?: InputMaybe<SubCategoryUpdateToOneWithWhereWithoutMenuItemsInput>;
+  upsert?: InputMaybe<SubCategoryUpsertWithoutMenuItemsInput>;
+};
+
+export type SubCategoryUpdateToOneWithWhereWithoutMenuItemsInput = {
+  data: SubCategoryUpdateWithoutMenuItemsInput;
+  where?: InputMaybe<SubCategoryWhereInput>;
+};
+
 export type SubCategoryUpdateWithWhereUniqueWithoutCategoryInput = {
   data: SubCategoryUpdateWithoutCategoryInput;
   where: SubCategoryWhereUniqueInput;
@@ -1104,10 +1225,23 @@ export type SubCategoryUpdateWithoutCategoryInput = {
   name?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type SubCategoryUpdateWithoutMenuItemsInput = {
+  category?: InputMaybe<CategoryUpdateOneRequiredWithoutSubCategoriesNestedInput>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type SubCategoryUpsertWithWhereUniqueWithoutCategoryInput = {
   create: SubCategoryCreateWithoutCategoryInput;
   update: SubCategoryUpdateWithoutCategoryInput;
   where: SubCategoryWhereUniqueInput;
+};
+
+export type SubCategoryUpsertWithoutMenuItemsInput = {
+  create: SubCategoryCreateWithoutMenuItemsInput;
+  update: SubCategoryUpdateWithoutMenuItemsInput;
+  where?: InputMaybe<SubCategoryWhereInput>;
 };
 
 export type SubCategoryWhereInput = {

@@ -16,13 +16,13 @@ const InputLoginComponent = () => {
   } = useForm<SignInAccountInterface>({
     resolver: yupResolver(SignInAccountYupSchema)
   });
-  const [{ fetching }, login] = useLoginMutation();
+  const [{ data, fetching, error }, login] = useLoginMutation();
 
   const onSubmit = async (values: SignInAccountInterface) => {
-    await login({ loginInput: { email: values.email, password: values.password } }).finally(() =>
-      router.push('/')
-    );
+    await login({ loginInput: { email: values.email, password: values.password } });
   };
+
+  if (data) router.push('/');
 
   return (
     <div className="flex flex-col items-center justify-center">
@@ -49,7 +49,7 @@ const InputLoginComponent = () => {
             {...register('password')}
           />
           <label className="pt-2 text-xs text-red-400">
-            {errors.email?.message || errors.password?.message}
+            {errors.email?.message || errors.password?.message || error?.message}
           </label>
 
           <div className="flex flex-col mt-6 space-y-2">

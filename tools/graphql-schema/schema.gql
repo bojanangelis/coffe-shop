@@ -315,6 +315,8 @@ type Query {
   homeBlock(where: HomeBlockWhereUniqueInput!): HomeBlock!
   categories: [Category!]!
   category(where: CategoryWhereUniqueInput!): Category!
+  items: [MenuItem!]!
+  item(where: MenuItemWhereUniqueInput!): MenuItem!
 }
 
 input UserWhereUniqueInput {
@@ -546,6 +548,21 @@ input StringListFilter {
   isEmpty: Boolean
 }
 
+input MenuItemWhereUniqueInput {
+  id: String
+  AND: [MenuItemWhereInput!]
+  OR: [MenuItemWhereInput!]
+  NOT: [MenuItemWhereInput!]
+  name: StringFilter
+  description: StringFilter
+  image: StringFilter
+  calories: IntFilter
+  subCategoryId: StringFilter
+  subCategory: SubCategoryRelationFilter
+  sizes: SizeListRelationFilter
+  customizations: CustomizationListRelationFilter
+}
+
 type Mutation {
   createUser(data: UserCreateInput!): User!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User!
@@ -558,6 +575,9 @@ type Mutation {
   createCategory(data: CategoryCreateInput!): Category!
   updateCategory(data: CategoryUpdateInput!, where: CategoryWhereUniqueInput!): Category!
   removeCategory(id: Int!): Category!
+  createMenuItem(data: MenuItemCreateInput!): MenuItem!
+  updateMenuItem(data: MenuItemUpdateInput!, where: MenuItemWhereUniqueInput!): MenuItem!
+  removeMenuItem(id: Int!): MenuItem!
 }
 
 input UserCreateInput {
@@ -787,21 +807,6 @@ input CustomizationCreateManyMenuItemInput {
 input MenuItemCreateOrConnectWithoutSubCategoryInput {
   where: MenuItemWhereUniqueInput!
   create: MenuItemCreateWithoutSubCategoryInput!
-}
-
-input MenuItemWhereUniqueInput {
-  id: String
-  AND: [MenuItemWhereInput!]
-  OR: [MenuItemWhereInput!]
-  NOT: [MenuItemWhereInput!]
-  name: StringFilter
-  description: StringFilter
-  image: StringFilter
-  calories: IntFilter
-  subCategoryId: StringFilter
-  subCategory: SubCategoryRelationFilter
-  sizes: SizeListRelationFilter
-  customizations: CustomizationListRelationFilter
 }
 
 input MenuItemCreateManySubCategoryInputEnvelope {
@@ -1067,4 +1072,112 @@ input SubCategoryUpdateManyMutationInput {
   id: String
   name: String
   description: String
+}
+
+input MenuItemCreateInput {
+  id: String
+  name: String!
+  description: String
+  image: String
+  calories: Int
+  subCategory: SubCategoryCreateNestedOneWithoutMenuItemsInput!
+  sizes: SizeCreateNestedManyWithoutMenuItemInput
+  customizations: CustomizationCreateNestedManyWithoutMenuItemInput
+}
+
+input SubCategoryCreateNestedOneWithoutMenuItemsInput {
+  create: SubCategoryCreateWithoutMenuItemsInput
+  connectOrCreate: SubCategoryCreateOrConnectWithoutMenuItemsInput
+  connect: SubCategoryWhereUniqueInput
+}
+
+input SubCategoryCreateWithoutMenuItemsInput {
+  id: String
+  name: String!
+  description: String
+  category: CategoryCreateNestedOneWithoutSubCategoriesInput!
+}
+
+input CategoryCreateNestedOneWithoutSubCategoriesInput {
+  create: CategoryCreateWithoutSubCategoriesInput
+  connectOrCreate: CategoryCreateOrConnectWithoutSubCategoriesInput
+  connect: CategoryWhereUniqueInput
+}
+
+input CategoryCreateWithoutSubCategoriesInput {
+  id: String
+  name: String!
+  description: String
+}
+
+input CategoryCreateOrConnectWithoutSubCategoriesInput {
+  where: CategoryWhereUniqueInput!
+  create: CategoryCreateWithoutSubCategoriesInput!
+}
+
+input SubCategoryCreateOrConnectWithoutMenuItemsInput {
+  where: SubCategoryWhereUniqueInput!
+  create: SubCategoryCreateWithoutMenuItemsInput!
+}
+
+input MenuItemUpdateInput {
+  id: String
+  name: String
+  description: String
+  image: String
+  calories: Int
+  subCategory: SubCategoryUpdateOneRequiredWithoutMenuItemsNestedInput
+  sizes: SizeUpdateManyWithoutMenuItemNestedInput
+  customizations: CustomizationUpdateManyWithoutMenuItemNestedInput
+}
+
+input SubCategoryUpdateOneRequiredWithoutMenuItemsNestedInput {
+  create: SubCategoryCreateWithoutMenuItemsInput
+  connectOrCreate: SubCategoryCreateOrConnectWithoutMenuItemsInput
+  upsert: SubCategoryUpsertWithoutMenuItemsInput
+  connect: SubCategoryWhereUniqueInput
+  update: SubCategoryUpdateToOneWithWhereWithoutMenuItemsInput
+}
+
+input SubCategoryUpsertWithoutMenuItemsInput {
+  update: SubCategoryUpdateWithoutMenuItemsInput!
+  create: SubCategoryCreateWithoutMenuItemsInput!
+  where: SubCategoryWhereInput
+}
+
+input SubCategoryUpdateWithoutMenuItemsInput {
+  id: String
+  name: String
+  description: String
+  category: CategoryUpdateOneRequiredWithoutSubCategoriesNestedInput
+}
+
+input CategoryUpdateOneRequiredWithoutSubCategoriesNestedInput {
+  create: CategoryCreateWithoutSubCategoriesInput
+  connectOrCreate: CategoryCreateOrConnectWithoutSubCategoriesInput
+  upsert: CategoryUpsertWithoutSubCategoriesInput
+  connect: CategoryWhereUniqueInput
+  update: CategoryUpdateToOneWithWhereWithoutSubCategoriesInput
+}
+
+input CategoryUpsertWithoutSubCategoriesInput {
+  update: CategoryUpdateWithoutSubCategoriesInput!
+  create: CategoryCreateWithoutSubCategoriesInput!
+  where: CategoryWhereInput
+}
+
+input CategoryUpdateWithoutSubCategoriesInput {
+  id: String
+  name: String
+  description: String
+}
+
+input CategoryUpdateToOneWithWhereWithoutSubCategoriesInput {
+  where: CategoryWhereInput
+  data: CategoryUpdateWithoutSubCategoriesInput!
+}
+
+input SubCategoryUpdateToOneWithWhereWithoutMenuItemsInput {
+  where: SubCategoryWhereInput
+  data: SubCategoryUpdateWithoutMenuItemsInput!
 }
