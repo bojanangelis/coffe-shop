@@ -14,6 +14,222 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
+export type Category = {
+  __typename?: 'Category';
+  _count: CategoryCount;
+  description?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  subCategories?: Maybe<Array<SubCategory>>;
+};
+
+export type CategoryCount = {
+  __typename?: 'CategoryCount';
+  subCategories: Scalars['Int']['output'];
+};
+
+export type CategoryCountAggregate = {
+  __typename?: 'CategoryCountAggregate';
+  _all: Scalars['Int']['output'];
+  description: Scalars['Int']['output'];
+  id: Scalars['Int']['output'];
+  name: Scalars['Int']['output'];
+};
+
+export type CategoryCreateInput = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  subCategories?: InputMaybe<SubCategoryCreateNestedManyWithoutCategoryInput>;
+};
+
+export type CategoryMaxAggregate = {
+  __typename?: 'CategoryMaxAggregate';
+  description?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+};
+
+export type CategoryMinAggregate = {
+  __typename?: 'CategoryMinAggregate';
+  description?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+};
+
+export type CategoryRelationFilter = {
+  is?: InputMaybe<CategoryWhereInput>;
+  isNot?: InputMaybe<CategoryWhereInput>;
+};
+
+export type CategoryUpdateInput = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  subCategories?: InputMaybe<SubCategoryUpdateManyWithoutCategoryNestedInput>;
+};
+
+export type CategoryWhereInput = {
+  AND?: InputMaybe<Array<CategoryWhereInput>>;
+  NOT?: InputMaybe<Array<CategoryWhereInput>>;
+  OR?: InputMaybe<Array<CategoryWhereInput>>;
+  description?: InputMaybe<StringFilter>;
+  id?: InputMaybe<StringFilter>;
+  name?: InputMaybe<StringFilter>;
+  subCategories?: InputMaybe<SubCategoryListRelationFilter>;
+};
+
+export type CategoryWhereUniqueInput = {
+  AND?: InputMaybe<Array<CategoryWhereInput>>;
+  NOT?: InputMaybe<Array<CategoryWhereInput>>;
+  OR?: InputMaybe<Array<CategoryWhereInput>>;
+  description?: InputMaybe<StringFilter>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  subCategories?: InputMaybe<SubCategoryListRelationFilter>;
+};
+
+export type Customization = {
+  __typename?: 'Customization';
+  id: Scalars['ID']['output'];
+  menuItem: MenuItem;
+  menuItemId: Scalars['String']['output'];
+  options?: Maybe<Array<Scalars['String']['output']>>;
+  type: Scalars['String']['output'];
+};
+
+export type CustomizationCountAggregate = {
+  __typename?: 'CustomizationCountAggregate';
+  _all: Scalars['Int']['output'];
+  id: Scalars['Int']['output'];
+  menuItemId: Scalars['Int']['output'];
+  options: Scalars['Int']['output'];
+  type: Scalars['Int']['output'];
+};
+
+export type CustomizationCreateManyMenuItemInput = {
+  id?: InputMaybe<Scalars['String']['input']>;
+  options?: InputMaybe<Array<Scalars['String']['input']>>;
+  type: Scalars['String']['input'];
+};
+
+export type CustomizationCreateManyMenuItemInputEnvelope = {
+  data: Array<CustomizationCreateManyMenuItemInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type CustomizationCreateNestedManyWithoutMenuItemInput = {
+  connect?: InputMaybe<Array<CustomizationWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<CustomizationCreateOrConnectWithoutMenuItemInput>>;
+  create?: InputMaybe<Array<CustomizationCreateWithoutMenuItemInput>>;
+  createMany?: InputMaybe<CustomizationCreateManyMenuItemInputEnvelope>;
+};
+
+export type CustomizationCreateOrConnectWithoutMenuItemInput = {
+  create: CustomizationCreateWithoutMenuItemInput;
+  where: CustomizationWhereUniqueInput;
+};
+
+export type CustomizationCreateWithoutMenuItemInput = {
+  id?: InputMaybe<Scalars['String']['input']>;
+  options?: InputMaybe<Array<Scalars['String']['input']>>;
+  type: Scalars['String']['input'];
+};
+
+export type CustomizationListRelationFilter = {
+  every?: InputMaybe<CustomizationWhereInput>;
+  none?: InputMaybe<CustomizationWhereInput>;
+  some?: InputMaybe<CustomizationWhereInput>;
+};
+
+export type CustomizationMaxAggregate = {
+  __typename?: 'CustomizationMaxAggregate';
+  id?: Maybe<Scalars['String']['output']>;
+  menuItemId?: Maybe<Scalars['String']['output']>;
+  type?: Maybe<Scalars['String']['output']>;
+};
+
+export type CustomizationMinAggregate = {
+  __typename?: 'CustomizationMinAggregate';
+  id?: Maybe<Scalars['String']['output']>;
+  menuItemId?: Maybe<Scalars['String']['output']>;
+  type?: Maybe<Scalars['String']['output']>;
+};
+
+export type CustomizationScalarWhereInput = {
+  AND?: InputMaybe<Array<CustomizationScalarWhereInput>>;
+  NOT?: InputMaybe<Array<CustomizationScalarWhereInput>>;
+  OR?: InputMaybe<Array<CustomizationScalarWhereInput>>;
+  id?: InputMaybe<StringFilter>;
+  menuItemId?: InputMaybe<StringFilter>;
+  options?: InputMaybe<StringListFilter>;
+  type?: InputMaybe<StringFilter>;
+};
+
+export type CustomizationUpdateManyMutationInput = {
+  id?: InputMaybe<Scalars['String']['input']>;
+  options?: InputMaybe<Array<Scalars['String']['input']>>;
+  type?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type CustomizationUpdateManyWithWhereWithoutMenuItemInput = {
+  data: CustomizationUpdateManyMutationInput;
+  where: CustomizationScalarWhereInput;
+};
+
+export type CustomizationUpdateManyWithoutMenuItemNestedInput = {
+  connect?: InputMaybe<Array<CustomizationWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<CustomizationCreateOrConnectWithoutMenuItemInput>>;
+  create?: InputMaybe<Array<CustomizationCreateWithoutMenuItemInput>>;
+  createMany?: InputMaybe<CustomizationCreateManyMenuItemInputEnvelope>;
+  delete?: InputMaybe<Array<CustomizationWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<CustomizationScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<CustomizationWhereUniqueInput>>;
+  set?: InputMaybe<Array<CustomizationWhereUniqueInput>>;
+  update?: InputMaybe<Array<CustomizationUpdateWithWhereUniqueWithoutMenuItemInput>>;
+  updateMany?: InputMaybe<Array<CustomizationUpdateManyWithWhereWithoutMenuItemInput>>;
+  upsert?: InputMaybe<Array<CustomizationUpsertWithWhereUniqueWithoutMenuItemInput>>;
+};
+
+export type CustomizationUpdateWithWhereUniqueWithoutMenuItemInput = {
+  data: CustomizationUpdateWithoutMenuItemInput;
+  where: CustomizationWhereUniqueInput;
+};
+
+export type CustomizationUpdateWithoutMenuItemInput = {
+  id?: InputMaybe<Scalars['String']['input']>;
+  options?: InputMaybe<Array<Scalars['String']['input']>>;
+  type?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type CustomizationUpsertWithWhereUniqueWithoutMenuItemInput = {
+  create: CustomizationCreateWithoutMenuItemInput;
+  update: CustomizationUpdateWithoutMenuItemInput;
+  where: CustomizationWhereUniqueInput;
+};
+
+export type CustomizationWhereInput = {
+  AND?: InputMaybe<Array<CustomizationWhereInput>>;
+  NOT?: InputMaybe<Array<CustomizationWhereInput>>;
+  OR?: InputMaybe<Array<CustomizationWhereInput>>;
+  id?: InputMaybe<StringFilter>;
+  menuItem?: InputMaybe<MenuItemRelationFilter>;
+  menuItemId?: InputMaybe<StringFilter>;
+  options?: InputMaybe<StringListFilter>;
+  type?: InputMaybe<StringFilter>;
+};
+
+export type CustomizationWhereUniqueInput = {
+  AND?: InputMaybe<Array<CustomizationWhereInput>>;
+  NOT?: InputMaybe<Array<CustomizationWhereInput>>;
+  OR?: InputMaybe<Array<CustomizationWhereInput>>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  menuItem?: InputMaybe<MenuItemRelationFilter>;
+  menuItemId?: InputMaybe<StringFilter>;
+  options?: InputMaybe<StringListFilter>;
+  type?: InputMaybe<StringFilter>;
+};
+
 export type FloatFilter = {
   equals?: InputMaybe<Scalars['Float']['input']>;
   gt?: InputMaybe<Scalars['Float']['input']>;
@@ -140,16 +356,221 @@ export type LoginInput = {
   password: Scalars['String']['input'];
 };
 
+export type MenuItem = {
+  __typename?: 'MenuItem';
+  _count: MenuItemCount;
+  calories?: Maybe<Scalars['Int']['output']>;
+  customizations?: Maybe<Array<Customization>>;
+  description?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  image?: Maybe<Scalars['String']['output']>;
+  name: Scalars['String']['output'];
+  sizes?: Maybe<Array<Size>>;
+  subCategory: SubCategory;
+  subCategoryId: Scalars['String']['output'];
+};
+
+export type MenuItemAvgAggregate = {
+  __typename?: 'MenuItemAvgAggregate';
+  calories?: Maybe<Scalars['Float']['output']>;
+};
+
+export type MenuItemCount = {
+  __typename?: 'MenuItemCount';
+  customizations: Scalars['Int']['output'];
+  sizes: Scalars['Int']['output'];
+};
+
+export type MenuItemCountAggregate = {
+  __typename?: 'MenuItemCountAggregate';
+  _all: Scalars['Int']['output'];
+  calories: Scalars['Int']['output'];
+  description: Scalars['Int']['output'];
+  id: Scalars['Int']['output'];
+  image: Scalars['Int']['output'];
+  name: Scalars['Int']['output'];
+  subCategoryId: Scalars['Int']['output'];
+};
+
+export type MenuItemCreateManySubCategoryInput = {
+  calories?: InputMaybe<Scalars['Int']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+};
+
+export type MenuItemCreateManySubCategoryInputEnvelope = {
+  data: Array<MenuItemCreateManySubCategoryInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type MenuItemCreateNestedManyWithoutSubCategoryInput = {
+  connect?: InputMaybe<Array<MenuItemWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<MenuItemCreateOrConnectWithoutSubCategoryInput>>;
+  create?: InputMaybe<Array<MenuItemCreateWithoutSubCategoryInput>>;
+  createMany?: InputMaybe<MenuItemCreateManySubCategoryInputEnvelope>;
+};
+
+export type MenuItemCreateOrConnectWithoutSubCategoryInput = {
+  create: MenuItemCreateWithoutSubCategoryInput;
+  where: MenuItemWhereUniqueInput;
+};
+
+export type MenuItemCreateWithoutSubCategoryInput = {
+  calories?: InputMaybe<Scalars['Int']['input']>;
+  customizations?: InputMaybe<CustomizationCreateNestedManyWithoutMenuItemInput>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  sizes?: InputMaybe<SizeCreateNestedManyWithoutMenuItemInput>;
+};
+
+export type MenuItemListRelationFilter = {
+  every?: InputMaybe<MenuItemWhereInput>;
+  none?: InputMaybe<MenuItemWhereInput>;
+  some?: InputMaybe<MenuItemWhereInput>;
+};
+
+export type MenuItemMaxAggregate = {
+  __typename?: 'MenuItemMaxAggregate';
+  calories?: Maybe<Scalars['Int']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  subCategoryId?: Maybe<Scalars['String']['output']>;
+};
+
+export type MenuItemMinAggregate = {
+  __typename?: 'MenuItemMinAggregate';
+  calories?: Maybe<Scalars['Int']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  subCategoryId?: Maybe<Scalars['String']['output']>;
+};
+
+export type MenuItemRelationFilter = {
+  is?: InputMaybe<MenuItemWhereInput>;
+  isNot?: InputMaybe<MenuItemWhereInput>;
+};
+
+export type MenuItemScalarWhereInput = {
+  AND?: InputMaybe<Array<MenuItemScalarWhereInput>>;
+  NOT?: InputMaybe<Array<MenuItemScalarWhereInput>>;
+  OR?: InputMaybe<Array<MenuItemScalarWhereInput>>;
+  calories?: InputMaybe<IntFilter>;
+  description?: InputMaybe<StringFilter>;
+  id?: InputMaybe<StringFilter>;
+  image?: InputMaybe<StringFilter>;
+  name?: InputMaybe<StringFilter>;
+  subCategoryId?: InputMaybe<StringFilter>;
+};
+
+export type MenuItemSumAggregate = {
+  __typename?: 'MenuItemSumAggregate';
+  calories?: Maybe<Scalars['Int']['output']>;
+};
+
+export type MenuItemUpdateManyMutationInput = {
+  calories?: InputMaybe<Scalars['Int']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type MenuItemUpdateManyWithWhereWithoutSubCategoryInput = {
+  data: MenuItemUpdateManyMutationInput;
+  where: MenuItemScalarWhereInput;
+};
+
+export type MenuItemUpdateManyWithoutSubCategoryNestedInput = {
+  connect?: InputMaybe<Array<MenuItemWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<MenuItemCreateOrConnectWithoutSubCategoryInput>>;
+  create?: InputMaybe<Array<MenuItemCreateWithoutSubCategoryInput>>;
+  createMany?: InputMaybe<MenuItemCreateManySubCategoryInputEnvelope>;
+  delete?: InputMaybe<Array<MenuItemWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<MenuItemScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<MenuItemWhereUniqueInput>>;
+  set?: InputMaybe<Array<MenuItemWhereUniqueInput>>;
+  update?: InputMaybe<Array<MenuItemUpdateWithWhereUniqueWithoutSubCategoryInput>>;
+  updateMany?: InputMaybe<Array<MenuItemUpdateManyWithWhereWithoutSubCategoryInput>>;
+  upsert?: InputMaybe<Array<MenuItemUpsertWithWhereUniqueWithoutSubCategoryInput>>;
+};
+
+export type MenuItemUpdateWithWhereUniqueWithoutSubCategoryInput = {
+  data: MenuItemUpdateWithoutSubCategoryInput;
+  where: MenuItemWhereUniqueInput;
+};
+
+export type MenuItemUpdateWithoutSubCategoryInput = {
+  calories?: InputMaybe<Scalars['Int']['input']>;
+  customizations?: InputMaybe<CustomizationUpdateManyWithoutMenuItemNestedInput>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  sizes?: InputMaybe<SizeUpdateManyWithoutMenuItemNestedInput>;
+};
+
+export type MenuItemUpsertWithWhereUniqueWithoutSubCategoryInput = {
+  create: MenuItemCreateWithoutSubCategoryInput;
+  update: MenuItemUpdateWithoutSubCategoryInput;
+  where: MenuItemWhereUniqueInput;
+};
+
+export type MenuItemWhereInput = {
+  AND?: InputMaybe<Array<MenuItemWhereInput>>;
+  NOT?: InputMaybe<Array<MenuItemWhereInput>>;
+  OR?: InputMaybe<Array<MenuItemWhereInput>>;
+  calories?: InputMaybe<IntFilter>;
+  customizations?: InputMaybe<CustomizationListRelationFilter>;
+  description?: InputMaybe<StringFilter>;
+  id?: InputMaybe<StringFilter>;
+  image?: InputMaybe<StringFilter>;
+  name?: InputMaybe<StringFilter>;
+  sizes?: InputMaybe<SizeListRelationFilter>;
+  subCategory?: InputMaybe<SubCategoryRelationFilter>;
+  subCategoryId?: InputMaybe<StringFilter>;
+};
+
+export type MenuItemWhereUniqueInput = {
+  AND?: InputMaybe<Array<MenuItemWhereInput>>;
+  NOT?: InputMaybe<Array<MenuItemWhereInput>>;
+  OR?: InputMaybe<Array<MenuItemWhereInput>>;
+  calories?: InputMaybe<IntFilter>;
+  customizations?: InputMaybe<CustomizationListRelationFilter>;
+  description?: InputMaybe<StringFilter>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<StringFilter>;
+  name?: InputMaybe<StringFilter>;
+  sizes?: InputMaybe<SizeListRelationFilter>;
+  subCategory?: InputMaybe<SubCategoryRelationFilter>;
+  subCategoryId?: InputMaybe<StringFilter>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
+  createCategory: Category;
   createHomeBlock: HomeBlock;
   createUser: User;
   login: User;
+  removeCategory: Category;
   removeHomeBlock: HomeBlock;
   removeUser: User;
   signUp: User;
+  updateCategory: Category;
   updateHomeBlock: HomeBlock;
   updateUser: User;
+};
+
+
+export type MutationCreateCategoryArgs = {
+  data: CategoryCreateInput;
 };
 
 
@@ -168,6 +589,11 @@ export type MutationLoginArgs = {
 };
 
 
+export type MutationRemoveCategoryArgs = {
+  id: Scalars['Int']['input'];
+};
+
+
 export type MutationRemoveHomeBlockArgs = {
   where: HomeBlockWhereUniqueInput;
 };
@@ -180,6 +606,12 @@ export type MutationRemoveUserArgs = {
 
 export type MutationSignUpArgs = {
   signUpInput: SignUpInput;
+};
+
+
+export type MutationUpdateCategoryArgs = {
+  data: CategoryUpdateInput;
+  where: CategoryWhereUniqueInput;
 };
 
 
@@ -196,10 +628,17 @@ export type MutationUpdateUserArgs = {
 
 export type Query = {
   __typename?: 'Query';
+  categories: Array<Category>;
+  category: Category;
   homeBlock: HomeBlock;
   homeBlocks: Array<HomeBlock>;
-  user: User;
+  me: User;
   users: Array<User>;
+};
+
+
+export type QueryCategoryArgs = {
+  where: CategoryWhereUniqueInput;
 };
 
 
@@ -208,7 +647,7 @@ export type QueryHomeBlockArgs = {
 };
 
 
-export type QueryUserArgs = {
+export type QueryMeArgs = {
   where: UserWhereUniqueInput;
 };
 
@@ -360,6 +799,159 @@ export type SignUpInput = {
   password: Scalars['String']['input'];
 };
 
+export type Size = {
+  __typename?: 'Size';
+  id: Scalars['ID']['output'];
+  menuItem: MenuItem;
+  menuItemId: Scalars['String']['output'];
+  name: Scalars['String']['output'];
+  volume: Scalars['Int']['output'];
+};
+
+export type SizeAvgAggregate = {
+  __typename?: 'SizeAvgAggregate';
+  volume?: Maybe<Scalars['Float']['output']>;
+};
+
+export type SizeCountAggregate = {
+  __typename?: 'SizeCountAggregate';
+  _all: Scalars['Int']['output'];
+  id: Scalars['Int']['output'];
+  menuItemId: Scalars['Int']['output'];
+  name: Scalars['Int']['output'];
+  volume: Scalars['Int']['output'];
+};
+
+export type SizeCreateManyMenuItemInput = {
+  id?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  volume: Scalars['Int']['input'];
+};
+
+export type SizeCreateManyMenuItemInputEnvelope = {
+  data: Array<SizeCreateManyMenuItemInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type SizeCreateNestedManyWithoutMenuItemInput = {
+  connect?: InputMaybe<Array<SizeWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<SizeCreateOrConnectWithoutMenuItemInput>>;
+  create?: InputMaybe<Array<SizeCreateWithoutMenuItemInput>>;
+  createMany?: InputMaybe<SizeCreateManyMenuItemInputEnvelope>;
+};
+
+export type SizeCreateOrConnectWithoutMenuItemInput = {
+  create: SizeCreateWithoutMenuItemInput;
+  where: SizeWhereUniqueInput;
+};
+
+export type SizeCreateWithoutMenuItemInput = {
+  id?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  volume: Scalars['Int']['input'];
+};
+
+export type SizeListRelationFilter = {
+  every?: InputMaybe<SizeWhereInput>;
+  none?: InputMaybe<SizeWhereInput>;
+  some?: InputMaybe<SizeWhereInput>;
+};
+
+export type SizeMaxAggregate = {
+  __typename?: 'SizeMaxAggregate';
+  id?: Maybe<Scalars['String']['output']>;
+  menuItemId?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  volume?: Maybe<Scalars['Int']['output']>;
+};
+
+export type SizeMinAggregate = {
+  __typename?: 'SizeMinAggregate';
+  id?: Maybe<Scalars['String']['output']>;
+  menuItemId?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  volume?: Maybe<Scalars['Int']['output']>;
+};
+
+export type SizeScalarWhereInput = {
+  AND?: InputMaybe<Array<SizeScalarWhereInput>>;
+  NOT?: InputMaybe<Array<SizeScalarWhereInput>>;
+  OR?: InputMaybe<Array<SizeScalarWhereInput>>;
+  id?: InputMaybe<StringFilter>;
+  menuItemId?: InputMaybe<StringFilter>;
+  name?: InputMaybe<StringFilter>;
+  volume?: InputMaybe<IntFilter>;
+};
+
+export type SizeSumAggregate = {
+  __typename?: 'SizeSumAggregate';
+  volume?: Maybe<Scalars['Int']['output']>;
+};
+
+export type SizeUpdateManyMutationInput = {
+  id?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  volume?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type SizeUpdateManyWithWhereWithoutMenuItemInput = {
+  data: SizeUpdateManyMutationInput;
+  where: SizeScalarWhereInput;
+};
+
+export type SizeUpdateManyWithoutMenuItemNestedInput = {
+  connect?: InputMaybe<Array<SizeWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<SizeCreateOrConnectWithoutMenuItemInput>>;
+  create?: InputMaybe<Array<SizeCreateWithoutMenuItemInput>>;
+  createMany?: InputMaybe<SizeCreateManyMenuItemInputEnvelope>;
+  delete?: InputMaybe<Array<SizeWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<SizeScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<SizeWhereUniqueInput>>;
+  set?: InputMaybe<Array<SizeWhereUniqueInput>>;
+  update?: InputMaybe<Array<SizeUpdateWithWhereUniqueWithoutMenuItemInput>>;
+  updateMany?: InputMaybe<Array<SizeUpdateManyWithWhereWithoutMenuItemInput>>;
+  upsert?: InputMaybe<Array<SizeUpsertWithWhereUniqueWithoutMenuItemInput>>;
+};
+
+export type SizeUpdateWithWhereUniqueWithoutMenuItemInput = {
+  data: SizeUpdateWithoutMenuItemInput;
+  where: SizeWhereUniqueInput;
+};
+
+export type SizeUpdateWithoutMenuItemInput = {
+  id?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  volume?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type SizeUpsertWithWhereUniqueWithoutMenuItemInput = {
+  create: SizeCreateWithoutMenuItemInput;
+  update: SizeUpdateWithoutMenuItemInput;
+  where: SizeWhereUniqueInput;
+};
+
+export type SizeWhereInput = {
+  AND?: InputMaybe<Array<SizeWhereInput>>;
+  NOT?: InputMaybe<Array<SizeWhereInput>>;
+  OR?: InputMaybe<Array<SizeWhereInput>>;
+  id?: InputMaybe<StringFilter>;
+  menuItem?: InputMaybe<MenuItemRelationFilter>;
+  menuItemId?: InputMaybe<StringFilter>;
+  name?: InputMaybe<StringFilter>;
+  volume?: InputMaybe<IntFilter>;
+};
+
+export type SizeWhereUniqueInput = {
+  AND?: InputMaybe<Array<SizeWhereInput>>;
+  NOT?: InputMaybe<Array<SizeWhereInput>>;
+  OR?: InputMaybe<Array<SizeWhereInput>>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  menuItem?: InputMaybe<MenuItemRelationFilter>;
+  menuItemId?: InputMaybe<StringFilter>;
+  name?: InputMaybe<StringFilter>;
+  volume?: InputMaybe<IntFilter>;
+};
+
 export type StringFilter = {
   contains?: InputMaybe<Scalars['String']['input']>;
   endsWith?: InputMaybe<Scalars['String']['input']>;
@@ -373,6 +965,173 @@ export type StringFilter = {
   not?: InputMaybe<StringFilter>;
   notIn?: InputMaybe<Array<Scalars['String']['input']>>;
   startsWith?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type StringListFilter = {
+  equals?: InputMaybe<Array<Scalars['String']['input']>>;
+  has?: InputMaybe<Scalars['String']['input']>;
+  hasEvery?: InputMaybe<Array<Scalars['String']['input']>>;
+  hasSome?: InputMaybe<Array<Scalars['String']['input']>>;
+  isEmpty?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type SubCategory = {
+  __typename?: 'SubCategory';
+  _count: SubCategoryCount;
+  category: Category;
+  categoryId: Scalars['String']['output'];
+  description?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  menuItems?: Maybe<Array<MenuItem>>;
+  name: Scalars['String']['output'];
+};
+
+export type SubCategoryCount = {
+  __typename?: 'SubCategoryCount';
+  menuItems: Scalars['Int']['output'];
+};
+
+export type SubCategoryCountAggregate = {
+  __typename?: 'SubCategoryCountAggregate';
+  _all: Scalars['Int']['output'];
+  categoryId: Scalars['Int']['output'];
+  description: Scalars['Int']['output'];
+  id: Scalars['Int']['output'];
+  name: Scalars['Int']['output'];
+};
+
+export type SubCategoryCreateManyCategoryInput = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+};
+
+export type SubCategoryCreateManyCategoryInputEnvelope = {
+  data: Array<SubCategoryCreateManyCategoryInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type SubCategoryCreateNestedManyWithoutCategoryInput = {
+  connect?: InputMaybe<Array<SubCategoryWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<SubCategoryCreateOrConnectWithoutCategoryInput>>;
+  create?: InputMaybe<Array<SubCategoryCreateWithoutCategoryInput>>;
+  createMany?: InputMaybe<SubCategoryCreateManyCategoryInputEnvelope>;
+};
+
+export type SubCategoryCreateOrConnectWithoutCategoryInput = {
+  create: SubCategoryCreateWithoutCategoryInput;
+  where: SubCategoryWhereUniqueInput;
+};
+
+export type SubCategoryCreateWithoutCategoryInput = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  menuItems?: InputMaybe<MenuItemCreateNestedManyWithoutSubCategoryInput>;
+  name: Scalars['String']['input'];
+};
+
+export type SubCategoryListRelationFilter = {
+  every?: InputMaybe<SubCategoryWhereInput>;
+  none?: InputMaybe<SubCategoryWhereInput>;
+  some?: InputMaybe<SubCategoryWhereInput>;
+};
+
+export type SubCategoryMaxAggregate = {
+  __typename?: 'SubCategoryMaxAggregate';
+  categoryId?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+};
+
+export type SubCategoryMinAggregate = {
+  __typename?: 'SubCategoryMinAggregate';
+  categoryId?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+};
+
+export type SubCategoryRelationFilter = {
+  is?: InputMaybe<SubCategoryWhereInput>;
+  isNot?: InputMaybe<SubCategoryWhereInput>;
+};
+
+export type SubCategoryScalarWhereInput = {
+  AND?: InputMaybe<Array<SubCategoryScalarWhereInput>>;
+  NOT?: InputMaybe<Array<SubCategoryScalarWhereInput>>;
+  OR?: InputMaybe<Array<SubCategoryScalarWhereInput>>;
+  categoryId?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  id?: InputMaybe<StringFilter>;
+  name?: InputMaybe<StringFilter>;
+};
+
+export type SubCategoryUpdateManyMutationInput = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SubCategoryUpdateManyWithWhereWithoutCategoryInput = {
+  data: SubCategoryUpdateManyMutationInput;
+  where: SubCategoryScalarWhereInput;
+};
+
+export type SubCategoryUpdateManyWithoutCategoryNestedInput = {
+  connect?: InputMaybe<Array<SubCategoryWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<SubCategoryCreateOrConnectWithoutCategoryInput>>;
+  create?: InputMaybe<Array<SubCategoryCreateWithoutCategoryInput>>;
+  createMany?: InputMaybe<SubCategoryCreateManyCategoryInputEnvelope>;
+  delete?: InputMaybe<Array<SubCategoryWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<SubCategoryScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<SubCategoryWhereUniqueInput>>;
+  set?: InputMaybe<Array<SubCategoryWhereUniqueInput>>;
+  update?: InputMaybe<Array<SubCategoryUpdateWithWhereUniqueWithoutCategoryInput>>;
+  updateMany?: InputMaybe<Array<SubCategoryUpdateManyWithWhereWithoutCategoryInput>>;
+  upsert?: InputMaybe<Array<SubCategoryUpsertWithWhereUniqueWithoutCategoryInput>>;
+};
+
+export type SubCategoryUpdateWithWhereUniqueWithoutCategoryInput = {
+  data: SubCategoryUpdateWithoutCategoryInput;
+  where: SubCategoryWhereUniqueInput;
+};
+
+export type SubCategoryUpdateWithoutCategoryInput = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  menuItems?: InputMaybe<MenuItemUpdateManyWithoutSubCategoryNestedInput>;
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SubCategoryUpsertWithWhereUniqueWithoutCategoryInput = {
+  create: SubCategoryCreateWithoutCategoryInput;
+  update: SubCategoryUpdateWithoutCategoryInput;
+  where: SubCategoryWhereUniqueInput;
+};
+
+export type SubCategoryWhereInput = {
+  AND?: InputMaybe<Array<SubCategoryWhereInput>>;
+  NOT?: InputMaybe<Array<SubCategoryWhereInput>>;
+  OR?: InputMaybe<Array<SubCategoryWhereInput>>;
+  category?: InputMaybe<CategoryRelationFilter>;
+  categoryId?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  id?: InputMaybe<StringFilter>;
+  menuItems?: InputMaybe<MenuItemListRelationFilter>;
+  name?: InputMaybe<StringFilter>;
+};
+
+export type SubCategoryWhereUniqueInput = {
+  AND?: InputMaybe<Array<SubCategoryWhereInput>>;
+  NOT?: InputMaybe<Array<SubCategoryWhereInput>>;
+  OR?: InputMaybe<Array<SubCategoryWhereInput>>;
+  category?: InputMaybe<CategoryRelationFilter>;
+  categoryId?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  menuItems?: InputMaybe<MenuItemListRelationFilter>;
+  name?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type User = {

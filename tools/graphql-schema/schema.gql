@@ -2,6 +2,65 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type CategoryCountAggregate {
+  id: Int!
+  name: Int!
+  description: Int!
+  _all: Int!
+}
+
+type CategoryCount {
+  subCategories: Int!
+}
+
+type CategoryMaxAggregate {
+  id: String
+  name: String
+  description: String
+}
+
+type CategoryMinAggregate {
+  id: String
+  name: String
+  description: String
+}
+
+type Category {
+  id: ID!
+  name: String!
+  description: String
+  subCategories: [SubCategory!]
+  _count: CategoryCount!
+}
+
+type CustomizationCountAggregate {
+  id: Int!
+  type: Int!
+  options: Int!
+  menuItemId: Int!
+  _all: Int!
+}
+
+type CustomizationMaxAggregate {
+  id: String
+  type: String
+  menuItemId: String
+}
+
+type CustomizationMinAggregate {
+  id: String
+  type: String
+  menuItemId: String
+}
+
+type Customization {
+  id: ID!
+  type: String!
+  options: [String!]
+  menuItemId: String!
+  menuItem: MenuItem!
+}
+
 type HomeBlockCountAggregate {
   id: Int!
   title: Int!
@@ -42,6 +101,60 @@ type HomeBlock {
   navigationPath: String!
   rgbBackgroundId: String!
   rgbBackground: RgbBackground!
+}
+
+type MenuItemAvgAggregate {
+  calories: Float
+}
+
+type MenuItemCountAggregate {
+  id: Int!
+  name: Int!
+  description: Int!
+  image: Int!
+  calories: Int!
+  subCategoryId: Int!
+  _all: Int!
+}
+
+type MenuItemCount {
+  sizes: Int!
+  customizations: Int!
+}
+
+type MenuItemMaxAggregate {
+  id: String
+  name: String
+  description: String
+  image: String
+  calories: Int
+  subCategoryId: String
+}
+
+type MenuItemMinAggregate {
+  id: String
+  name: String
+  description: String
+  image: String
+  calories: Int
+  subCategoryId: String
+}
+
+type MenuItemSumAggregate {
+  calories: Int
+}
+
+type MenuItem {
+  id: ID!
+  name: String!
+  description: String
+  image: String
+  calories: Int
+  subCategoryId: String!
+  subCategory: SubCategory!
+  sizes: [Size!]
+  customizations: [Customization!]
+  _count: MenuItemCount!
 }
 
 type RgbBackgroundAvgAggregate {
@@ -96,6 +209,80 @@ type RgbBackground {
   homeBlock: HomeBlock
 }
 
+type SizeAvgAggregate {
+  volume: Float
+}
+
+type SizeCountAggregate {
+  id: Int!
+  name: Int!
+  volume: Int!
+  menuItemId: Int!
+  _all: Int!
+}
+
+type SizeMaxAggregate {
+  id: String
+  name: String
+  volume: Int
+  menuItemId: String
+}
+
+type SizeMinAggregate {
+  id: String
+  name: String
+  volume: Int
+  menuItemId: String
+}
+
+type SizeSumAggregate {
+  volume: Int
+}
+
+type Size {
+  id: ID!
+  name: String!
+  volume: Int!
+  menuItemId: String!
+  menuItem: MenuItem!
+}
+
+type SubCategoryCountAggregate {
+  id: Int!
+  name: Int!
+  description: Int!
+  categoryId: Int!
+  _all: Int!
+}
+
+type SubCategoryCount {
+  menuItems: Int!
+}
+
+type SubCategoryMaxAggregate {
+  id: String
+  name: String
+  description: String
+  categoryId: String
+}
+
+type SubCategoryMinAggregate {
+  id: String
+  name: String
+  description: String
+  categoryId: String
+}
+
+type SubCategory {
+  id: ID!
+  name: String!
+  description: String
+  categoryId: String!
+  category: Category!
+  menuItems: [MenuItem!]
+  _count: SubCategoryCount!
+}
+
 type UserCountAggregate {
   id: Int!
   email: Int!
@@ -123,9 +310,11 @@ type User {
 
 type Query {
   users: [User!]!
-  user(where: UserWhereUniqueInput!): User!
+  me(where: UserWhereUniqueInput!): User!
   homeBlocks: [HomeBlock!]!
   homeBlock(where: HomeBlockWhereUniqueInput!): HomeBlock!
+  categories: [Category!]!
+  category(where: CategoryWhereUniqueInput!): Category!
 }
 
 input UserWhereUniqueInput {
@@ -241,6 +430,122 @@ input HomeBlockRelationFilter {
   isNot: HomeBlockWhereInput
 }
 
+input CategoryWhereUniqueInput {
+  id: String
+  name: String
+  AND: [CategoryWhereInput!]
+  OR: [CategoryWhereInput!]
+  NOT: [CategoryWhereInput!]
+  description: StringFilter
+  subCategories: SubCategoryListRelationFilter
+}
+
+input CategoryWhereInput {
+  AND: [CategoryWhereInput!]
+  OR: [CategoryWhereInput!]
+  NOT: [CategoryWhereInput!]
+  id: StringFilter
+  name: StringFilter
+  description: StringFilter
+  subCategories: SubCategoryListRelationFilter
+}
+
+input SubCategoryListRelationFilter {
+  every: SubCategoryWhereInput
+  some: SubCategoryWhereInput
+  none: SubCategoryWhereInput
+}
+
+input SubCategoryWhereInput {
+  AND: [SubCategoryWhereInput!]
+  OR: [SubCategoryWhereInput!]
+  NOT: [SubCategoryWhereInput!]
+  id: StringFilter
+  name: StringFilter
+  description: StringFilter
+  categoryId: StringFilter
+  category: CategoryRelationFilter
+  menuItems: MenuItemListRelationFilter
+}
+
+input CategoryRelationFilter {
+  is: CategoryWhereInput
+  isNot: CategoryWhereInput
+}
+
+input MenuItemListRelationFilter {
+  every: MenuItemWhereInput
+  some: MenuItemWhereInput
+  none: MenuItemWhereInput
+}
+
+input MenuItemWhereInput {
+  AND: [MenuItemWhereInput!]
+  OR: [MenuItemWhereInput!]
+  NOT: [MenuItemWhereInput!]
+  id: StringFilter
+  name: StringFilter
+  description: StringFilter
+  image: StringFilter
+  calories: IntFilter
+  subCategoryId: StringFilter
+  subCategory: SubCategoryRelationFilter
+  sizes: SizeListRelationFilter
+  customizations: CustomizationListRelationFilter
+}
+
+input SubCategoryRelationFilter {
+  is: SubCategoryWhereInput
+  isNot: SubCategoryWhereInput
+}
+
+input SizeListRelationFilter {
+  every: SizeWhereInput
+  some: SizeWhereInput
+  none: SizeWhereInput
+}
+
+input SizeWhereInput {
+  AND: [SizeWhereInput!]
+  OR: [SizeWhereInput!]
+  NOT: [SizeWhereInput!]
+  id: StringFilter
+  name: StringFilter
+  volume: IntFilter
+  menuItemId: StringFilter
+  menuItem: MenuItemRelationFilter
+}
+
+input MenuItemRelationFilter {
+  is: MenuItemWhereInput
+  isNot: MenuItemWhereInput
+}
+
+input CustomizationListRelationFilter {
+  every: CustomizationWhereInput
+  some: CustomizationWhereInput
+  none: CustomizationWhereInput
+}
+
+input CustomizationWhereInput {
+  AND: [CustomizationWhereInput!]
+  OR: [CustomizationWhereInput!]
+  NOT: [CustomizationWhereInput!]
+  id: StringFilter
+  type: StringFilter
+  options: StringListFilter
+  menuItemId: StringFilter
+  menuItem: MenuItemRelationFilter
+}
+
+input StringListFilter {
+  equals: [String!]
+  has: String
+  hasEvery: [String!]
+  hasSome: [String!]
+  isEmpty: Boolean
+}
+
 type Mutation {
   createUser(data: UserCreateInput!): User!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User!
@@ -250,6 +555,9 @@ type Mutation {
   removeHomeBlock(where: HomeBlockWhereUniqueInput!): HomeBlock!
   login(loginInput: LoginInput!): User!
   signUp(signUpInput: SignUpInput!): User!
+  createCategory(data: CategoryCreateInput!): Category!
+  updateCategory(data: CategoryUpdateInput!, where: CategoryWhereUniqueInput!): Category!
+  removeCategory(id: Int!): Category!
 }
 
 input UserCreateInput {
@@ -356,4 +664,407 @@ input SignUpInput {
   email: String!
   name: String
   password: String!
+}
+
+input CategoryCreateInput {
+  id: String
+  name: String!
+  description: String
+  subCategories: SubCategoryCreateNestedManyWithoutCategoryInput
+}
+
+input SubCategoryCreateNestedManyWithoutCategoryInput {
+  create: [SubCategoryCreateWithoutCategoryInput!]
+  connectOrCreate: [SubCategoryCreateOrConnectWithoutCategoryInput!]
+  createMany: SubCategoryCreateManyCategoryInputEnvelope
+  connect: [SubCategoryWhereUniqueInput!]
+}
+
+input SubCategoryCreateWithoutCategoryInput {
+  id: String
+  name: String!
+  description: String
+  menuItems: MenuItemCreateNestedManyWithoutSubCategoryInput
+}
+
+input MenuItemCreateNestedManyWithoutSubCategoryInput {
+  create: [MenuItemCreateWithoutSubCategoryInput!]
+  connectOrCreate: [MenuItemCreateOrConnectWithoutSubCategoryInput!]
+  createMany: MenuItemCreateManySubCategoryInputEnvelope
+  connect: [MenuItemWhereUniqueInput!]
+}
+
+input MenuItemCreateWithoutSubCategoryInput {
+  id: String
+  name: String!
+  description: String
+  image: String
+  calories: Int
+  sizes: SizeCreateNestedManyWithoutMenuItemInput
+  customizations: CustomizationCreateNestedManyWithoutMenuItemInput
+}
+
+input SizeCreateNestedManyWithoutMenuItemInput {
+  create: [SizeCreateWithoutMenuItemInput!]
+  connectOrCreate: [SizeCreateOrConnectWithoutMenuItemInput!]
+  createMany: SizeCreateManyMenuItemInputEnvelope
+  connect: [SizeWhereUniqueInput!]
+}
+
+input SizeCreateWithoutMenuItemInput {
+  id: String
+  name: String!
+  volume: Int!
+}
+
+input SizeCreateOrConnectWithoutMenuItemInput {
+  where: SizeWhereUniqueInput!
+  create: SizeCreateWithoutMenuItemInput!
+}
+
+input SizeWhereUniqueInput {
+  id: String
+  AND: [SizeWhereInput!]
+  OR: [SizeWhereInput!]
+  NOT: [SizeWhereInput!]
+  name: StringFilter
+  volume: IntFilter
+  menuItemId: StringFilter
+  menuItem: MenuItemRelationFilter
+}
+
+input SizeCreateManyMenuItemInputEnvelope {
+  data: [SizeCreateManyMenuItemInput!]!
+  skipDuplicates: Boolean
+}
+
+input SizeCreateManyMenuItemInput {
+  id: String
+  name: String!
+  volume: Int!
+}
+
+input CustomizationCreateNestedManyWithoutMenuItemInput {
+  create: [CustomizationCreateWithoutMenuItemInput!]
+  connectOrCreate: [CustomizationCreateOrConnectWithoutMenuItemInput!]
+  createMany: CustomizationCreateManyMenuItemInputEnvelope
+  connect: [CustomizationWhereUniqueInput!]
+}
+
+input CustomizationCreateWithoutMenuItemInput {
+  id: String
+  type: String!
+  options: [String!]
+}
+
+input CustomizationCreateOrConnectWithoutMenuItemInput {
+  where: CustomizationWhereUniqueInput!
+  create: CustomizationCreateWithoutMenuItemInput!
+}
+
+input CustomizationWhereUniqueInput {
+  id: String
+  AND: [CustomizationWhereInput!]
+  OR: [CustomizationWhereInput!]
+  NOT: [CustomizationWhereInput!]
+  type: StringFilter
+  options: StringListFilter
+  menuItemId: StringFilter
+  menuItem: MenuItemRelationFilter
+}
+
+input CustomizationCreateManyMenuItemInputEnvelope {
+  data: [CustomizationCreateManyMenuItemInput!]!
+  skipDuplicates: Boolean
+}
+
+input CustomizationCreateManyMenuItemInput {
+  id: String
+  type: String!
+  options: [String!]
+}
+
+input MenuItemCreateOrConnectWithoutSubCategoryInput {
+  where: MenuItemWhereUniqueInput!
+  create: MenuItemCreateWithoutSubCategoryInput!
+}
+
+input MenuItemWhereUniqueInput {
+  id: String
+  AND: [MenuItemWhereInput!]
+  OR: [MenuItemWhereInput!]
+  NOT: [MenuItemWhereInput!]
+  name: StringFilter
+  description: StringFilter
+  image: StringFilter
+  calories: IntFilter
+  subCategoryId: StringFilter
+  subCategory: SubCategoryRelationFilter
+  sizes: SizeListRelationFilter
+  customizations: CustomizationListRelationFilter
+}
+
+input MenuItemCreateManySubCategoryInputEnvelope {
+  data: [MenuItemCreateManySubCategoryInput!]!
+  skipDuplicates: Boolean
+}
+
+input MenuItemCreateManySubCategoryInput {
+  id: String
+  name: String!
+  description: String
+  image: String
+  calories: Int
+}
+
+input SubCategoryCreateOrConnectWithoutCategoryInput {
+  where: SubCategoryWhereUniqueInput!
+  create: SubCategoryCreateWithoutCategoryInput!
+}
+
+input SubCategoryWhereUniqueInput {
+  id: String
+  name: String
+  AND: [SubCategoryWhereInput!]
+  OR: [SubCategoryWhereInput!]
+  NOT: [SubCategoryWhereInput!]
+  description: StringFilter
+  categoryId: StringFilter
+  category: CategoryRelationFilter
+  menuItems: MenuItemListRelationFilter
+}
+
+input SubCategoryCreateManyCategoryInputEnvelope {
+  data: [SubCategoryCreateManyCategoryInput!]!
+  skipDuplicates: Boolean
+}
+
+input SubCategoryCreateManyCategoryInput {
+  id: String
+  name: String!
+  description: String
+}
+
+input CategoryUpdateInput {
+  id: String
+  name: String
+  description: String
+  subCategories: SubCategoryUpdateManyWithoutCategoryNestedInput
+}
+
+input SubCategoryUpdateManyWithoutCategoryNestedInput {
+  create: [SubCategoryCreateWithoutCategoryInput!]
+  connectOrCreate: [SubCategoryCreateOrConnectWithoutCategoryInput!]
+  upsert: [SubCategoryUpsertWithWhereUniqueWithoutCategoryInput!]
+  createMany: SubCategoryCreateManyCategoryInputEnvelope
+  set: [SubCategoryWhereUniqueInput!]
+  disconnect: [SubCategoryWhereUniqueInput!]
+  delete: [SubCategoryWhereUniqueInput!]
+  connect: [SubCategoryWhereUniqueInput!]
+  update: [SubCategoryUpdateWithWhereUniqueWithoutCategoryInput!]
+  updateMany: [SubCategoryUpdateManyWithWhereWithoutCategoryInput!]
+  deleteMany: [SubCategoryScalarWhereInput!]
+}
+
+input SubCategoryUpsertWithWhereUniqueWithoutCategoryInput {
+  where: SubCategoryWhereUniqueInput!
+  update: SubCategoryUpdateWithoutCategoryInput!
+  create: SubCategoryCreateWithoutCategoryInput!
+}
+
+input SubCategoryUpdateWithoutCategoryInput {
+  id: String
+  name: String
+  description: String
+  menuItems: MenuItemUpdateManyWithoutSubCategoryNestedInput
+}
+
+input MenuItemUpdateManyWithoutSubCategoryNestedInput {
+  create: [MenuItemCreateWithoutSubCategoryInput!]
+  connectOrCreate: [MenuItemCreateOrConnectWithoutSubCategoryInput!]
+  upsert: [MenuItemUpsertWithWhereUniqueWithoutSubCategoryInput!]
+  createMany: MenuItemCreateManySubCategoryInputEnvelope
+  set: [MenuItemWhereUniqueInput!]
+  disconnect: [MenuItemWhereUniqueInput!]
+  delete: [MenuItemWhereUniqueInput!]
+  connect: [MenuItemWhereUniqueInput!]
+  update: [MenuItemUpdateWithWhereUniqueWithoutSubCategoryInput!]
+  updateMany: [MenuItemUpdateManyWithWhereWithoutSubCategoryInput!]
+  deleteMany: [MenuItemScalarWhereInput!]
+}
+
+input MenuItemUpsertWithWhereUniqueWithoutSubCategoryInput {
+  where: MenuItemWhereUniqueInput!
+  update: MenuItemUpdateWithoutSubCategoryInput!
+  create: MenuItemCreateWithoutSubCategoryInput!
+}
+
+input MenuItemUpdateWithoutSubCategoryInput {
+  id: String
+  name: String
+  description: String
+  image: String
+  calories: Int
+  sizes: SizeUpdateManyWithoutMenuItemNestedInput
+  customizations: CustomizationUpdateManyWithoutMenuItemNestedInput
+}
+
+input SizeUpdateManyWithoutMenuItemNestedInput {
+  create: [SizeCreateWithoutMenuItemInput!]
+  connectOrCreate: [SizeCreateOrConnectWithoutMenuItemInput!]
+  upsert: [SizeUpsertWithWhereUniqueWithoutMenuItemInput!]
+  createMany: SizeCreateManyMenuItemInputEnvelope
+  set: [SizeWhereUniqueInput!]
+  disconnect: [SizeWhereUniqueInput!]
+  delete: [SizeWhereUniqueInput!]
+  connect: [SizeWhereUniqueInput!]
+  update: [SizeUpdateWithWhereUniqueWithoutMenuItemInput!]
+  updateMany: [SizeUpdateManyWithWhereWithoutMenuItemInput!]
+  deleteMany: [SizeScalarWhereInput!]
+}
+
+input SizeUpsertWithWhereUniqueWithoutMenuItemInput {
+  where: SizeWhereUniqueInput!
+  update: SizeUpdateWithoutMenuItemInput!
+  create: SizeCreateWithoutMenuItemInput!
+}
+
+input SizeUpdateWithoutMenuItemInput {
+  id: String
+  name: String
+  volume: Int
+}
+
+input SizeUpdateWithWhereUniqueWithoutMenuItemInput {
+  where: SizeWhereUniqueInput!
+  data: SizeUpdateWithoutMenuItemInput!
+}
+
+input SizeUpdateManyWithWhereWithoutMenuItemInput {
+  where: SizeScalarWhereInput!
+  data: SizeUpdateManyMutationInput!
+}
+
+input SizeScalarWhereInput {
+  AND: [SizeScalarWhereInput!]
+  OR: [SizeScalarWhereInput!]
+  NOT: [SizeScalarWhereInput!]
+  id: StringFilter
+  name: StringFilter
+  volume: IntFilter
+  menuItemId: StringFilter
+}
+
+input SizeUpdateManyMutationInput {
+  id: String
+  name: String
+  volume: Int
+}
+
+input CustomizationUpdateManyWithoutMenuItemNestedInput {
+  create: [CustomizationCreateWithoutMenuItemInput!]
+  connectOrCreate: [CustomizationCreateOrConnectWithoutMenuItemInput!]
+  upsert: [CustomizationUpsertWithWhereUniqueWithoutMenuItemInput!]
+  createMany: CustomizationCreateManyMenuItemInputEnvelope
+  set: [CustomizationWhereUniqueInput!]
+  disconnect: [CustomizationWhereUniqueInput!]
+  delete: [CustomizationWhereUniqueInput!]
+  connect: [CustomizationWhereUniqueInput!]
+  update: [CustomizationUpdateWithWhereUniqueWithoutMenuItemInput!]
+  updateMany: [CustomizationUpdateManyWithWhereWithoutMenuItemInput!]
+  deleteMany: [CustomizationScalarWhereInput!]
+}
+
+input CustomizationUpsertWithWhereUniqueWithoutMenuItemInput {
+  where: CustomizationWhereUniqueInput!
+  update: CustomizationUpdateWithoutMenuItemInput!
+  create: CustomizationCreateWithoutMenuItemInput!
+}
+
+input CustomizationUpdateWithoutMenuItemInput {
+  id: String
+  type: String
+  options: [String!]
+}
+
+input CustomizationUpdateWithWhereUniqueWithoutMenuItemInput {
+  where: CustomizationWhereUniqueInput!
+  data: CustomizationUpdateWithoutMenuItemInput!
+}
+
+input CustomizationUpdateManyWithWhereWithoutMenuItemInput {
+  where: CustomizationScalarWhereInput!
+  data: CustomizationUpdateManyMutationInput!
+}
+
+input CustomizationScalarWhereInput {
+  AND: [CustomizationScalarWhereInput!]
+  OR: [CustomizationScalarWhereInput!]
+  NOT: [CustomizationScalarWhereInput!]
+  id: StringFilter
+  type: StringFilter
+  options: StringListFilter
+  menuItemId: StringFilter
+}
+
+input CustomizationUpdateManyMutationInput {
+  id: String
+  type: String
+  options: [String!]
+}
+
+input MenuItemUpdateWithWhereUniqueWithoutSubCategoryInput {
+  where: MenuItemWhereUniqueInput!
+  data: MenuItemUpdateWithoutSubCategoryInput!
+}
+
+input MenuItemUpdateManyWithWhereWithoutSubCategoryInput {
+  where: MenuItemScalarWhereInput!
+  data: MenuItemUpdateManyMutationInput!
+}
+
+input MenuItemScalarWhereInput {
+  AND: [MenuItemScalarWhereInput!]
+  OR: [MenuItemScalarWhereInput!]
+  NOT: [MenuItemScalarWhereInput!]
+  id: StringFilter
+  name: StringFilter
+  description: StringFilter
+  image: StringFilter
+  calories: IntFilter
+  subCategoryId: StringFilter
+}
+
+input MenuItemUpdateManyMutationInput {
+  id: String
+  name: String
+  description: String
+  image: String
+  calories: Int
+}
+
+input SubCategoryUpdateWithWhereUniqueWithoutCategoryInput {
+  where: SubCategoryWhereUniqueInput!
+  data: SubCategoryUpdateWithoutCategoryInput!
+}
+
+input SubCategoryUpdateManyWithWhereWithoutCategoryInput {
+  where: SubCategoryScalarWhereInput!
+  data: SubCategoryUpdateManyMutationInput!
+}
+
+input SubCategoryScalarWhereInput {
+  AND: [SubCategoryScalarWhereInput!]
+  OR: [SubCategoryScalarWhereInput!]
+  NOT: [SubCategoryScalarWhereInput!]
+  id: StringFilter
+  name: StringFilter
+  description: StringFilter
+  categoryId: StringFilter
+}
+
+input SubCategoryUpdateManyMutationInput {
+  id: String
+  name: String
+  description: String
 }

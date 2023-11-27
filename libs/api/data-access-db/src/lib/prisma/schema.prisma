@@ -106,3 +106,87 @@ model RgbBackground {
 
   homeBlock HomeBlock?
 }
+
+model Category {
+  id String @id @default(uuid())
+
+  /// @Validator.IsString()
+  /// @Validator.MaxLength(100)
+  /// @Validator.MinLength(3)
+  name String @unique
+
+  /// @Validator.IsString()
+  /// @Validator.MaxLength(200)
+  /// @Validator.MinLength(3)
+  description   String?
+  subCategories SubCategory[]
+}
+
+model SubCategory {
+  id          String  @id @default(uuid())
+  /// @Validator.IsString()
+  /// @Validator.MaxLength(100)
+  /// @Validator.MinLength(3)
+  name        String  @unique
+  /// @Validator.IsString()
+  /// @Validator.MaxLength(100)
+  /// @Validator.MinLength(3)
+  description String?
+
+  /// @Validator.IsString()
+  categoryId String
+
+  category  Category   @relation(fields: [categoryId], references: [id])
+  menuItems MenuItem[]
+}
+
+model MenuItem {
+  id             String          @id @default(uuid())
+  /// @Validator.IsString()
+  /// @Validator.MaxLength(100)
+  /// @Validator.MinLength(3)
+  name           String
+  /// @Validator.IsString()
+  /// @Validator.MaxLength(100)
+  /// @Validator.MinLength(3)
+  description    String?
+  /// @Validator.IsString()
+  /// @Validator.MaxLength(100)
+  /// @Validator.MinLength(3)
+  image          String?
+  /// @Validator.IsInt()
+  /// @Validator.Min(0)
+  /// @Validator.Max(255)
+  calories       Int?
+  subCategoryId  String
+  subCategory    SubCategory     @relation(fields: [subCategoryId], references: [id])
+  sizes          Size[]
+  customizations Customization[]
+}
+
+model Size {
+  id         String   @id @default(uuid())
+  /// @Validator.IsString()
+  /// @Validator.MaxLength(100)
+  /// @Validator.MinLength(3)
+  name       String // e.g., Short, Tall, Grande, Venti
+  /// @Validator.IsInt()
+  /// @Validator.Min(0)
+  /// @Validator.Max(255)
+  volume     Int // e.g., 8, 12, 16, 20 (fl oz)
+  menuItemId String
+  menuItem   MenuItem @relation(fields: [menuItemId], references: [id])
+}
+
+model Customization {
+  id   String @id @default(uuid())
+  /// @Validator.IsString()
+  /// @Validator.MaxLength(100)
+  /// @Validator.MinLength(3)
+  type String // e.g., Milk, Espresso Shots
+
+  /// @Validator.IsArray()
+  options    String[] // e.g., ["Oat Milk", "Soy Milk", "Almond Milk"]
+  menuItemId String
+  menuItem   MenuItem @relation(fields: [menuItemId], references: [id])
+}

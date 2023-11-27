@@ -28,7 +28,7 @@ export class UserResolver {
 
   @UseGuards(CheckAuthGuard)
   @Query(() => User)
-  user(@Args() findUniqueUserArgs: FindUniqueUserArgs) {
+  me(@Args() findUniqueUserArgs: FindUniqueUserArgs) {
     return this.userService.findOne(findUniqueUserArgs);
   }
 
