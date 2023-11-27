@@ -8,6 +8,9 @@ import { HomeBlockModule } from './home-block/home-block.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { CategoryModule } from './category/category.module';
 import { MenuItemModule } from './menu-item/menu-item.module';
+import { SubCategoryModule } from './sub-category/sub-category.module';
+import { SizeModule } from './size/size.module';
+import { CustomizationModule } from './customization/customization.module';
 
 const validationProvider = {
   provide: APP_PIPE,
@@ -25,7 +28,10 @@ const validationProvider = {
     HomeBlockModule,
     AuthenticationModule,
     CategoryModule,
-    MenuItemModule
+    MenuItemModule,
+    SubCategoryModule,
+    SizeModule,
+    CustomizationModule
   ],
   providers: [validationProvider]
 })

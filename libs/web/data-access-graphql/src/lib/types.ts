@@ -149,6 +149,13 @@ export type CustomizationCountAggregate = {
   type: Scalars['Int']['output'];
 };
 
+export type CustomizationCreateInput = {
+  id?: InputMaybe<Scalars['String']['input']>;
+  menuItem: MenuItemCreateNestedOneWithoutCustomizationsInput;
+  options?: InputMaybe<Array<Scalars['String']['input']>>;
+  type: Scalars['String']['input'];
+};
+
 export type CustomizationCreateManyMenuItemInput = {
   id?: InputMaybe<Scalars['String']['input']>;
   options?: InputMaybe<Array<Scalars['String']['input']>>;
@@ -206,6 +213,13 @@ export type CustomizationScalarWhereInput = {
   menuItemId?: InputMaybe<StringFilter>;
   options?: InputMaybe<StringListFilter>;
   type?: InputMaybe<StringFilter>;
+};
+
+export type CustomizationUpdateInput = {
+  id?: InputMaybe<Scalars['String']['input']>;
+  menuItem?: InputMaybe<MenuItemUpdateOneRequiredWithoutCustomizationsNestedInput>;
+  options?: InputMaybe<Array<Scalars['String']['input']>>;
+  type?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type CustomizationUpdateManyMutationInput = {
@@ -465,9 +479,51 @@ export type MenuItemCreateNestedManyWithoutSubCategoryInput = {
   createMany?: InputMaybe<MenuItemCreateManySubCategoryInputEnvelope>;
 };
 
+export type MenuItemCreateNestedOneWithoutCustomizationsInput = {
+  connect?: InputMaybe<MenuItemWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<MenuItemCreateOrConnectWithoutCustomizationsInput>;
+  create?: InputMaybe<MenuItemCreateWithoutCustomizationsInput>;
+};
+
+export type MenuItemCreateNestedOneWithoutSizesInput = {
+  connect?: InputMaybe<MenuItemWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<MenuItemCreateOrConnectWithoutSizesInput>;
+  create?: InputMaybe<MenuItemCreateWithoutSizesInput>;
+};
+
+export type MenuItemCreateOrConnectWithoutCustomizationsInput = {
+  create: MenuItemCreateWithoutCustomizationsInput;
+  where: MenuItemWhereUniqueInput;
+};
+
+export type MenuItemCreateOrConnectWithoutSizesInput = {
+  create: MenuItemCreateWithoutSizesInput;
+  where: MenuItemWhereUniqueInput;
+};
+
 export type MenuItemCreateOrConnectWithoutSubCategoryInput = {
   create: MenuItemCreateWithoutSubCategoryInput;
   where: MenuItemWhereUniqueInput;
+};
+
+export type MenuItemCreateWithoutCustomizationsInput = {
+  calories?: InputMaybe<Scalars['Int']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  sizes?: InputMaybe<SizeCreateNestedManyWithoutMenuItemInput>;
+  subCategory: SubCategoryCreateNestedOneWithoutMenuItemsInput;
+};
+
+export type MenuItemCreateWithoutSizesInput = {
+  calories?: InputMaybe<Scalars['Int']['input']>;
+  customizations?: InputMaybe<CustomizationCreateNestedManyWithoutMenuItemInput>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  subCategory: SubCategoryCreateNestedOneWithoutMenuItemsInput;
 };
 
 export type MenuItemCreateWithoutSubCategoryInput = {
@@ -566,9 +622,55 @@ export type MenuItemUpdateManyWithoutSubCategoryNestedInput = {
   upsert?: InputMaybe<Array<MenuItemUpsertWithWhereUniqueWithoutSubCategoryInput>>;
 };
 
+export type MenuItemUpdateOneRequiredWithoutCustomizationsNestedInput = {
+  connect?: InputMaybe<MenuItemWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<MenuItemCreateOrConnectWithoutCustomizationsInput>;
+  create?: InputMaybe<MenuItemCreateWithoutCustomizationsInput>;
+  update?: InputMaybe<MenuItemUpdateToOneWithWhereWithoutCustomizationsInput>;
+  upsert?: InputMaybe<MenuItemUpsertWithoutCustomizationsInput>;
+};
+
+export type MenuItemUpdateOneRequiredWithoutSizesNestedInput = {
+  connect?: InputMaybe<MenuItemWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<MenuItemCreateOrConnectWithoutSizesInput>;
+  create?: InputMaybe<MenuItemCreateWithoutSizesInput>;
+  update?: InputMaybe<MenuItemUpdateToOneWithWhereWithoutSizesInput>;
+  upsert?: InputMaybe<MenuItemUpsertWithoutSizesInput>;
+};
+
+export type MenuItemUpdateToOneWithWhereWithoutCustomizationsInput = {
+  data: MenuItemUpdateWithoutCustomizationsInput;
+  where?: InputMaybe<MenuItemWhereInput>;
+};
+
+export type MenuItemUpdateToOneWithWhereWithoutSizesInput = {
+  data: MenuItemUpdateWithoutSizesInput;
+  where?: InputMaybe<MenuItemWhereInput>;
+};
+
 export type MenuItemUpdateWithWhereUniqueWithoutSubCategoryInput = {
   data: MenuItemUpdateWithoutSubCategoryInput;
   where: MenuItemWhereUniqueInput;
+};
+
+export type MenuItemUpdateWithoutCustomizationsInput = {
+  calories?: InputMaybe<Scalars['Int']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  sizes?: InputMaybe<SizeUpdateManyWithoutMenuItemNestedInput>;
+  subCategory?: InputMaybe<SubCategoryUpdateOneRequiredWithoutMenuItemsNestedInput>;
+};
+
+export type MenuItemUpdateWithoutSizesInput = {
+  calories?: InputMaybe<Scalars['Int']['input']>;
+  customizations?: InputMaybe<CustomizationUpdateManyWithoutMenuItemNestedInput>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  subCategory?: InputMaybe<SubCategoryUpdateOneRequiredWithoutMenuItemsNestedInput>;
 };
 
 export type MenuItemUpdateWithoutSubCategoryInput = {
@@ -585,6 +687,18 @@ export type MenuItemUpsertWithWhereUniqueWithoutSubCategoryInput = {
   create: MenuItemCreateWithoutSubCategoryInput;
   update: MenuItemUpdateWithoutSubCategoryInput;
   where: MenuItemWhereUniqueInput;
+};
+
+export type MenuItemUpsertWithoutCustomizationsInput = {
+  create: MenuItemCreateWithoutCustomizationsInput;
+  update: MenuItemUpdateWithoutCustomizationsInput;
+  where?: InputMaybe<MenuItemWhereInput>;
+};
+
+export type MenuItemUpsertWithoutSizesInput = {
+  create: MenuItemCreateWithoutSizesInput;
+  update: MenuItemUpdateWithoutSizesInput;
+  where?: InputMaybe<MenuItemWhereInput>;
 };
 
 export type MenuItemWhereInput = {
@@ -620,24 +734,38 @@ export type MenuItemWhereUniqueInput = {
 export type Mutation = {
   __typename?: 'Mutation';
   createCategory: Category;
+  createCustomization: Customization;
   createHomeBlock: HomeBlock;
   createMenuItem: MenuItem;
+  createSize: Size;
+  createSubCategory: SubCategory;
   createUser: User;
   login: User;
   removeCategory: Category;
+  removeCustomization: Customization;
   removeHomeBlock: HomeBlock;
   removeMenuItem: MenuItem;
+  removeSize: Size;
+  removeSubCategory: SubCategory;
   removeUser: User;
   signUp: User;
   updateCategory: Category;
+  updateCustomization: Customization;
   updateHomeBlock: HomeBlock;
   updateMenuItem: MenuItem;
+  updateSize: Size;
+  updateSubCategory: SubCategory;
   updateUser: User;
 };
 
 
 export type MutationCreateCategoryArgs = {
   data: CategoryCreateInput;
+};
+
+
+export type MutationCreateCustomizationArgs = {
+  data: CustomizationCreateInput;
 };
 
 
@@ -648,6 +776,16 @@ export type MutationCreateHomeBlockArgs = {
 
 export type MutationCreateMenuItemArgs = {
   data: MenuItemCreateInput;
+};
+
+
+export type MutationCreateSizeArgs = {
+  data: SizeCreateInput;
+};
+
+
+export type MutationCreateSubCategoryArgs = {
+  data: SubCategoryCreateInput;
 };
 
 
@@ -666,13 +804,28 @@ export type MutationRemoveCategoryArgs = {
 };
 
 
+export type MutationRemoveCustomizationArgs = {
+  where: CustomizationWhereUniqueInput;
+};
+
+
 export type MutationRemoveHomeBlockArgs = {
   where: HomeBlockWhereUniqueInput;
 };
 
 
 export type MutationRemoveMenuItemArgs = {
-  id: Scalars['Int']['input'];
+  where: MenuItemWhereUniqueInput;
+};
+
+
+export type MutationRemoveSizeArgs = {
+  where: SizeWhereUniqueInput;
+};
+
+
+export type MutationRemoveSubCategoryArgs = {
+  where: CategoryWhereUniqueInput;
 };
 
 
@@ -692,6 +845,12 @@ export type MutationUpdateCategoryArgs = {
 };
 
 
+export type MutationUpdateCustomizationArgs = {
+  data: CustomizationUpdateInput;
+  where: CustomizationWhereUniqueInput;
+};
+
+
 export type MutationUpdateHomeBlockArgs = {
   data: HomeBlockUpdateInput;
   where: HomeBlockWhereUniqueInput;
@@ -704,6 +863,18 @@ export type MutationUpdateMenuItemArgs = {
 };
 
 
+export type MutationUpdateSizeArgs = {
+  data: SizeUpdateInput;
+  where: SizeWhereUniqueInput;
+};
+
+
+export type MutationUpdateSubCategoryArgs = {
+  data: SubCategoryUpdateInput;
+  where: SubCategoryWhereUniqueInput;
+};
+
+
 export type MutationUpdateUserArgs = {
   data: UserUpdateInput;
   where: UserWhereUniqueInput;
@@ -713,17 +884,27 @@ export type Query = {
   __typename?: 'Query';
   categories: Array<Category>;
   category: Category;
+  customization: Customization;
   homeBlock: HomeBlock;
   homeBlocks: Array<HomeBlock>;
   item: MenuItem;
   items: Array<MenuItem>;
   me: User;
+  size: Size;
+  sizes: Array<Size>;
+  subCategories: Array<SubCategory>;
+  subCategory: SubCategory;
   users: Array<User>;
 };
 
 
 export type QueryCategoryArgs = {
   where: CategoryWhereUniqueInput;
+};
+
+
+export type QueryCustomizationArgs = {
+  where: CustomizationWhereUniqueInput;
 };
 
 
@@ -739,6 +920,16 @@ export type QueryItemArgs = {
 
 export type QueryMeArgs = {
   where: UserWhereUniqueInput;
+};
+
+
+export type QuerySizeArgs = {
+  where: SizeWhereUniqueInput;
+};
+
+
+export type QuerySubCategoryArgs = {
+  where: SubCategoryWhereUniqueInput;
 };
 
 export enum QueryMode {
@@ -912,6 +1103,13 @@ export type SizeCountAggregate = {
   volume: Scalars['Int']['output'];
 };
 
+export type SizeCreateInput = {
+  id?: InputMaybe<Scalars['String']['input']>;
+  menuItem: MenuItemCreateNestedOneWithoutSizesInput;
+  name: Scalars['String']['input'];
+  volume: Scalars['Int']['input'];
+};
+
 export type SizeCreateManyMenuItemInput = {
   id?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
@@ -976,6 +1174,13 @@ export type SizeScalarWhereInput = {
 export type SizeSumAggregate = {
   __typename?: 'SizeSumAggregate';
   volume?: Maybe<Scalars['Int']['output']>;
+};
+
+export type SizeUpdateInput = {
+  id?: InputMaybe<Scalars['String']['input']>;
+  menuItem?: InputMaybe<MenuItemUpdateOneRequiredWithoutSizesNestedInput>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  volume?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type SizeUpdateManyMutationInput = {
@@ -1090,6 +1295,14 @@ export type SubCategoryCountAggregate = {
   name: Scalars['Int']['output'];
 };
 
+export type SubCategoryCreateInput = {
+  category: CategoryCreateNestedOneWithoutSubCategoriesInput;
+  description?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  menuItems?: InputMaybe<MenuItemCreateNestedManyWithoutSubCategoryInput>;
+  name: Scalars['String']['input'];
+};
+
 export type SubCategoryCreateManyCategoryInput = {
   description?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
@@ -1173,6 +1386,14 @@ export type SubCategoryScalarWhereInput = {
   description?: InputMaybe<StringFilter>;
   id?: InputMaybe<StringFilter>;
   name?: InputMaybe<StringFilter>;
+};
+
+export type SubCategoryUpdateInput = {
+  category?: InputMaybe<CategoryUpdateOneRequiredWithoutSubCategoriesNestedInput>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  menuItems?: InputMaybe<MenuItemUpdateManyWithoutSubCategoryNestedInput>;
+  name?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type SubCategoryUpdateManyMutationInput = {

@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { MenuItemService } from './menu-item.service';
 import {
   CreateOneMenuItemArgs,
@@ -33,7 +33,7 @@ export class MenuItemResolver {
   }
 
   @Mutation(() => MenuItem)
-  removeMenuItem(@Args('id', { type: () => Int }) deleteOneMenuItemArgs: DeleteOneMenuItemArgs) {
+  removeMenuItem(@Args() deleteOneMenuItemArgs: DeleteOneMenuItemArgs) {
     return this.menuItemService.remove(deleteOneMenuItemArgs);
   }
 }
