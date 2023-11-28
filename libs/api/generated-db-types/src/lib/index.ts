@@ -87,8 +87,10 @@ export enum HomeBlockScalarFieldEnum {
 
 export enum CustomizationScalarFieldEnum {
     id = "id",
-    type = "type",
-    options = "options",
+    coffeeType = "coffeeType",
+    coffeeStrengthType = "coffeeStrengthType",
+    milkType = "milkType",
+    milkTemp = "milkTemp",
     menuItemId = "menuItemId"
 }
 
@@ -801,6 +803,10 @@ export class UpsertOneCategoryArgs {
 export class AggregateCustomization {
     @Field(() => CustomizationCountAggregate, {nullable:true})
     _count?: InstanceType<typeof CustomizationCountAggregate>;
+    @Field(() => CustomizationAvgAggregate, {nullable:true})
+    _avg?: InstanceType<typeof CustomizationAvgAggregate>;
+    @Field(() => CustomizationSumAggregate, {nullable:true})
+    _sum?: InstanceType<typeof CustomizationSumAggregate>;
     @Field(() => CustomizationMinAggregate, {nullable:true})
     _min?: InstanceType<typeof CustomizationMinAggregate>;
     @Field(() => CustomizationMaxAggregate, {nullable:true})
@@ -841,6 +847,10 @@ export class CustomizationAggregateArgs {
     skip?: number;
     @Field(() => CustomizationCountAggregateInput, {nullable:true})
     _count?: InstanceType<typeof CustomizationCountAggregateInput>;
+    @Field(() => CustomizationAvgAggregateInput, {nullable:true})
+    _avg?: InstanceType<typeof CustomizationAvgAggregateInput>;
+    @Field(() => CustomizationSumAggregateInput, {nullable:true})
+    _sum?: InstanceType<typeof CustomizationSumAggregateInput>;
     @Field(() => CustomizationMinAggregateInput, {nullable:true})
     _min?: InstanceType<typeof CustomizationMinAggregateInput>;
     @Field(() => CustomizationMaxAggregateInput, {nullable:true})
@@ -848,13 +858,35 @@ export class CustomizationAggregateArgs {
 }
 
 @InputType()
+export class CustomizationAvgAggregateInput {
+    @Field(() => Boolean, {nullable:true})
+    coffeeStrengthType?: true;
+}
+
+@ObjectType()
+export class CustomizationAvgAggregate {
+    @Field(() => Float, {nullable:true})
+    coffeeStrengthType?: number;
+}
+
+@InputType()
+export class CustomizationAvgOrderByAggregateInput {
+    @Field(() => SortOrder, {nullable:true})
+    coffeeStrengthType?: keyof typeof SortOrder;
+}
+
+@InputType()
 export class CustomizationCountAggregateInput {
     @Field(() => Boolean, {nullable:true})
     id?: true;
     @Field(() => Boolean, {nullable:true})
-    type?: true;
+    coffeeType?: true;
     @Field(() => Boolean, {nullable:true})
-    options?: true;
+    coffeeStrengthType?: true;
+    @Field(() => Boolean, {nullable:true})
+    milkType?: true;
+    @Field(() => Boolean, {nullable:true})
+    milkTemp?: true;
     @Field(() => Boolean, {nullable:true})
     menuItemId?: true;
     @Field(() => Boolean, {nullable:true})
@@ -866,9 +898,16 @@ export class CustomizationCountAggregate {
     @Field(() => Int, {nullable:false})
     id!: number;
     @Field(() => Int, {nullable:false})
-    type!: number;
+    coffeeType!: number;
     @Field(() => Int, {nullable:false})
-    options!: number;
+    @Validator.IsInt()
+    @Validator.Min(0)
+    @Validator.Max(255)
+    coffeeStrengthType!: number;
+    @Field(() => Int, {nullable:false})
+    milkType!: number;
+    @Field(() => Int, {nullable:false})
+    milkTemp!: number;
     @Field(() => Int, {nullable:false})
     menuItemId!: number;
     @Field(() => Int, {nullable:false})
@@ -880,9 +919,13 @@ export class CustomizationCountOrderByAggregateInput {
     @Field(() => SortOrder, {nullable:true})
     id?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
-    type?: keyof typeof SortOrder;
+    coffeeType?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
-    options?: keyof typeof SortOrder;
+    coffeeStrengthType?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    milkType?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    milkTemp?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     menuItemId?: keyof typeof SortOrder;
 }
@@ -904,10 +947,22 @@ export class CustomizationCreateManyMenuItemInput {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    type!: string;
-    @Field(() => [String], {nullable:true})
-    @Validator.IsArray()
-    options?: Array<string>;
+    coffeeType!: string;
+    @Field(() => Int, {nullable:false})
+    @Validator.IsInt()
+    @Validator.Min(0)
+    @Validator.Max(255)
+    coffeeStrengthType!: number;
+    @Field(() => String, {nullable:false})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    milkType!: string;
+    @Field(() => String, {nullable:false})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    milkTemp!: string;
 }
 
 @InputType()
@@ -918,10 +973,22 @@ export class CustomizationCreateManyInput {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    type!: string;
-    @Field(() => [String], {nullable:true})
-    @Validator.IsArray()
-    options?: Array<string>;
+    coffeeType!: string;
+    @Field(() => Int, {nullable:false})
+    @Validator.IsInt()
+    @Validator.Min(0)
+    @Validator.Max(255)
+    coffeeStrengthType!: number;
+    @Field(() => String, {nullable:false})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    milkType!: string;
+    @Field(() => String, {nullable:false})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    milkTemp!: string;
     @Field(() => String, {nullable:false})
     menuItemId!: string;
 }
@@ -960,10 +1027,22 @@ export class CustomizationCreateWithoutMenuItemInput {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    type!: string;
-    @Field(() => [String], {nullable:true})
-    @Validator.IsArray()
-    options?: Array<string>;
+    coffeeType!: string;
+    @Field(() => Int, {nullable:false})
+    @Validator.IsInt()
+    @Validator.Min(0)
+    @Validator.Max(255)
+    coffeeStrengthType!: number;
+    @Field(() => String, {nullable:false})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    milkType!: string;
+    @Field(() => String, {nullable:false})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    milkTemp!: string;
 }
 
 @InputType()
@@ -974,18 +1053,24 @@ export class CustomizationCreateInput {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    type!: string;
-    @Field(() => [String], {nullable:true})
-    @Validator.IsArray()
-    options?: Array<string>;
+    coffeeType!: string;
+    @Field(() => Int, {nullable:false})
+    @Validator.IsInt()
+    @Validator.Min(0)
+    @Validator.Max(255)
+    coffeeStrengthType!: number;
+    @Field(() => String, {nullable:false})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    milkType!: string;
+    @Field(() => String, {nullable:false})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    milkTemp!: string;
     @Field(() => MenuItemCreateNestedOneWithoutCustomizationsInput, {nullable:false})
     menuItem!: InstanceType<typeof MenuItemCreateNestedOneWithoutCustomizationsInput>;
-}
-
-@InputType()
-export class CustomizationCreateoptionsInput {
-    @Field(() => [String], {nullable:false})
-    set!: Array<string>;
 }
 
 @ArgsType()
@@ -1006,6 +1091,10 @@ export class CustomizationGroupByArgs {
     skip?: number;
     @Field(() => CustomizationCountAggregateInput, {nullable:true})
     _count?: InstanceType<typeof CustomizationCountAggregateInput>;
+    @Field(() => CustomizationAvgAggregateInput, {nullable:true})
+    _avg?: InstanceType<typeof CustomizationAvgAggregateInput>;
+    @Field(() => CustomizationSumAggregateInput, {nullable:true})
+    _sum?: InstanceType<typeof CustomizationSumAggregateInput>;
     @Field(() => CustomizationMinAggregateInput, {nullable:true})
     _min?: InstanceType<typeof CustomizationMinAggregateInput>;
     @Field(() => CustomizationMaxAggregateInput, {nullable:true})
@@ -1020,14 +1109,30 @@ export class CustomizationGroupBy {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    type!: string;
-    @Field(() => [String], {nullable:true})
-    @Validator.IsArray()
-    options?: Array<string>;
+    coffeeType!: string;
+    @Field(() => Int, {nullable:false})
+    @Validator.IsInt()
+    @Validator.Min(0)
+    @Validator.Max(255)
+    coffeeStrengthType!: number;
+    @Field(() => String, {nullable:false})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    milkType!: string;
+    @Field(() => String, {nullable:false})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    milkTemp!: string;
     @Field(() => String, {nullable:false})
     menuItemId!: string;
     @Field(() => CustomizationCountAggregate, {nullable:true})
     _count?: InstanceType<typeof CustomizationCountAggregate>;
+    @Field(() => CustomizationAvgAggregate, {nullable:true})
+    _avg?: InstanceType<typeof CustomizationAvgAggregate>;
+    @Field(() => CustomizationSumAggregate, {nullable:true})
+    _sum?: InstanceType<typeof CustomizationSumAggregate>;
     @Field(() => CustomizationMinAggregate, {nullable:true})
     _min?: InstanceType<typeof CustomizationMinAggregate>;
     @Field(() => CustomizationMaxAggregate, {nullable:true})
@@ -1049,7 +1154,13 @@ export class CustomizationMaxAggregateInput {
     @Field(() => Boolean, {nullable:true})
     id?: true;
     @Field(() => Boolean, {nullable:true})
-    type?: true;
+    coffeeType?: true;
+    @Field(() => Boolean, {nullable:true})
+    coffeeStrengthType?: true;
+    @Field(() => Boolean, {nullable:true})
+    milkType?: true;
+    @Field(() => Boolean, {nullable:true})
+    milkTemp?: true;
     @Field(() => Boolean, {nullable:true})
     menuItemId?: true;
 }
@@ -1062,7 +1173,22 @@ export class CustomizationMaxAggregate {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    type?: string;
+    coffeeType?: string;
+    @Field(() => Int, {nullable:true})
+    @Validator.IsInt()
+    @Validator.Min(0)
+    @Validator.Max(255)
+    coffeeStrengthType?: number;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    milkType?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    milkTemp?: string;
     @Field(() => String, {nullable:true})
     menuItemId?: string;
 }
@@ -1072,7 +1198,13 @@ export class CustomizationMaxOrderByAggregateInput {
     @Field(() => SortOrder, {nullable:true})
     id?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
-    type?: keyof typeof SortOrder;
+    coffeeType?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    coffeeStrengthType?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    milkType?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    milkTemp?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     menuItemId?: keyof typeof SortOrder;
 }
@@ -1082,7 +1214,13 @@ export class CustomizationMinAggregateInput {
     @Field(() => Boolean, {nullable:true})
     id?: true;
     @Field(() => Boolean, {nullable:true})
-    type?: true;
+    coffeeType?: true;
+    @Field(() => Boolean, {nullable:true})
+    coffeeStrengthType?: true;
+    @Field(() => Boolean, {nullable:true})
+    milkType?: true;
+    @Field(() => Boolean, {nullable:true})
+    milkTemp?: true;
     @Field(() => Boolean, {nullable:true})
     menuItemId?: true;
 }
@@ -1095,7 +1233,22 @@ export class CustomizationMinAggregate {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    type?: string;
+    coffeeType?: string;
+    @Field(() => Int, {nullable:true})
+    @Validator.IsInt()
+    @Validator.Min(0)
+    @Validator.Max(255)
+    coffeeStrengthType?: number;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    milkType?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    milkTemp?: string;
     @Field(() => String, {nullable:true})
     menuItemId?: string;
 }
@@ -1105,7 +1258,13 @@ export class CustomizationMinOrderByAggregateInput {
     @Field(() => SortOrder, {nullable:true})
     id?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
-    type?: keyof typeof SortOrder;
+    coffeeType?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    coffeeStrengthType?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    milkType?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    milkTemp?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     menuItemId?: keyof typeof SortOrder;
 }
@@ -1121,17 +1280,25 @@ export class CustomizationOrderByWithAggregationInput {
     @Field(() => SortOrder, {nullable:true})
     id?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
-    type?: keyof typeof SortOrder;
+    coffeeType?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
-    options?: keyof typeof SortOrder;
+    coffeeStrengthType?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    milkType?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    milkTemp?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     menuItemId?: keyof typeof SortOrder;
     @Field(() => CustomizationCountOrderByAggregateInput, {nullable:true})
     _count?: InstanceType<typeof CustomizationCountOrderByAggregateInput>;
+    @Field(() => CustomizationAvgOrderByAggregateInput, {nullable:true})
+    _avg?: InstanceType<typeof CustomizationAvgOrderByAggregateInput>;
     @Field(() => CustomizationMaxOrderByAggregateInput, {nullable:true})
     _max?: InstanceType<typeof CustomizationMaxOrderByAggregateInput>;
     @Field(() => CustomizationMinOrderByAggregateInput, {nullable:true})
     _min?: InstanceType<typeof CustomizationMinOrderByAggregateInput>;
+    @Field(() => CustomizationSumOrderByAggregateInput, {nullable:true})
+    _sum?: InstanceType<typeof CustomizationSumOrderByAggregateInput>;
 }
 
 @InputType()
@@ -1139,9 +1306,13 @@ export class CustomizationOrderByWithRelationInput {
     @Field(() => SortOrder, {nullable:true})
     id?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
-    type?: keyof typeof SortOrder;
+    coffeeType?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
-    options?: keyof typeof SortOrder;
+    coffeeStrengthType?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    milkType?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    milkTemp?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     menuItemId?: keyof typeof SortOrder;
     @Field(() => MenuItemOrderByWithRelationInput, {nullable:true})
@@ -1159,9 +1330,13 @@ export class CustomizationScalarWhereWithAggregatesInput {
     @Field(() => StringWithAggregatesFilter, {nullable:true})
     id?: InstanceType<typeof StringWithAggregatesFilter>;
     @Field(() => StringWithAggregatesFilter, {nullable:true})
-    type?: InstanceType<typeof StringWithAggregatesFilter>;
-    @Field(() => StringListFilter, {nullable:true})
-    options?: InstanceType<typeof StringListFilter>;
+    coffeeType?: InstanceType<typeof StringWithAggregatesFilter>;
+    @Field(() => IntWithAggregatesFilter, {nullable:true})
+    coffeeStrengthType?: InstanceType<typeof IntWithAggregatesFilter>;
+    @Field(() => StringWithAggregatesFilter, {nullable:true})
+    milkType?: InstanceType<typeof StringWithAggregatesFilter>;
+    @Field(() => StringWithAggregatesFilter, {nullable:true})
+    milkTemp?: InstanceType<typeof StringWithAggregatesFilter>;
     @Field(() => StringWithAggregatesFilter, {nullable:true})
     menuItemId?: InstanceType<typeof StringWithAggregatesFilter>;
 }
@@ -1177,11 +1352,36 @@ export class CustomizationScalarWhereInput {
     @Field(() => StringFilter, {nullable:true})
     id?: InstanceType<typeof StringFilter>;
     @Field(() => StringFilter, {nullable:true})
-    type?: InstanceType<typeof StringFilter>;
-    @Field(() => StringListFilter, {nullable:true})
-    options?: InstanceType<typeof StringListFilter>;
+    coffeeType?: InstanceType<typeof StringFilter>;
+    @Field(() => IntFilter, {nullable:true})
+    coffeeStrengthType?: InstanceType<typeof IntFilter>;
+    @Field(() => StringFilter, {nullable:true})
+    milkType?: InstanceType<typeof StringFilter>;
+    @Field(() => StringFilter, {nullable:true})
+    milkTemp?: InstanceType<typeof StringFilter>;
     @Field(() => StringFilter, {nullable:true})
     menuItemId?: InstanceType<typeof StringFilter>;
+}
+
+@InputType()
+export class CustomizationSumAggregateInput {
+    @Field(() => Boolean, {nullable:true})
+    coffeeStrengthType?: true;
+}
+
+@ObjectType()
+export class CustomizationSumAggregate {
+    @Field(() => Int, {nullable:true})
+    @Validator.IsInt()
+    @Validator.Min(0)
+    @Validator.Max(255)
+    coffeeStrengthType?: number;
+}
+
+@InputType()
+export class CustomizationSumOrderByAggregateInput {
+    @Field(() => SortOrder, {nullable:true})
+    coffeeStrengthType?: keyof typeof SortOrder;
 }
 
 @InputType()
@@ -1208,10 +1408,22 @@ export class CustomizationUncheckedCreateWithoutMenuItemInput {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    type!: string;
-    @Field(() => [String], {nullable:true})
-    @Validator.IsArray()
-    options?: Array<string>;
+    coffeeType!: string;
+    @Field(() => Int, {nullable:false})
+    @Validator.IsInt()
+    @Validator.Min(0)
+    @Validator.Max(255)
+    coffeeStrengthType!: number;
+    @Field(() => String, {nullable:false})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    milkType!: string;
+    @Field(() => String, {nullable:false})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    milkTemp!: string;
 }
 
 @InputType()
@@ -1222,10 +1434,22 @@ export class CustomizationUncheckedCreateInput {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    type!: string;
-    @Field(() => [String], {nullable:true})
-    @Validator.IsArray()
-    options?: Array<string>;
+    coffeeType!: string;
+    @Field(() => Int, {nullable:false})
+    @Validator.IsInt()
+    @Validator.Min(0)
+    @Validator.Max(255)
+    coffeeStrengthType!: number;
+    @Field(() => String, {nullable:false})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    milkType!: string;
+    @Field(() => String, {nullable:false})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    milkTemp!: string;
     @Field(() => String, {nullable:false})
     menuItemId!: string;
 }
@@ -1275,10 +1499,22 @@ export class CustomizationUncheckedUpdateManyWithoutMenuItemInput {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    type?: string;
-    @Field(() => [String], {nullable:true})
-    @Validator.IsArray()
-    options?: Array<string>;
+    coffeeType?: string;
+    @Field(() => Int, {nullable:true})
+    @Validator.IsInt()
+    @Validator.Min(0)
+    @Validator.Max(255)
+    coffeeStrengthType?: number;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    milkType?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    milkTemp?: string;
 }
 
 @InputType()
@@ -1289,10 +1525,22 @@ export class CustomizationUncheckedUpdateManyInput {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    type?: string;
-    @Field(() => [String], {nullable:true})
-    @Validator.IsArray()
-    options?: Array<string>;
+    coffeeType?: string;
+    @Field(() => Int, {nullable:true})
+    @Validator.IsInt()
+    @Validator.Min(0)
+    @Validator.Max(255)
+    coffeeStrengthType?: number;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    milkType?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    milkTemp?: string;
     @Field(() => String, {nullable:true})
     menuItemId?: string;
 }
@@ -1305,10 +1553,22 @@ export class CustomizationUncheckedUpdateWithoutMenuItemInput {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    type?: string;
-    @Field(() => [String], {nullable:true})
-    @Validator.IsArray()
-    options?: Array<string>;
+    coffeeType?: string;
+    @Field(() => Int, {nullable:true})
+    @Validator.IsInt()
+    @Validator.Min(0)
+    @Validator.Max(255)
+    coffeeStrengthType?: number;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    milkType?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    milkTemp?: string;
 }
 
 @InputType()
@@ -1319,10 +1579,22 @@ export class CustomizationUncheckedUpdateInput {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    type?: string;
-    @Field(() => [String], {nullable:true})
-    @Validator.IsArray()
-    options?: Array<string>;
+    coffeeType?: string;
+    @Field(() => Int, {nullable:true})
+    @Validator.IsInt()
+    @Validator.Min(0)
+    @Validator.Max(255)
+    coffeeStrengthType?: number;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    milkType?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    milkTemp?: string;
     @Field(() => String, {nullable:true})
     menuItemId?: string;
 }
@@ -1335,10 +1607,22 @@ export class CustomizationUpdateManyMutationInput {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    type?: string;
-    @Field(() => [String], {nullable:true})
-    @Validator.IsArray()
-    options?: Array<string>;
+    coffeeType?: string;
+    @Field(() => Int, {nullable:true})
+    @Validator.IsInt()
+    @Validator.Min(0)
+    @Validator.Max(255)
+    coffeeStrengthType?: number;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    milkType?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    milkTemp?: string;
 }
 
 @InputType()
@@ -1406,10 +1690,22 @@ export class CustomizationUpdateWithoutMenuItemInput {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    type?: string;
-    @Field(() => [String], {nullable:true})
-    @Validator.IsArray()
-    options?: Array<string>;
+    coffeeType?: string;
+    @Field(() => Int, {nullable:true})
+    @Validator.IsInt()
+    @Validator.Min(0)
+    @Validator.Max(255)
+    coffeeStrengthType?: number;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    milkType?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    milkTemp?: string;
 }
 
 @InputType()
@@ -1420,20 +1716,24 @@ export class CustomizationUpdateInput {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    type?: string;
-    @Field(() => [String], {nullable:true})
-    @Validator.IsArray()
-    options?: Array<string>;
+    coffeeType?: string;
+    @Field(() => Int, {nullable:true})
+    @Validator.IsInt()
+    @Validator.Min(0)
+    @Validator.Max(255)
+    coffeeStrengthType?: number;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    milkType?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    milkTemp?: string;
     @Field(() => MenuItemUpdateOneRequiredWithoutCustomizationsNestedInput, {nullable:true})
     menuItem?: InstanceType<typeof MenuItemUpdateOneRequiredWithoutCustomizationsNestedInput>;
-}
-
-@InputType()
-export class CustomizationUpdateoptionsInput {
-    @Field(() => [String], {nullable:true})
-    set?: Array<string>;
-    @Field(() => [String], {nullable:true})
-    push?: Array<string>;
 }
 
 @InputType()
@@ -1460,9 +1760,13 @@ export class CustomizationWhereUniqueInput {
     @Field(() => [CustomizationWhereInput], {nullable:true})
     NOT?: Array<CustomizationWhereInput>;
     @Field(() => StringFilter, {nullable:true})
-    type?: InstanceType<typeof StringFilter>;
-    @Field(() => StringListFilter, {nullable:true})
-    options?: InstanceType<typeof StringListFilter>;
+    coffeeType?: InstanceType<typeof StringFilter>;
+    @Field(() => IntFilter, {nullable:true})
+    coffeeStrengthType?: InstanceType<typeof IntFilter>;
+    @Field(() => StringFilter, {nullable:true})
+    milkType?: InstanceType<typeof StringFilter>;
+    @Field(() => StringFilter, {nullable:true})
+    milkTemp?: InstanceType<typeof StringFilter>;
     @Field(() => StringFilter, {nullable:true})
     menuItemId?: InstanceType<typeof StringFilter>;
     @Field(() => MenuItemRelationFilter, {nullable:true})
@@ -1480,9 +1784,13 @@ export class CustomizationWhereInput {
     @Field(() => StringFilter, {nullable:true})
     id?: InstanceType<typeof StringFilter>;
     @Field(() => StringFilter, {nullable:true})
-    type?: InstanceType<typeof StringFilter>;
-    @Field(() => StringListFilter, {nullable:true})
-    options?: InstanceType<typeof StringListFilter>;
+    coffeeType?: InstanceType<typeof StringFilter>;
+    @Field(() => IntFilter, {nullable:true})
+    coffeeStrengthType?: InstanceType<typeof IntFilter>;
+    @Field(() => StringFilter, {nullable:true})
+    milkType?: InstanceType<typeof StringFilter>;
+    @Field(() => StringFilter, {nullable:true})
+    milkTemp?: InstanceType<typeof StringFilter>;
     @Field(() => StringFilter, {nullable:true})
     menuItemId?: InstanceType<typeof StringFilter>;
     @Field(() => MenuItemRelationFilter, {nullable:true})
@@ -1494,9 +1802,13 @@ export class Customization {
     @Field(() => ID, {nullable:false})
     id!: string;
     @Field(() => String, {nullable:false})
-    type!: string;
-    @Field(() => [String], {nullable:true})
-    options!: Array<string>;
+    coffeeType!: string;
+    @Field(() => Int, {nullable:false})
+    coffeeStrengthType!: number;
+    @Field(() => String, {nullable:false})
+    milkType!: string;
+    @Field(() => String, {nullable:false})
+    milkTemp!: string;
     @Field(() => String, {nullable:false})
     menuItemId!: string;
     @Field(() => MenuItem, {nullable:false})
@@ -4386,20 +4698,6 @@ export class StringFilter {
     mode?: keyof typeof QueryMode;
     @Field(() => StringFilter, {nullable:true})
     not?: InstanceType<typeof StringFilter>;
-}
-
-@InputType()
-export class StringListFilter {
-    @Field(() => [String], {nullable:true})
-    equals?: Array<string>;
-    @Field(() => String, {nullable:true})
-    has?: string;
-    @Field(() => [String], {nullable:true})
-    hasEvery?: Array<string>;
-    @Field(() => [String], {nullable:true})
-    hasSome?: Array<string>;
-    @Field(() => Boolean, {nullable:true})
-    isEmpty?: boolean;
 }
 
 @InputType()

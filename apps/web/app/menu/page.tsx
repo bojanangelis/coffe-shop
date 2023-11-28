@@ -14,6 +14,7 @@ const Menu = () => {
           <div key={category?.id}>
             {category.subCategories?.map((sub) => (
               <CategoryDrinkCard
+                id={sub.path ?? ''}
                 key={sub.id}
                 category_img={sub?.image_path}
                 category_title={sub?.name}

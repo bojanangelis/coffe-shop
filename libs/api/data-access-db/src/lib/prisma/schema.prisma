@@ -187,14 +187,28 @@ model Size {
 }
 
 model Customization {
-  id   String @id @default(uuid())
+  id String @id @default(uuid())
+
   /// @Validator.IsString()
   /// @Validator.MaxLength(100)
   /// @Validator.MinLength(3)
-  type String // e.g., Milk, Espresso Shots
+  coffeeType String
 
-  /// @Validator.IsArray()
-  options    String[] // e.g., ["Oat Milk", "Soy Milk", "Almond Milk"]
+  /// @Validator.IsInt()
+  /// @Validator.Min(0)
+  /// @Validator.Max(255)
+  coffeeStrengthType Int
+
+  /// @Validator.IsString()
+  /// @Validator.MaxLength(100)
+  /// @Validator.MinLength(3)
+  milkType String
+
+  /// @Validator.IsString()
+  /// @Validator.MaxLength(100)
+  /// @Validator.MinLength(3)
+  milkTemp String
+
   menuItemId String
   menuItem   MenuItem @relation(fields: [menuItemId], references: [id])
 }

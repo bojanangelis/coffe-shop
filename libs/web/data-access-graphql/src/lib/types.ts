@@ -133,9 +133,13 @@ export type CategoryWhereUniqueInput = {
 
 export type Customization = {
   __typename?: 'Customization';
+  coffeeStrengthType: Scalars['String']['output'];
+  coffeeType: Scalars['String']['output'];
   id: Scalars['ID']['output'];
   menuItem: MenuItem;
   menuItemId: Scalars['String']['output'];
+  milkTemp: Scalars['String']['output'];
+  milkType: Scalars['String']['output'];
   options?: Maybe<Array<Scalars['String']['output']>>;
   type: Scalars['String']['output'];
 };
@@ -143,21 +147,33 @@ export type Customization = {
 export type CustomizationCountAggregate = {
   __typename?: 'CustomizationCountAggregate';
   _all: Scalars['Int']['output'];
+  coffeeStrengthType: Scalars['Int']['output'];
+  coffeeType: Scalars['Int']['output'];
   id: Scalars['Int']['output'];
   menuItemId: Scalars['Int']['output'];
+  milkTemp: Scalars['Int']['output'];
+  milkType: Scalars['Int']['output'];
   options: Scalars['Int']['output'];
   type: Scalars['Int']['output'];
 };
 
 export type CustomizationCreateInput = {
+  coffeeStrengthType: Scalars['String']['input'];
+  coffeeType: Scalars['String']['input'];
   id?: InputMaybe<Scalars['String']['input']>;
   menuItem: MenuItemCreateNestedOneWithoutCustomizationsInput;
+  milkTemp: Scalars['String']['input'];
+  milkType: Scalars['String']['input'];
   options?: InputMaybe<Array<Scalars['String']['input']>>;
   type: Scalars['String']['input'];
 };
 
 export type CustomizationCreateManyMenuItemInput = {
+  coffeeStrengthType: Scalars['String']['input'];
+  coffeeType: Scalars['String']['input'];
   id?: InputMaybe<Scalars['String']['input']>;
+  milkTemp: Scalars['String']['input'];
+  milkType: Scalars['String']['input'];
   options?: InputMaybe<Array<Scalars['String']['input']>>;
   type: Scalars['String']['input'];
 };
@@ -180,7 +196,11 @@ export type CustomizationCreateOrConnectWithoutMenuItemInput = {
 };
 
 export type CustomizationCreateWithoutMenuItemInput = {
+  coffeeStrengthType: Scalars['String']['input'];
+  coffeeType: Scalars['String']['input'];
   id?: InputMaybe<Scalars['String']['input']>;
+  milkTemp: Scalars['String']['input'];
+  milkType: Scalars['String']['input'];
   options?: InputMaybe<Array<Scalars['String']['input']>>;
   type: Scalars['String']['input'];
 };
@@ -193,15 +213,23 @@ export type CustomizationListRelationFilter = {
 
 export type CustomizationMaxAggregate = {
   __typename?: 'CustomizationMaxAggregate';
+  coffeeStrengthType?: Maybe<Scalars['String']['output']>;
+  coffeeType?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['String']['output']>;
   menuItemId?: Maybe<Scalars['String']['output']>;
+  milkTemp?: Maybe<Scalars['String']['output']>;
+  milkType?: Maybe<Scalars['String']['output']>;
   type?: Maybe<Scalars['String']['output']>;
 };
 
 export type CustomizationMinAggregate = {
   __typename?: 'CustomizationMinAggregate';
+  coffeeStrengthType?: Maybe<Scalars['String']['output']>;
+  coffeeType?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['String']['output']>;
   menuItemId?: Maybe<Scalars['String']['output']>;
+  milkTemp?: Maybe<Scalars['String']['output']>;
+  milkType?: Maybe<Scalars['String']['output']>;
   type?: Maybe<Scalars['String']['output']>;
 };
 
@@ -209,21 +237,33 @@ export type CustomizationScalarWhereInput = {
   AND?: InputMaybe<Array<CustomizationScalarWhereInput>>;
   NOT?: InputMaybe<Array<CustomizationScalarWhereInput>>;
   OR?: InputMaybe<Array<CustomizationScalarWhereInput>>;
+  coffeeStrengthType?: InputMaybe<StringFilter>;
+  coffeeType?: InputMaybe<StringFilter>;
   id?: InputMaybe<StringFilter>;
   menuItemId?: InputMaybe<StringFilter>;
+  milkTemp?: InputMaybe<StringFilter>;
+  milkType?: InputMaybe<StringFilter>;
   options?: InputMaybe<StringListFilter>;
   type?: InputMaybe<StringFilter>;
 };
 
 export type CustomizationUpdateInput = {
+  coffeeStrengthType?: InputMaybe<Scalars['String']['input']>;
+  coffeeType?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
   menuItem?: InputMaybe<MenuItemUpdateOneRequiredWithoutCustomizationsNestedInput>;
+  milkTemp?: InputMaybe<Scalars['String']['input']>;
+  milkType?: InputMaybe<Scalars['String']['input']>;
   options?: InputMaybe<Array<Scalars['String']['input']>>;
   type?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type CustomizationUpdateManyMutationInput = {
+  coffeeStrengthType?: InputMaybe<Scalars['String']['input']>;
+  coffeeType?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
+  milkTemp?: InputMaybe<Scalars['String']['input']>;
+  milkType?: InputMaybe<Scalars['String']['input']>;
   options?: InputMaybe<Array<Scalars['String']['input']>>;
   type?: InputMaybe<Scalars['String']['input']>;
 };
@@ -253,7 +293,11 @@ export type CustomizationUpdateWithWhereUniqueWithoutMenuItemInput = {
 };
 
 export type CustomizationUpdateWithoutMenuItemInput = {
+  coffeeStrengthType?: InputMaybe<Scalars['String']['input']>;
+  coffeeType?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
+  milkTemp?: InputMaybe<Scalars['String']['input']>;
+  milkType?: InputMaybe<Scalars['String']['input']>;
   options?: InputMaybe<Array<Scalars['String']['input']>>;
   type?: InputMaybe<Scalars['String']['input']>;
 };
@@ -268,9 +312,13 @@ export type CustomizationWhereInput = {
   AND?: InputMaybe<Array<CustomizationWhereInput>>;
   NOT?: InputMaybe<Array<CustomizationWhereInput>>;
   OR?: InputMaybe<Array<CustomizationWhereInput>>;
+  coffeeStrengthType?: InputMaybe<StringFilter>;
+  coffeeType?: InputMaybe<StringFilter>;
   id?: InputMaybe<StringFilter>;
   menuItem?: InputMaybe<MenuItemRelationFilter>;
   menuItemId?: InputMaybe<StringFilter>;
+  milkTemp?: InputMaybe<StringFilter>;
+  milkType?: InputMaybe<StringFilter>;
   options?: InputMaybe<StringListFilter>;
   type?: InputMaybe<StringFilter>;
 };
@@ -279,9 +327,13 @@ export type CustomizationWhereUniqueInput = {
   AND?: InputMaybe<Array<CustomizationWhereInput>>;
   NOT?: InputMaybe<Array<CustomizationWhereInput>>;
   OR?: InputMaybe<Array<CustomizationWhereInput>>;
+  coffeeStrengthType?: InputMaybe<StringFilter>;
+  coffeeType?: InputMaybe<StringFilter>;
   id?: InputMaybe<Scalars['String']['input']>;
   menuItem?: InputMaybe<MenuItemRelationFilter>;
   menuItemId?: InputMaybe<StringFilter>;
+  milkTemp?: InputMaybe<StringFilter>;
+  milkType?: InputMaybe<StringFilter>;
   options?: InputMaybe<StringListFilter>;
   type?: InputMaybe<StringFilter>;
 };

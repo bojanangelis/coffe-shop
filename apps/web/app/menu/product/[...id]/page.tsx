@@ -42,13 +42,15 @@ const Product = () => {
   };
 
   const handleCustomization = async () => {
-    handleUpdate({
+    await handleUpdate({
       data: {
-        type: 'milk',
-        options: ['2% Milk'],
+        milkType: selectedMilkType.name,
+        coffeeType: selectedCoffeeType.name,
+        coffeeStrengthType: Number(count),
+        milkTemp: selectedMilkTemp.name,
         menuItem: {
           connect: {
-            id: '119ee19f-f7b9-4d39-9a98-01d5bb2abd53'
+            id: params.id[0]
           }
         }
       }

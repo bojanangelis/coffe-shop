@@ -33,30 +33,48 @@ type Category {
   _count: CategoryCount!
 }
 
+type CustomizationAvgAggregate {
+  coffeeStrengthType: Float
+}
+
 type CustomizationCountAggregate {
   id: Int!
-  type: Int!
-  options: Int!
+  coffeeType: Int!
+  coffeeStrengthType: Int!
+  milkType: Int!
+  milkTemp: Int!
   menuItemId: Int!
   _all: Int!
 }
 
 type CustomizationMaxAggregate {
   id: String
-  type: String
+  coffeeType: String
+  coffeeStrengthType: Int
+  milkType: String
+  milkTemp: String
   menuItemId: String
 }
 
 type CustomizationMinAggregate {
   id: String
-  type: String
+  coffeeType: String
+  coffeeStrengthType: Int
+  milkType: String
+  milkTemp: String
   menuItemId: String
+}
+
+type CustomizationSumAggregate {
+  coffeeStrengthType: Int
 }
 
 type Customization {
   id: ID!
-  type: String!
-  options: [String!]
+  coffeeType: String!
+  coffeeStrengthType: Int!
+  milkType: String!
+  milkTemp: String!
   menuItemId: String!
   menuItem: MenuItem!
 }
@@ -549,18 +567,12 @@ input CustomizationWhereInput {
   OR: [CustomizationWhereInput!]
   NOT: [CustomizationWhereInput!]
   id: StringFilter
-  type: StringFilter
-  options: StringListFilter
+  coffeeType: StringFilter
+  coffeeStrengthType: IntFilter
+  milkType: StringFilter
+  milkTemp: StringFilter
   menuItemId: StringFilter
   menuItem: MenuItemRelationFilter
-}
-
-input StringListFilter {
-  equals: [String!]
-  has: String
-  hasEvery: [String!]
-  hasSome: [String!]
-  isEmpty: Boolean
 }
 
 input MenuItemWhereUniqueInput {
@@ -608,8 +620,10 @@ input CustomizationWhereUniqueInput {
   AND: [CustomizationWhereInput!]
   OR: [CustomizationWhereInput!]
   NOT: [CustomizationWhereInput!]
-  type: StringFilter
-  options: StringListFilter
+  coffeeType: StringFilter
+  coffeeStrengthType: IntFilter
+  milkType: StringFilter
+  milkTemp: StringFilter
   menuItemId: StringFilter
   menuItem: MenuItemRelationFilter
 }
@@ -824,8 +838,10 @@ input CustomizationCreateNestedManyWithoutMenuItemInput {
 
 input CustomizationCreateWithoutMenuItemInput {
   id: String
-  type: String!
-  options: [String!]
+  coffeeType: String!
+  coffeeStrengthType: Int!
+  milkType: String!
+  milkTemp: String!
 }
 
 input CustomizationCreateOrConnectWithoutMenuItemInput {
@@ -840,8 +856,10 @@ input CustomizationCreateManyMenuItemInputEnvelope {
 
 input CustomizationCreateManyMenuItemInput {
   id: String
-  type: String!
-  options: [String!]
+  coffeeType: String!
+  coffeeStrengthType: Int!
+  milkType: String!
+  milkTemp: String!
 }
 
 input MenuItemCreateOrConnectWithoutSubCategoryInput {
@@ -1020,8 +1038,10 @@ input CustomizationUpsertWithWhereUniqueWithoutMenuItemInput {
 
 input CustomizationUpdateWithoutMenuItemInput {
   id: String
-  type: String
-  options: [String!]
+  coffeeType: String
+  coffeeStrengthType: Int
+  milkType: String
+  milkTemp: String
 }
 
 input CustomizationUpdateWithWhereUniqueWithoutMenuItemInput {
@@ -1039,15 +1059,19 @@ input CustomizationScalarWhereInput {
   OR: [CustomizationScalarWhereInput!]
   NOT: [CustomizationScalarWhereInput!]
   id: StringFilter
-  type: StringFilter
-  options: StringListFilter
+  coffeeType: StringFilter
+  coffeeStrengthType: IntFilter
+  milkType: StringFilter
+  milkTemp: StringFilter
   menuItemId: StringFilter
 }
 
 input CustomizationUpdateManyMutationInput {
   id: String
-  type: String
-  options: [String!]
+  coffeeType: String
+  coffeeStrengthType: Int
+  milkType: String
+  milkTemp: String
 }
 
 input MenuItemUpdateWithWhereUniqueWithoutSubCategoryInput {
@@ -1308,8 +1332,10 @@ input MenuItemUpdateToOneWithWhereWithoutSizesInput {
 
 input CustomizationCreateInput {
   id: String
-  type: String!
-  options: [String!]
+  coffeeType: String!
+  coffeeStrengthType: Int!
+  milkType: String!
+  milkTemp: String!
   menuItem: MenuItemCreateNestedOneWithoutCustomizationsInput!
 }
 
@@ -1336,8 +1362,10 @@ input MenuItemCreateOrConnectWithoutCustomizationsInput {
 
 input CustomizationUpdateInput {
   id: String
-  type: String
-  options: [String!]
+  coffeeType: String
+  coffeeStrengthType: Int
+  milkType: String
+  milkTemp: String
   menuItem: MenuItemUpdateOneRequiredWithoutCustomizationsNestedInput
 }
 

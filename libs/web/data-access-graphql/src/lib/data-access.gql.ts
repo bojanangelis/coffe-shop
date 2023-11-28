@@ -112,8 +112,6 @@ export const CUSTOMIZATION_COFFEE_MUTATION = gql`
   mutation Customization($data: CustomizationCreateInput!) {
     createCustomization(data: $data) {
       id
-      type
-      options
       menuItemId
     }
   }

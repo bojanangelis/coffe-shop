@@ -79,8 +79,10 @@ CREATE TABLE "Size" (
 -- CreateTable
 CREATE TABLE "Customization" (
     "id" TEXT NOT NULL,
-    "type" TEXT NOT NULL,
-    "options" TEXT[],
+    "coffeeType" TEXT NOT NULL,
+    "coffeeStrengthType" INTEGER NOT NULL,
+    "milkType" TEXT NOT NULL,
+    "milkTemp" TEXT NOT NULL,
     "menuItemId" TEXT NOT NULL,
 
     CONSTRAINT "Customization_pkey" PRIMARY KEY ("id")
