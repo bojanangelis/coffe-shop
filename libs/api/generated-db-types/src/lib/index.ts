@@ -22,6 +22,8 @@ export enum UserScalarFieldEnum {
 export enum SubCategoryScalarFieldEnum {
     id = "id",
     name = "name",
+    path = "path",
+    image_path = "image_path",
     description = "description",
     categoryId = "categoryId"
 }
@@ -68,7 +70,7 @@ export enum MenuItemScalarFieldEnum {
     id = "id",
     name = "name",
     description = "description",
-    image = "image",
+    image_path = "image_path",
     calories = "calories",
     subCategoryId = "subCategoryId"
 }
@@ -2839,7 +2841,7 @@ export class MenuItemCountAggregateInput {
     @Field(() => Boolean, {nullable:true})
     description?: true;
     @Field(() => Boolean, {nullable:true})
-    image?: true;
+    image_path?: true;
     @Field(() => Boolean, {nullable:true})
     calories?: true;
     @Field(() => Boolean, {nullable:true})
@@ -2857,7 +2859,7 @@ export class MenuItemCountAggregate {
     @Field(() => Int, {nullable:false})
     description!: number;
     @Field(() => Int, {nullable:false})
-    image!: number;
+    image_path!: number;
     @Field(() => Int, {nullable:false})
     @Validator.IsInt()
     @Validator.Min(0)
@@ -2878,7 +2880,7 @@ export class MenuItemCountOrderByAggregateInput {
     @Field(() => SortOrder, {nullable:true})
     description?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
-    image?: keyof typeof SortOrder;
+    image_path?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     calories?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
@@ -2920,7 +2922,7 @@ export class MenuItemCreateManySubCategoryInput {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    image?: string;
+    image_path?: string;
     @Field(() => Int, {nullable:true})
     @Validator.IsInt()
     @Validator.Min(0)
@@ -2946,7 +2948,7 @@ export class MenuItemCreateManyInput {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    image?: string;
+    image_path?: string;
     @Field(() => Int, {nullable:true})
     @Validator.IsInt()
     @Validator.Min(0)
@@ -3046,7 +3048,7 @@ export class MenuItemCreateWithoutCustomizationsInput {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    image?: string;
+    image_path?: string;
     @Field(() => Int, {nullable:true})
     @Validator.IsInt()
     @Validator.Min(0)
@@ -3076,7 +3078,7 @@ export class MenuItemCreateWithoutSizesInput {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    image?: string;
+    image_path?: string;
     @Field(() => Int, {nullable:true})
     @Validator.IsInt()
     @Validator.Min(0)
@@ -3106,7 +3108,7 @@ export class MenuItemCreateWithoutSubCategoryInput {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    image?: string;
+    image_path?: string;
     @Field(() => Int, {nullable:true})
     @Validator.IsInt()
     @Validator.Min(0)
@@ -3136,7 +3138,7 @@ export class MenuItemCreateInput {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    image?: string;
+    image_path?: string;
     @Field(() => Int, {nullable:true})
     @Validator.IsInt()
     @Validator.Min(0)
@@ -3196,7 +3198,7 @@ export class MenuItemGroupBy {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    image?: string;
+    image_path?: string;
     @Field(() => Int, {nullable:true})
     @Validator.IsInt()
     @Validator.Min(0)
@@ -3235,7 +3237,7 @@ export class MenuItemMaxAggregateInput {
     @Field(() => Boolean, {nullable:true})
     description?: true;
     @Field(() => Boolean, {nullable:true})
-    image?: true;
+    image_path?: true;
     @Field(() => Boolean, {nullable:true})
     calories?: true;
     @Field(() => Boolean, {nullable:true})
@@ -3260,7 +3262,7 @@ export class MenuItemMaxAggregate {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    image?: string;
+    image_path?: string;
     @Field(() => Int, {nullable:true})
     @Validator.IsInt()
     @Validator.Min(0)
@@ -3279,7 +3281,7 @@ export class MenuItemMaxOrderByAggregateInput {
     @Field(() => SortOrder, {nullable:true})
     description?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
-    image?: keyof typeof SortOrder;
+    image_path?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     calories?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
@@ -3295,7 +3297,7 @@ export class MenuItemMinAggregateInput {
     @Field(() => Boolean, {nullable:true})
     description?: true;
     @Field(() => Boolean, {nullable:true})
-    image?: true;
+    image_path?: true;
     @Field(() => Boolean, {nullable:true})
     calories?: true;
     @Field(() => Boolean, {nullable:true})
@@ -3320,7 +3322,7 @@ export class MenuItemMinAggregate {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    image?: string;
+    image_path?: string;
     @Field(() => Int, {nullable:true})
     @Validator.IsInt()
     @Validator.Min(0)
@@ -3339,7 +3341,7 @@ export class MenuItemMinOrderByAggregateInput {
     @Field(() => SortOrder, {nullable:true})
     description?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
-    image?: keyof typeof SortOrder;
+    image_path?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     calories?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
@@ -3361,7 +3363,7 @@ export class MenuItemOrderByWithAggregationInput {
     @Field(() => SortOrderInput, {nullable:true})
     description?: InstanceType<typeof SortOrderInput>;
     @Field(() => SortOrderInput, {nullable:true})
-    image?: InstanceType<typeof SortOrderInput>;
+    image_path?: InstanceType<typeof SortOrderInput>;
     @Field(() => SortOrderInput, {nullable:true})
     calories?: InstanceType<typeof SortOrderInput>;
     @Field(() => SortOrder, {nullable:true})
@@ -3387,7 +3389,7 @@ export class MenuItemOrderByWithRelationInput {
     @Field(() => SortOrderInput, {nullable:true})
     description?: InstanceType<typeof SortOrderInput>;
     @Field(() => SortOrderInput, {nullable:true})
-    image?: InstanceType<typeof SortOrderInput>;
+    image_path?: InstanceType<typeof SortOrderInput>;
     @Field(() => SortOrderInput, {nullable:true})
     calories?: InstanceType<typeof SortOrderInput>;
     @Field(() => SortOrder, {nullable:true})
@@ -3423,7 +3425,7 @@ export class MenuItemScalarWhereWithAggregatesInput {
     @Field(() => StringWithAggregatesFilter, {nullable:true})
     description?: InstanceType<typeof StringWithAggregatesFilter>;
     @Field(() => StringWithAggregatesFilter, {nullable:true})
-    image?: InstanceType<typeof StringWithAggregatesFilter>;
+    image_path?: InstanceType<typeof StringWithAggregatesFilter>;
     @Field(() => IntWithAggregatesFilter, {nullable:true})
     calories?: InstanceType<typeof IntWithAggregatesFilter>;
     @Field(() => StringWithAggregatesFilter, {nullable:true})
@@ -3445,7 +3447,7 @@ export class MenuItemScalarWhereInput {
     @Field(() => StringFilter, {nullable:true})
     description?: InstanceType<typeof StringFilter>;
     @Field(() => StringFilter, {nullable:true})
-    image?: InstanceType<typeof StringFilter>;
+    image_path?: InstanceType<typeof StringFilter>;
     @Field(() => IntFilter, {nullable:true})
     calories?: InstanceType<typeof IntFilter>;
     @Field(() => StringFilter, {nullable:true})
@@ -3507,7 +3509,7 @@ export class MenuItemUncheckedCreateWithoutCustomizationsInput {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    image?: string;
+    image_path?: string;
     @Field(() => Int, {nullable:true})
     @Validator.IsInt()
     @Validator.Min(0)
@@ -3537,7 +3539,7 @@ export class MenuItemUncheckedCreateWithoutSizesInput {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    image?: string;
+    image_path?: string;
     @Field(() => Int, {nullable:true})
     @Validator.IsInt()
     @Validator.Min(0)
@@ -3567,7 +3569,7 @@ export class MenuItemUncheckedCreateWithoutSubCategoryInput {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    image?: string;
+    image_path?: string;
     @Field(() => Int, {nullable:true})
     @Validator.IsInt()
     @Validator.Min(0)
@@ -3597,7 +3599,7 @@ export class MenuItemUncheckedCreateInput {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    image?: string;
+    image_path?: string;
     @Field(() => Int, {nullable:true})
     @Validator.IsInt()
     @Validator.Min(0)
@@ -3666,7 +3668,7 @@ export class MenuItemUncheckedUpdateManyWithoutSubCategoryInput {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    image?: string;
+    image_path?: string;
     @Field(() => Int, {nullable:true})
     @Validator.IsInt()
     @Validator.Min(0)
@@ -3692,7 +3694,7 @@ export class MenuItemUncheckedUpdateManyInput {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    image?: string;
+    image_path?: string;
     @Field(() => Int, {nullable:true})
     @Validator.IsInt()
     @Validator.Min(0)
@@ -3720,7 +3722,7 @@ export class MenuItemUncheckedUpdateWithoutCustomizationsInput {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    image?: string;
+    image_path?: string;
     @Field(() => Int, {nullable:true})
     @Validator.IsInt()
     @Validator.Min(0)
@@ -3750,7 +3752,7 @@ export class MenuItemUncheckedUpdateWithoutSizesInput {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    image?: string;
+    image_path?: string;
     @Field(() => Int, {nullable:true})
     @Validator.IsInt()
     @Validator.Min(0)
@@ -3780,7 +3782,7 @@ export class MenuItemUncheckedUpdateWithoutSubCategoryInput {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    image?: string;
+    image_path?: string;
     @Field(() => Int, {nullable:true})
     @Validator.IsInt()
     @Validator.Min(0)
@@ -3810,7 +3812,7 @@ export class MenuItemUncheckedUpdateInput {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    image?: string;
+    image_path?: string;
     @Field(() => Int, {nullable:true})
     @Validator.IsInt()
     @Validator.Min(0)
@@ -3842,7 +3844,7 @@ export class MenuItemUpdateManyMutationInput {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    image?: string;
+    image_path?: string;
     @Field(() => Int, {nullable:true})
     @Validator.IsInt()
     @Validator.Min(0)
@@ -3983,7 +3985,7 @@ export class MenuItemUpdateWithoutCustomizationsInput {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    image?: string;
+    image_path?: string;
     @Field(() => Int, {nullable:true})
     @Validator.IsInt()
     @Validator.Min(0)
@@ -4013,7 +4015,7 @@ export class MenuItemUpdateWithoutSizesInput {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    image?: string;
+    image_path?: string;
     @Field(() => Int, {nullable:true})
     @Validator.IsInt()
     @Validator.Min(0)
@@ -4043,7 +4045,7 @@ export class MenuItemUpdateWithoutSubCategoryInput {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    image?: string;
+    image_path?: string;
     @Field(() => Int, {nullable:true})
     @Validator.IsInt()
     @Validator.Min(0)
@@ -4073,7 +4075,7 @@ export class MenuItemUpdateInput {
     @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
-    image?: string;
+    image_path?: string;
     @Field(() => Int, {nullable:true})
     @Validator.IsInt()
     @Validator.Min(0)
@@ -4141,7 +4143,7 @@ export class MenuItemWhereUniqueInput {
     @Field(() => StringFilter, {nullable:true})
     description?: InstanceType<typeof StringFilter>;
     @Field(() => StringFilter, {nullable:true})
-    image?: InstanceType<typeof StringFilter>;
+    image_path?: InstanceType<typeof StringFilter>;
     @Field(() => IntFilter, {nullable:true})
     calories?: InstanceType<typeof IntFilter>;
     @Field(() => StringFilter, {nullable:true})
@@ -4169,7 +4171,7 @@ export class MenuItemWhereInput {
     @Field(() => StringFilter, {nullable:true})
     description?: InstanceType<typeof StringFilter>;
     @Field(() => StringFilter, {nullable:true})
-    image?: InstanceType<typeof StringFilter>;
+    image_path?: InstanceType<typeof StringFilter>;
     @Field(() => IntFilter, {nullable:true})
     calories?: InstanceType<typeof IntFilter>;
     @Field(() => StringFilter, {nullable:true})
@@ -4191,7 +4193,7 @@ export class MenuItem {
     @Field(() => String, {nullable:true})
     description!: string | null;
     @Field(() => String, {nullable:true})
-    image!: string | null;
+    image_path!: string | null;
     @Field(() => Int, {nullable:true})
     calories!: number | null;
     @Field(() => String, {nullable:false})
@@ -6518,6 +6520,10 @@ export class SubCategoryCountAggregateInput {
     @Field(() => Boolean, {nullable:true})
     name?: true;
     @Field(() => Boolean, {nullable:true})
+    path?: true;
+    @Field(() => Boolean, {nullable:true})
+    image_path?: true;
+    @Field(() => Boolean, {nullable:true})
     description?: true;
     @Field(() => Boolean, {nullable:true})
     categoryId?: true;
@@ -6532,6 +6538,10 @@ export class SubCategoryCountAggregate {
     @Field(() => Int, {nullable:false})
     name!: number;
     @Field(() => Int, {nullable:false})
+    path!: number;
+    @Field(() => Int, {nullable:false})
+    image_path!: number;
+    @Field(() => Int, {nullable:false})
     description!: number;
     @Field(() => Int, {nullable:false})
     categoryId!: number;
@@ -6545,6 +6555,10 @@ export class SubCategoryCountOrderByAggregateInput {
     id?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     name?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    path?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    image_path?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     description?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
@@ -6577,6 +6591,16 @@ export class SubCategoryCreateManyCategoryInput {
     name!: string;
     @Field(() => String, {nullable:true})
     @Validator.IsString()
+    @Validator.MaxLength(25)
+    @Validator.MinLength(3)
+    path?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    image_path?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
     description?: string;
@@ -6591,6 +6615,16 @@ export class SubCategoryCreateManyInput {
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
     name!: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(25)
+    @Validator.MinLength(3)
+    path?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    image_path?: string;
     @Field(() => String, {nullable:true})
     @Validator.IsString()
     @Validator.MaxLength(100)
@@ -6661,6 +6695,16 @@ export class SubCategoryCreateWithoutCategoryInput {
     name!: string;
     @Field(() => String, {nullable:true})
     @Validator.IsString()
+    @Validator.MaxLength(25)
+    @Validator.MinLength(3)
+    path?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    image_path?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
     description?: string;
@@ -6679,6 +6723,16 @@ export class SubCategoryCreateWithoutMenuItemsInput {
     name!: string;
     @Field(() => String, {nullable:true})
     @Validator.IsString()
+    @Validator.MaxLength(25)
+    @Validator.MinLength(3)
+    path?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    image_path?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
     description?: string;
@@ -6695,6 +6749,16 @@ export class SubCategoryCreateInput {
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
     name!: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(25)
+    @Validator.MinLength(3)
+    path?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    image_path?: string;
     @Field(() => String, {nullable:true})
     @Validator.IsString()
     @Validator.MaxLength(100)
@@ -6741,6 +6805,16 @@ export class SubCategoryGroupBy {
     name!: string;
     @Field(() => String, {nullable:true})
     @Validator.IsString()
+    @Validator.MaxLength(25)
+    @Validator.MinLength(3)
+    path?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    image_path?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
     description?: string;
@@ -6772,6 +6846,10 @@ export class SubCategoryMaxAggregateInput {
     @Field(() => Boolean, {nullable:true})
     name?: true;
     @Field(() => Boolean, {nullable:true})
+    path?: true;
+    @Field(() => Boolean, {nullable:true})
+    image_path?: true;
+    @Field(() => Boolean, {nullable:true})
     description?: true;
     @Field(() => Boolean, {nullable:true})
     categoryId?: true;
@@ -6786,6 +6864,16 @@ export class SubCategoryMaxAggregate {
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
     name?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(25)
+    @Validator.MinLength(3)
+    path?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    image_path?: string;
     @Field(() => String, {nullable:true})
     @Validator.IsString()
     @Validator.MaxLength(100)
@@ -6803,6 +6891,10 @@ export class SubCategoryMaxOrderByAggregateInput {
     @Field(() => SortOrder, {nullable:true})
     name?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
+    path?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    image_path?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
     description?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     categoryId?: keyof typeof SortOrder;
@@ -6814,6 +6906,10 @@ export class SubCategoryMinAggregateInput {
     id?: true;
     @Field(() => Boolean, {nullable:true})
     name?: true;
+    @Field(() => Boolean, {nullable:true})
+    path?: true;
+    @Field(() => Boolean, {nullable:true})
+    image_path?: true;
     @Field(() => Boolean, {nullable:true})
     description?: true;
     @Field(() => Boolean, {nullable:true})
@@ -6831,6 +6927,16 @@ export class SubCategoryMinAggregate {
     name?: string;
     @Field(() => String, {nullable:true})
     @Validator.IsString()
+    @Validator.MaxLength(25)
+    @Validator.MinLength(3)
+    path?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    image_path?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
     description?: string;
@@ -6845,6 +6951,10 @@ export class SubCategoryMinOrderByAggregateInput {
     id?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     name?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    path?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    image_path?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     description?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
@@ -6864,6 +6974,10 @@ export class SubCategoryOrderByWithAggregationInput {
     @Field(() => SortOrder, {nullable:true})
     name?: keyof typeof SortOrder;
     @Field(() => SortOrderInput, {nullable:true})
+    path?: InstanceType<typeof SortOrderInput>;
+    @Field(() => SortOrderInput, {nullable:true})
+    image_path?: InstanceType<typeof SortOrderInput>;
+    @Field(() => SortOrderInput, {nullable:true})
     description?: InstanceType<typeof SortOrderInput>;
     @Field(() => SortOrder, {nullable:true})
     categoryId?: keyof typeof SortOrder;
@@ -6881,6 +6995,10 @@ export class SubCategoryOrderByWithRelationInput {
     id?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     name?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    path?: InstanceType<typeof SortOrderInput>;
+    @Field(() => SortOrderInput, {nullable:true})
+    image_path?: InstanceType<typeof SortOrderInput>;
     @Field(() => SortOrderInput, {nullable:true})
     description?: InstanceType<typeof SortOrderInput>;
     @Field(() => SortOrder, {nullable:true})
@@ -6912,6 +7030,10 @@ export class SubCategoryScalarWhereWithAggregatesInput {
     @Field(() => StringWithAggregatesFilter, {nullable:true})
     name?: InstanceType<typeof StringWithAggregatesFilter>;
     @Field(() => StringWithAggregatesFilter, {nullable:true})
+    path?: InstanceType<typeof StringWithAggregatesFilter>;
+    @Field(() => StringWithAggregatesFilter, {nullable:true})
+    image_path?: InstanceType<typeof StringWithAggregatesFilter>;
+    @Field(() => StringWithAggregatesFilter, {nullable:true})
     description?: InstanceType<typeof StringWithAggregatesFilter>;
     @Field(() => StringWithAggregatesFilter, {nullable:true})
     categoryId?: InstanceType<typeof StringWithAggregatesFilter>;
@@ -6929,6 +7051,10 @@ export class SubCategoryScalarWhereInput {
     id?: InstanceType<typeof StringFilter>;
     @Field(() => StringFilter, {nullable:true})
     name?: InstanceType<typeof StringFilter>;
+    @Field(() => StringFilter, {nullable:true})
+    path?: InstanceType<typeof StringFilter>;
+    @Field(() => StringFilter, {nullable:true})
+    image_path?: InstanceType<typeof StringFilter>;
     @Field(() => StringFilter, {nullable:true})
     description?: InstanceType<typeof StringFilter>;
     @Field(() => StringFilter, {nullable:true})
@@ -6962,6 +7088,16 @@ export class SubCategoryUncheckedCreateWithoutCategoryInput {
     name!: string;
     @Field(() => String, {nullable:true})
     @Validator.IsString()
+    @Validator.MaxLength(25)
+    @Validator.MinLength(3)
+    path?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    image_path?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
     description?: string;
@@ -6978,6 +7114,16 @@ export class SubCategoryUncheckedCreateWithoutMenuItemsInput {
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
     name!: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(25)
+    @Validator.MinLength(3)
+    path?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    image_path?: string;
     @Field(() => String, {nullable:true})
     @Validator.IsString()
     @Validator.MaxLength(100)
@@ -6997,6 +7143,16 @@ export class SubCategoryUncheckedCreateInput {
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
     name!: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(25)
+    @Validator.MinLength(3)
+    path?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    image_path?: string;
     @Field(() => String, {nullable:true})
     @Validator.IsString()
     @Validator.MaxLength(100)
@@ -7057,6 +7213,16 @@ export class SubCategoryUncheckedUpdateManyWithoutCategoryInput {
     name?: string;
     @Field(() => String, {nullable:true})
     @Validator.IsString()
+    @Validator.MaxLength(25)
+    @Validator.MinLength(3)
+    path?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    image_path?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
     description?: string;
@@ -7071,6 +7237,16 @@ export class SubCategoryUncheckedUpdateManyInput {
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
     name?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(25)
+    @Validator.MinLength(3)
+    path?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    image_path?: string;
     @Field(() => String, {nullable:true})
     @Validator.IsString()
     @Validator.MaxLength(100)
@@ -7092,6 +7268,16 @@ export class SubCategoryUncheckedUpdateWithoutCategoryInput {
     name?: string;
     @Field(() => String, {nullable:true})
     @Validator.IsString()
+    @Validator.MaxLength(25)
+    @Validator.MinLength(3)
+    path?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    image_path?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
     description?: string;
@@ -7108,6 +7294,16 @@ export class SubCategoryUncheckedUpdateWithoutMenuItemsInput {
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
     name?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(25)
+    @Validator.MinLength(3)
+    path?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    image_path?: string;
     @Field(() => String, {nullable:true})
     @Validator.IsString()
     @Validator.MaxLength(100)
@@ -7129,6 +7325,16 @@ export class SubCategoryUncheckedUpdateInput {
     name?: string;
     @Field(() => String, {nullable:true})
     @Validator.IsString()
+    @Validator.MaxLength(25)
+    @Validator.MinLength(3)
+    path?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    image_path?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
     description?: string;
@@ -7148,6 +7354,16 @@ export class SubCategoryUpdateManyMutationInput {
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
     name?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(25)
+    @Validator.MinLength(3)
+    path?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    image_path?: string;
     @Field(() => String, {nullable:true})
     @Validator.IsString()
     @Validator.MaxLength(100)
@@ -7252,6 +7468,16 @@ export class SubCategoryUpdateWithoutCategoryInput {
     name?: string;
     @Field(() => String, {nullable:true})
     @Validator.IsString()
+    @Validator.MaxLength(25)
+    @Validator.MinLength(3)
+    path?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    image_path?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
     description?: string;
@@ -7270,6 +7496,16 @@ export class SubCategoryUpdateWithoutMenuItemsInput {
     name?: string;
     @Field(() => String, {nullable:true})
     @Validator.IsString()
+    @Validator.MaxLength(25)
+    @Validator.MinLength(3)
+    path?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    image_path?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
     description?: string;
@@ -7286,6 +7522,16 @@ export class SubCategoryUpdateInput {
     @Validator.MaxLength(100)
     @Validator.MinLength(3)
     name?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(25)
+    @Validator.MinLength(3)
+    path?: string;
+    @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
+    image_path?: string;
     @Field(() => String, {nullable:true})
     @Validator.IsString()
     @Validator.MaxLength(100)
@@ -7339,6 +7585,10 @@ export class SubCategoryWhereUniqueInput {
     @Field(() => [SubCategoryWhereInput], {nullable:true})
     NOT?: Array<SubCategoryWhereInput>;
     @Field(() => StringFilter, {nullable:true})
+    path?: InstanceType<typeof StringFilter>;
+    @Field(() => StringFilter, {nullable:true})
+    image_path?: InstanceType<typeof StringFilter>;
+    @Field(() => StringFilter, {nullable:true})
     description?: InstanceType<typeof StringFilter>;
     @Field(() => StringFilter, {nullable:true})
     categoryId?: InstanceType<typeof StringFilter>;
@@ -7361,6 +7611,10 @@ export class SubCategoryWhereInput {
     @Field(() => StringFilter, {nullable:true})
     name?: InstanceType<typeof StringFilter>;
     @Field(() => StringFilter, {nullable:true})
+    path?: InstanceType<typeof StringFilter>;
+    @Field(() => StringFilter, {nullable:true})
+    image_path?: InstanceType<typeof StringFilter>;
+    @Field(() => StringFilter, {nullable:true})
     description?: InstanceType<typeof StringFilter>;
     @Field(() => StringFilter, {nullable:true})
     categoryId?: InstanceType<typeof StringFilter>;
@@ -7376,6 +7630,10 @@ export class SubCategory {
     id!: string;
     @Field(() => String, {nullable:false})
     name!: string;
+    @Field(() => String, {nullable:true})
+    path!: string | null;
+    @Field(() => String, {nullable:true})
+    image_path!: string | null;
     @Field(() => String, {nullable:true})
     description!: string | null;
     @Field(() => String, {nullable:false})

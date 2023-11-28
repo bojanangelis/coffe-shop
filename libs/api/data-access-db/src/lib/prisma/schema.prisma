@@ -129,6 +129,14 @@ model SubCategory {
   /// @Validator.MinLength(3)
   name        String  @unique
   /// @Validator.IsString()
+  /// @Validator.MaxLength(25)
+  /// @Validator.MinLength(3)
+  path        String?
+  /// @Validator.IsString()
+  /// @Validator.MaxLength(100)
+  /// @Validator.MinLength(3)
+  image_path  String?
+  /// @Validator.IsString()
   /// @Validator.MaxLength(100)
   /// @Validator.MinLength(3)
   description String?
@@ -153,7 +161,7 @@ model MenuItem {
   /// @Validator.IsString()
   /// @Validator.MaxLength(100)
   /// @Validator.MinLength(3)
-  image          String?
+  image_path     String?
   /// @Validator.IsInt()
   /// @Validator.Min(0)
   /// @Validator.Max(255)

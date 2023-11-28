@@ -111,7 +111,7 @@ type MenuItemCountAggregate {
   id: Int!
   name: Int!
   description: Int!
-  image: Int!
+  image_path: Int!
   calories: Int!
   subCategoryId: Int!
   _all: Int!
@@ -126,7 +126,7 @@ type MenuItemMaxAggregate {
   id: String
   name: String
   description: String
-  image: String
+  image_path: String
   calories: Int
   subCategoryId: String
 }
@@ -135,7 +135,7 @@ type MenuItemMinAggregate {
   id: String
   name: String
   description: String
-  image: String
+  image_path: String
   calories: Int
   subCategoryId: String
 }
@@ -148,7 +148,7 @@ type MenuItem {
   id: ID!
   name: String!
   description: String
-  image: String
+  image_path: String
   calories: Int
   subCategoryId: String!
   subCategory: SubCategory!
@@ -250,6 +250,8 @@ type Size {
 type SubCategoryCountAggregate {
   id: Int!
   name: Int!
+  path: Int!
+  image_path: Int!
   description: Int!
   categoryId: Int!
   _all: Int!
@@ -262,6 +264,8 @@ type SubCategoryCount {
 type SubCategoryMaxAggregate {
   id: String
   name: String
+  path: String
+  image_path: String
   description: String
   categoryId: String
 }
@@ -269,6 +273,8 @@ type SubCategoryMaxAggregate {
 type SubCategoryMinAggregate {
   id: String
   name: String
+  path: String
+  image_path: String
   description: String
   categoryId: String
 }
@@ -276,6 +282,8 @@ type SubCategoryMinAggregate {
 type SubCategory {
   id: ID!
   name: String!
+  path: String
+  image_path: String
   description: String
   categoryId: String!
   category: Category!
@@ -469,6 +477,8 @@ input SubCategoryWhereInput {
   NOT: [SubCategoryWhereInput!]
   id: StringFilter
   name: StringFilter
+  path: StringFilter
+  image_path: StringFilter
   description: StringFilter
   categoryId: StringFilter
   category: CategoryRelationFilter
@@ -493,7 +503,7 @@ input MenuItemWhereInput {
   id: StringFilter
   name: StringFilter
   description: StringFilter
-  image: StringFilter
+  image_path: StringFilter
   calories: IntFilter
   subCategoryId: StringFilter
   subCategory: SubCategoryRelationFilter
@@ -560,7 +570,7 @@ input MenuItemWhereUniqueInput {
   NOT: [MenuItemWhereInput!]
   name: StringFilter
   description: StringFilter
-  image: StringFilter
+  image_path: StringFilter
   calories: IntFilter
   subCategoryId: StringFilter
   subCategory: SubCategoryRelationFilter
@@ -574,6 +584,8 @@ input SubCategoryWhereUniqueInput {
   AND: [SubCategoryWhereInput!]
   OR: [SubCategoryWhereInput!]
   NOT: [SubCategoryWhereInput!]
+  path: StringFilter
+  image_path: StringFilter
   description: StringFilter
   categoryId: StringFilter
   category: CategoryRelationFilter
@@ -618,19 +630,13 @@ type Mutation {
   updateMenuItem(data: MenuItemUpdateInput!, where: MenuItemWhereUniqueInput!): MenuItem!
   removeMenuItem(where: MenuItemWhereUniqueInput!): MenuItem!
   createSubCategory(data: SubCategoryCreateInput!): SubCategory!
-  updateSubCategory(
-    data: SubCategoryUpdateInput!
-    where: SubCategoryWhereUniqueInput!
-  ): SubCategory!
+  updateSubCategory(data: SubCategoryUpdateInput!, where: SubCategoryWhereUniqueInput!): SubCategory!
   removeSubCategory(where: CategoryWhereUniqueInput!): SubCategory!
   createSize(data: SizeCreateInput!): Size!
   updateSize(data: SizeUpdateInput!, where: SizeWhereUniqueInput!): Size!
   removeSize(where: SizeWhereUniqueInput!): Size!
   createCustomization(data: CustomizationCreateInput!): Customization!
-  updateCustomization(
-    data: CustomizationUpdateInput!
-    where: CustomizationWhereUniqueInput!
-  ): Customization!
+  updateCustomization(data: CustomizationUpdateInput!, where: CustomizationWhereUniqueInput!): Customization!
   removeCustomization(where: CustomizationWhereUniqueInput!): Customization!
 }
 
@@ -757,6 +763,8 @@ input SubCategoryCreateNestedManyWithoutCategoryInput {
 input SubCategoryCreateWithoutCategoryInput {
   id: String
   name: String!
+  path: String
+  image_path: String
   description: String
   menuItems: MenuItemCreateNestedManyWithoutSubCategoryInput
 }
@@ -772,7 +780,7 @@ input MenuItemCreateWithoutSubCategoryInput {
   id: String
   name: String!
   description: String
-  image: String
+  image_path: String
   calories: Int
   sizes: SizeCreateNestedManyWithoutMenuItemInput
   customizations: CustomizationCreateNestedManyWithoutMenuItemInput
@@ -850,7 +858,7 @@ input MenuItemCreateManySubCategoryInput {
   id: String
   name: String!
   description: String
-  image: String
+  image_path: String
   calories: Int
 }
 
@@ -867,6 +875,8 @@ input SubCategoryCreateManyCategoryInputEnvelope {
 input SubCategoryCreateManyCategoryInput {
   id: String
   name: String!
+  path: String
+  image_path: String
   description: String
 }
 
@@ -900,6 +910,8 @@ input SubCategoryUpsertWithWhereUniqueWithoutCategoryInput {
 input SubCategoryUpdateWithoutCategoryInput {
   id: String
   name: String
+  path: String
+  image_path: String
   description: String
   menuItems: MenuItemUpdateManyWithoutSubCategoryNestedInput
 }
@@ -928,7 +940,7 @@ input MenuItemUpdateWithoutSubCategoryInput {
   id: String
   name: String
   description: String
-  image: String
+  image_path: String
   calories: Int
   sizes: SizeUpdateManyWithoutMenuItemNestedInput
   customizations: CustomizationUpdateManyWithoutMenuItemNestedInput
@@ -1055,7 +1067,7 @@ input MenuItemScalarWhereInput {
   id: StringFilter
   name: StringFilter
   description: StringFilter
-  image: StringFilter
+  image_path: StringFilter
   calories: IntFilter
   subCategoryId: StringFilter
 }
@@ -1064,7 +1076,7 @@ input MenuItemUpdateManyMutationInput {
   id: String
   name: String
   description: String
-  image: String
+  image_path: String
   calories: Int
 }
 
@@ -1084,6 +1096,8 @@ input SubCategoryScalarWhereInput {
   NOT: [SubCategoryScalarWhereInput!]
   id: StringFilter
   name: StringFilter
+  path: StringFilter
+  image_path: StringFilter
   description: StringFilter
   categoryId: StringFilter
 }
@@ -1091,6 +1105,8 @@ input SubCategoryScalarWhereInput {
 input SubCategoryUpdateManyMutationInput {
   id: String
   name: String
+  path: String
+  image_path: String
   description: String
 }
 
@@ -1098,7 +1114,7 @@ input MenuItemCreateInput {
   id: String
   name: String!
   description: String
-  image: String
+  image_path: String
   calories: Int
   subCategory: SubCategoryCreateNestedOneWithoutMenuItemsInput!
   sizes: SizeCreateNestedManyWithoutMenuItemInput
@@ -1114,6 +1130,8 @@ input SubCategoryCreateNestedOneWithoutMenuItemsInput {
 input SubCategoryCreateWithoutMenuItemsInput {
   id: String
   name: String!
+  path: String
+  image_path: String
   description: String
   category: CategoryCreateNestedOneWithoutSubCategoriesInput!
 }
@@ -1144,7 +1162,7 @@ input MenuItemUpdateInput {
   id: String
   name: String
   description: String
-  image: String
+  image_path: String
   calories: Int
   subCategory: SubCategoryUpdateOneRequiredWithoutMenuItemsNestedInput
   sizes: SizeUpdateManyWithoutMenuItemNestedInput
@@ -1168,6 +1186,8 @@ input SubCategoryUpsertWithoutMenuItemsInput {
 input SubCategoryUpdateWithoutMenuItemsInput {
   id: String
   name: String
+  path: String
+  image_path: String
   description: String
   category: CategoryUpdateOneRequiredWithoutSubCategoriesNestedInput
 }
@@ -1205,6 +1225,8 @@ input SubCategoryUpdateToOneWithWhereWithoutMenuItemsInput {
 input SubCategoryCreateInput {
   id: String
   name: String!
+  path: String
+  image_path: String
   description: String
   category: CategoryCreateNestedOneWithoutSubCategoriesInput!
   menuItems: MenuItemCreateNestedManyWithoutSubCategoryInput
@@ -1213,6 +1235,8 @@ input SubCategoryCreateInput {
 input SubCategoryUpdateInput {
   id: String
   name: String
+  path: String
+  image_path: String
   description: String
   category: CategoryUpdateOneRequiredWithoutSubCategoriesNestedInput
   menuItems: MenuItemUpdateManyWithoutSubCategoryNestedInput
@@ -1235,7 +1259,7 @@ input MenuItemCreateWithoutSizesInput {
   id: String
   name: String!
   description: String
-  image: String
+  image_path: String
   calories: Int
   subCategory: SubCategoryCreateNestedOneWithoutMenuItemsInput!
   customizations: CustomizationCreateNestedManyWithoutMenuItemInput
@@ -1271,7 +1295,7 @@ input MenuItemUpdateWithoutSizesInput {
   id: String
   name: String
   description: String
-  image: String
+  image_path: String
   calories: Int
   subCategory: SubCategoryUpdateOneRequiredWithoutMenuItemsNestedInput
   customizations: CustomizationUpdateManyWithoutMenuItemNestedInput
@@ -1299,7 +1323,7 @@ input MenuItemCreateWithoutCustomizationsInput {
   id: String
   name: String!
   description: String
-  image: String
+  image_path: String
   calories: Int
   subCategory: SubCategoryCreateNestedOneWithoutMenuItemsInput!
   sizes: SizeCreateNestedManyWithoutMenuItemInput
@@ -1335,7 +1359,7 @@ input MenuItemUpdateWithoutCustomizationsInput {
   id: String
   name: String
   description: String
-  image: String
+  image_path: String
   calories: Int
   subCategory: SubCategoryUpdateOneRequiredWithoutMenuItemsNestedInput
   sizes: SizeUpdateManyWithoutMenuItemNestedInput

@@ -1,12 +1,29 @@
-import MenuCoffeeComponent from '../../components/menu-coffee-component';
+'use client';
+import { useGetAllCategoryQuery } from '@coffee-shop/web/data-access-graphql';
+import CategoryDrinkCard from '../../components/category-drink-card';
 import React from 'react';
+import { withApi } from 'apps/web/api/client-api';
 
 const Menu = () => {
+  const [{ data }] = useGetAllCategoryQuery();
+
   return (
-    <>
-      <MenuCoffeeComponent />
-    </>
+    <div className="pt-4">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        {data?.categories?.map((category) => (
+          <div key={category?.id}>
+            {category.subCategories?.map((sub) => (
+              <CategoryDrinkCard
+                key={sub.id}
+                category_img={sub?.image_path}
+                category_title={sub?.name}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 
-export default Menu;
+export default withApi(Menu);

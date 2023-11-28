@@ -46,6 +46,8 @@ CREATE TABLE "Category" (
 CREATE TABLE "SubCategory" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
+    "path" TEXT,
+    "image_path" TEXT,
     "description" TEXT,
     "categoryId" TEXT NOT NULL,
 
@@ -57,7 +59,7 @@ CREATE TABLE "MenuItem" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "description" TEXT,
-    "image" TEXT,
+    "image_path" TEXT,
     "calories" INTEGER,
     "subCategoryId" TEXT NOT NULL,
 

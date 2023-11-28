@@ -419,7 +419,7 @@ export type MenuItem = {
   customizations?: Maybe<Array<Customization>>;
   description?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
-  image?: Maybe<Scalars['String']['output']>;
+  image_path?: Maybe<Scalars['String']['output']>;
   name: Scalars['String']['output'];
   sizes?: Maybe<Array<Size>>;
   subCategory: SubCategory;
@@ -443,7 +443,7 @@ export type MenuItemCountAggregate = {
   calories: Scalars['Int']['output'];
   description: Scalars['Int']['output'];
   id: Scalars['Int']['output'];
-  image: Scalars['Int']['output'];
+  image_path: Scalars['Int']['output'];
   name: Scalars['Int']['output'];
   subCategoryId: Scalars['Int']['output'];
 };
@@ -453,7 +453,7 @@ export type MenuItemCreateInput = {
   customizations?: InputMaybe<CustomizationCreateNestedManyWithoutMenuItemInput>;
   description?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
+  image_path?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
   sizes?: InputMaybe<SizeCreateNestedManyWithoutMenuItemInput>;
   subCategory: SubCategoryCreateNestedOneWithoutMenuItemsInput;
@@ -463,7 +463,7 @@ export type MenuItemCreateManySubCategoryInput = {
   calories?: InputMaybe<Scalars['Int']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
+  image_path?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
 };
 
@@ -510,7 +510,7 @@ export type MenuItemCreateWithoutCustomizationsInput = {
   calories?: InputMaybe<Scalars['Int']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
+  image_path?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
   sizes?: InputMaybe<SizeCreateNestedManyWithoutMenuItemInput>;
   subCategory: SubCategoryCreateNestedOneWithoutMenuItemsInput;
@@ -521,7 +521,7 @@ export type MenuItemCreateWithoutSizesInput = {
   customizations?: InputMaybe<CustomizationCreateNestedManyWithoutMenuItemInput>;
   description?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
+  image_path?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
   subCategory: SubCategoryCreateNestedOneWithoutMenuItemsInput;
 };
@@ -531,7 +531,7 @@ export type MenuItemCreateWithoutSubCategoryInput = {
   customizations?: InputMaybe<CustomizationCreateNestedManyWithoutMenuItemInput>;
   description?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
+  image_path?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
   sizes?: InputMaybe<SizeCreateNestedManyWithoutMenuItemInput>;
 };
@@ -547,7 +547,7 @@ export type MenuItemMaxAggregate = {
   calories?: Maybe<Scalars['Int']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
+  image_path?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   subCategoryId?: Maybe<Scalars['String']['output']>;
 };
@@ -557,7 +557,7 @@ export type MenuItemMinAggregate = {
   calories?: Maybe<Scalars['Int']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
+  image_path?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   subCategoryId?: Maybe<Scalars['String']['output']>;
 };
@@ -574,7 +574,7 @@ export type MenuItemScalarWhereInput = {
   calories?: InputMaybe<IntFilter>;
   description?: InputMaybe<StringFilter>;
   id?: InputMaybe<StringFilter>;
-  image?: InputMaybe<StringFilter>;
+  image_path?: InputMaybe<StringFilter>;
   name?: InputMaybe<StringFilter>;
   subCategoryId?: InputMaybe<StringFilter>;
 };
@@ -589,7 +589,7 @@ export type MenuItemUpdateInput = {
   customizations?: InputMaybe<CustomizationUpdateManyWithoutMenuItemNestedInput>;
   description?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
+  image_path?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   sizes?: InputMaybe<SizeUpdateManyWithoutMenuItemNestedInput>;
   subCategory?: InputMaybe<SubCategoryUpdateOneRequiredWithoutMenuItemsNestedInput>;
@@ -599,7 +599,7 @@ export type MenuItemUpdateManyMutationInput = {
   calories?: InputMaybe<Scalars['Int']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
+  image_path?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -657,7 +657,7 @@ export type MenuItemUpdateWithoutCustomizationsInput = {
   calories?: InputMaybe<Scalars['Int']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
+  image_path?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   sizes?: InputMaybe<SizeUpdateManyWithoutMenuItemNestedInput>;
   subCategory?: InputMaybe<SubCategoryUpdateOneRequiredWithoutMenuItemsNestedInput>;
@@ -668,7 +668,7 @@ export type MenuItemUpdateWithoutSizesInput = {
   customizations?: InputMaybe<CustomizationUpdateManyWithoutMenuItemNestedInput>;
   description?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
+  image_path?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   subCategory?: InputMaybe<SubCategoryUpdateOneRequiredWithoutMenuItemsNestedInput>;
 };
@@ -678,7 +678,7 @@ export type MenuItemUpdateWithoutSubCategoryInput = {
   customizations?: InputMaybe<CustomizationUpdateManyWithoutMenuItemNestedInput>;
   description?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
+  image_path?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   sizes?: InputMaybe<SizeUpdateManyWithoutMenuItemNestedInput>;
 };
@@ -709,7 +709,7 @@ export type MenuItemWhereInput = {
   customizations?: InputMaybe<CustomizationListRelationFilter>;
   description?: InputMaybe<StringFilter>;
   id?: InputMaybe<StringFilter>;
-  image?: InputMaybe<StringFilter>;
+  image_path?: InputMaybe<StringFilter>;
   name?: InputMaybe<StringFilter>;
   sizes?: InputMaybe<SizeListRelationFilter>;
   subCategory?: InputMaybe<SubCategoryRelationFilter>;
@@ -724,7 +724,7 @@ export type MenuItemWhereUniqueInput = {
   customizations?: InputMaybe<CustomizationListRelationFilter>;
   description?: InputMaybe<StringFilter>;
   id?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<StringFilter>;
+  image_path?: InputMaybe<StringFilter>;
   name?: InputMaybe<StringFilter>;
   sizes?: InputMaybe<SizeListRelationFilter>;
   subCategory?: InputMaybe<SubCategoryRelationFilter>;
@@ -1277,8 +1277,10 @@ export type SubCategory = {
   categoryId: Scalars['String']['output'];
   description?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
+  image_path?: Maybe<Scalars['String']['output']>;
   menuItems?: Maybe<Array<MenuItem>>;
   name: Scalars['String']['output'];
+  path?: Maybe<Scalars['String']['output']>;
 };
 
 export type SubCategoryCount = {
@@ -1292,21 +1294,27 @@ export type SubCategoryCountAggregate = {
   categoryId: Scalars['Int']['output'];
   description: Scalars['Int']['output'];
   id: Scalars['Int']['output'];
+  image_path: Scalars['Int']['output'];
   name: Scalars['Int']['output'];
+  path: Scalars['Int']['output'];
 };
 
 export type SubCategoryCreateInput = {
   category: CategoryCreateNestedOneWithoutSubCategoriesInput;
   description?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
+  image_path?: InputMaybe<Scalars['String']['input']>;
   menuItems?: InputMaybe<MenuItemCreateNestedManyWithoutSubCategoryInput>;
   name: Scalars['String']['input'];
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type SubCategoryCreateManyCategoryInput = {
   description?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
+  image_path?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type SubCategoryCreateManyCategoryInputEnvelope = {
@@ -1340,15 +1348,19 @@ export type SubCategoryCreateOrConnectWithoutMenuItemsInput = {
 export type SubCategoryCreateWithoutCategoryInput = {
   description?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
+  image_path?: InputMaybe<Scalars['String']['input']>;
   menuItems?: InputMaybe<MenuItemCreateNestedManyWithoutSubCategoryInput>;
   name: Scalars['String']['input'];
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type SubCategoryCreateWithoutMenuItemsInput = {
   category: CategoryCreateNestedOneWithoutSubCategoriesInput;
   description?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
+  image_path?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type SubCategoryListRelationFilter = {
@@ -1362,7 +1374,9 @@ export type SubCategoryMaxAggregate = {
   categoryId?: Maybe<Scalars['String']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['String']['output']>;
+  image_path?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
+  path?: Maybe<Scalars['String']['output']>;
 };
 
 export type SubCategoryMinAggregate = {
@@ -1370,7 +1384,9 @@ export type SubCategoryMinAggregate = {
   categoryId?: Maybe<Scalars['String']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['String']['output']>;
+  image_path?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
+  path?: Maybe<Scalars['String']['output']>;
 };
 
 export type SubCategoryRelationFilter = {
@@ -1385,21 +1401,27 @@ export type SubCategoryScalarWhereInput = {
   categoryId?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
   id?: InputMaybe<StringFilter>;
+  image_path?: InputMaybe<StringFilter>;
   name?: InputMaybe<StringFilter>;
+  path?: InputMaybe<StringFilter>;
 };
 
 export type SubCategoryUpdateInput = {
   category?: InputMaybe<CategoryUpdateOneRequiredWithoutSubCategoriesNestedInput>;
   description?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
+  image_path?: InputMaybe<Scalars['String']['input']>;
   menuItems?: InputMaybe<MenuItemUpdateManyWithoutSubCategoryNestedInput>;
   name?: InputMaybe<Scalars['String']['input']>;
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type SubCategoryUpdateManyMutationInput = {
   description?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
+  image_path?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type SubCategoryUpdateManyWithWhereWithoutCategoryInput = {
@@ -1442,15 +1464,19 @@ export type SubCategoryUpdateWithWhereUniqueWithoutCategoryInput = {
 export type SubCategoryUpdateWithoutCategoryInput = {
   description?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
+  image_path?: InputMaybe<Scalars['String']['input']>;
   menuItems?: InputMaybe<MenuItemUpdateManyWithoutSubCategoryNestedInput>;
   name?: InputMaybe<Scalars['String']['input']>;
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type SubCategoryUpdateWithoutMenuItemsInput = {
   category?: InputMaybe<CategoryUpdateOneRequiredWithoutSubCategoriesNestedInput>;
   description?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
+  image_path?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type SubCategoryUpsertWithWhereUniqueWithoutCategoryInput = {
@@ -1473,8 +1499,10 @@ export type SubCategoryWhereInput = {
   categoryId?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
   id?: InputMaybe<StringFilter>;
+  image_path?: InputMaybe<StringFilter>;
   menuItems?: InputMaybe<MenuItemListRelationFilter>;
   name?: InputMaybe<StringFilter>;
+  path?: InputMaybe<StringFilter>;
 };
 
 export type SubCategoryWhereUniqueInput = {
@@ -1485,8 +1513,10 @@ export type SubCategoryWhereUniqueInput = {
   categoryId?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
   id?: InputMaybe<Scalars['String']['input']>;
+  image_path?: InputMaybe<StringFilter>;
   menuItems?: InputMaybe<MenuItemListRelationFilter>;
   name?: InputMaybe<Scalars['String']['input']>;
+  path?: InputMaybe<StringFilter>;
 };
 
 export type User = {

@@ -30,6 +30,7 @@ export class SubCategoryService {
   }
 
   findOne(findUniqueSubCategoryArgs: FindUniqueSubCategoryArgs) {
+    console.log('find->', findUniqueSubCategoryArgs);
     return this.prisma.subCategory.findUnique({
       where: findUniqueSubCategoryArgs.where,
       include: {

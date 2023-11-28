@@ -2,7 +2,6 @@ overwrite: true
 schema: 'tools/graphql-schema/schema.gql'
 
 documents:
-  - 'apps/**/*gql.ts'
   - 'libs/**/*gql.ts'
 
 generates:
@@ -22,3 +21,4 @@ generates:
       - typescript-urql
     config:
       withHooks: true
+      gqlImport: 'urql#gql'

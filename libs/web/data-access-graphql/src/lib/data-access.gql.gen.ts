@@ -1,6 +1,6 @@
 import * as Types from './types';
 
-import gql from 'graphql-tag';
+import { gql } from 'urql';
 import * as Urql from 'urql';
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 export type GetUsersQueryVariables = Types.Exact<{ [key: string]: never; }>;
@@ -26,6 +26,32 @@ export type SingUpMutationVariables = Types.Exact<{
 
 
 export type SingUpMutation = { __typename?: 'Mutation', signUp: { __typename?: 'User', id: string, name?: string | null, email: string } };
+
+export type GetAllCategoryQueryVariables = Types.Exact<{ [key: string]: never; }>;
+
+
+export type GetAllCategoryQuery = { __typename?: 'Query', categories: Array<{ __typename?: 'Category', id: string, name: string, description?: string | null, subCategories?: Array<{ __typename?: 'SubCategory', id: string, name: string, path?: string | null, image_path?: string | null, description?: string | null }> | null }> };
+
+export type GetSubCategoryQueryVariables = Types.Exact<{
+  where: Types.SubCategoryWhereUniqueInput;
+}>;
+
+
+export type GetSubCategoryQuery = { __typename?: 'Query', subCategory: { __typename: 'SubCategory', id: string, name: string, path?: string | null, description?: string | null, image_path?: string | null, menuItems?: Array<{ __typename?: 'MenuItem', id: string, name: string, description?: string | null, image_path?: string | null, calories?: number | null }> | null } };
+
+export type ItemQueryVariables = Types.Exact<{
+  where: Types.MenuItemWhereUniqueInput;
+}>;
+
+
+export type ItemQuery = { __typename?: 'Query', item: { __typename?: 'MenuItem', id: string, name: string, description?: string | null, image_path?: string | null, calories?: number | null, subCategoryId: string, customizations?: Array<{ __typename?: 'Customization', id: string, type: string, options?: Array<string> | null }> | null, sizes?: Array<{ __typename?: 'Size', id: string, name: string, volume: number }> | null } };
+
+export type CustomizationMutationVariables = Types.Exact<{
+  data: Types.CustomizationCreateInput;
+}>;
+
+
+export type CustomizationMutation = { __typename?: 'Mutation', createCustomization: { __typename?: 'Customization', id: string, type: string, options?: Array<string> | null, menuItemId: string } };
 
 
 export const GetUsersDocument = gql`
@@ -87,4 +113,87 @@ export const SingUpDocument = gql`
 
 export function useSingUpMutation() {
   return Urql.useMutation<SingUpMutation, SingUpMutationVariables>(SingUpDocument);
+};
+export const GetAllCategoryDocument = gql`
+    query getAllCategory {
+  categories {
+    id
+    name
+    description
+    subCategories {
+      id
+      name
+      path
+      image_path
+      description
+    }
+  }
+}
+    `;
+
+export function useGetAllCategoryQuery(options?: Omit<Urql.UseQueryArgs<GetAllCategoryQueryVariables>, 'query'>) {
+  return Urql.useQuery<GetAllCategoryQuery, GetAllCategoryQueryVariables>({ query: GetAllCategoryDocument, ...options });
+};
+export const GetSubCategoryDocument = gql`
+    query getSubCategory($where: SubCategoryWhereUniqueInput!) {
+  subCategory(where: $where) {
+    id
+    name
+    path
+    description
+    image_path
+    __typename
+    menuItems {
+      id
+      name
+      description
+      image_path
+      calories
+    }
+  }
+}
+    `;
+
+export function useGetSubCategoryQuery(options: Omit<Urql.UseQueryArgs<GetSubCategoryQueryVariables>, 'query'>) {
+  return Urql.useQuery<GetSubCategoryQuery, GetSubCategoryQueryVariables>({ query: GetSubCategoryDocument, ...options });
+};
+export const ItemDocument = gql`
+    query item($where: MenuItemWhereUniqueInput!) {
+  item(where: $where) {
+    id
+    name
+    description
+    image_path
+    calories
+    subCategoryId
+    customizations {
+      id
+      type
+      options
+    }
+    sizes {
+      id
+      name
+      volume
+    }
+  }
+}
+    `;
+
+export function useItemQuery(options: Omit<Urql.UseQueryArgs<ItemQueryVariables>, 'query'>) {
+  return Urql.useQuery<ItemQuery, ItemQueryVariables>({ query: ItemDocument, ...options });
+};
+export const CustomizationDocument = gql`
+    mutation Customization($data: CustomizationCreateInput!) {
+  createCustomization(data: $data) {
+    id
+    type
+    options
+    menuItemId
+  }
+}
+    `;
+
+export function useCustomizationMutation() {
+  return Urql.useMutation<CustomizationMutation, CustomizationMutationVariables>(CustomizationDocument);
 };
